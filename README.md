@@ -85,10 +85,42 @@ echo '{"jsonrpc":"2.0","id":1,"method":"tools/list"}' | ./target/release/dataxlr
 
 | Document | Description |
 |----------|-------------|
-| [PLAN.md](docs/PLAN.md) | Full migration plan — 7 phases, 24 repos, timeline |
+| [BRD.md](docs/BRD.md) | **Business Requirements Document** — single source of truth |
+| [STATUS.md](docs/STATUS.md) | **Live status dashboard** — auto-updated per verified MCP |
+| [ACCEPTANCE.md](docs/ACCEPTANCE.md) | **Acceptance criteria** — test protocol for every MCP |
+| [PLAN.md](docs/PLAN.md) | Migration plan — 7 phases, 24 repos |
 | [ARCHITECTURE.md](docs/ARCHITECTURE.md) | System design — gateway, schemas, stack choices |
 | [ASSESSMENT.md](docs/ASSESSMENT.md) | Code review findings — bugs found and fixed |
-| [SETUP.md](docs/SETUP.md) | Getting started — PostgreSQL, build, test, Claude Desktop |
+| [SETUP.md](docs/SETUP.md) | Getting started — PostgreSQL, build, test |
+
+### Per-MCP Specs (docs/mcps/)
+
+| MCP | Phase | Spec |
+|-----|-------|------|
+| mcp-core | 0 | [core.md](docs/mcps/core.md) |
+| features-mcp | 0 | [features.md](docs/mcps/features.md) |
+| contacts-mcp | 1 | [contacts.md](docs/mcps/contacts.md) |
+| commissions-mcp | 1 | [commissions.md](docs/mcps/commissions.md) |
+| email-mcp | 1 | [email.md](docs/mcps/email.md) |
+| moderation-mcp | 1 | [moderation.md](docs/mcps/moderation.md) |
+| supplier-mcp | 2 | [supplier.md](docs/mcps/supplier.md) |
+| quotation-mcp | 2 | [quotation.md](docs/mcps/quotation.md) |
+| rooming-mcp | 2 | [rooming.md](docs/mcps/rooming.md) |
+| portal-mcp | 2 | [portal.md](docs/mcps/portal.md) |
+| pdf-mcp | 2 | [pdf.md](docs/mcps/pdf.md) |
+| employees-mcp | 3 | [employees.md](docs/mcps/employees.md) |
+| deals-mcp | 3 | [deals.md](docs/mcps/deals.md) |
+| training-mcp | 3 | [training.md](docs/mcps/training.md) |
+| booking-mcp | 3 | [booking.md](docs/mcps/booking.md) |
+| meet-mcp | 4 | [meet.md](docs/mcps/meet.md) |
+| recording-mcp | 4 | [recording.md](docs/mcps/recording.md) |
+| transcript-mcp | 4 | [transcript.md](docs/mcps/transcript.md) |
+| analytics-mcp | 4 | [analytics.md](docs/mcps/analytics.md) |
+| calendar-mcp | 4 | [calendar.md](docs/mcps/calendar.md) |
+| notification-mcp | 4 | [notification.md](docs/mcps/notification.md) |
+| copilot-mcp | 5 | [copilot.md](docs/mcps/copilot.md) |
+| ai-analysis-mcp | 5 | [ai-analysis.md](docs/mcps/ai-analysis.md) |
+| gateway-mcp | 5 | [gateway.md](docs/mcps/gateway.md) |
 
 ## Tech Stack
 
