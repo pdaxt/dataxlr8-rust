@@ -1,6 +1,17 @@
-# MCP Ecosystem & AI Agent Landscape
+# MCP Ecosystem — DataXLR8's Technical Moat
 
 _Research date: 2026-03-04_
+
+## Why MCP Is DataXLR8's Foundation
+
+DataXLR8 is MCP-native from the ground up. Every agent, every tool, every custom client build runs through Model Context Protocol on Rust backends. This means:
+- **Any AI model** (Claude, GPT, Grok, Llama, Gemini) can operate the system
+- **Sub-millisecond tool calls** — faster than any competitor's API layer
+- **Composable agents** — chain tools from different MCPs into complex workflows
+- **Client-deployable** — build custom MCP servers for each client's unique needs
+- **Future-proof** — MCP is the universal standard, backed by every major AI company
+
+---
 
 ## MCP Adoption (2025-2026)
 
@@ -32,7 +43,11 @@ In December 2025, Anthropic donated MCP to the **Agentic AI Foundation (AAIF)** 
 **Governance:** AAIF Governing Board handles strategic decisions. Individual projects (MCP, goose, AGENTS.md) maintain full technical autonomy.
 
 ### What This Means for DataXLR8
-MCP is no longer Anthropic's protocol — it's **the industry standard**. Every major AI company supports it. Building MCP-native means building for the entire AI ecosystem, not just Claude.
+MCP is no longer Anthropic's protocol — it's **the industry standard**. Every major AI company supports it. Building MCP-native means:
+1. **Any client's AI stack** can use DataXLR8's tools (not locked to one provider)
+2. **Custom AI builds** are portable — clients aren't locked into DataXLR8's infrastructure
+3. **Community ecosystem** — third-party developers can build MCP tools for the marketplace
+4. **Enterprise trust** — AAIF backing means Fortune 500 companies accept MCP
 
 ---
 
@@ -129,6 +144,60 @@ MCP is no longer Anthropic's protocol — it's **the industry standard**. Every 
 - **rmcp:** Official Rust MCP SDK, v0.17+, 3.1K+ GitHub stars
 - DataXLR8 is among the first production Rust MCP platforms
 - Most MCP servers today are Python (FastMCP) or TypeScript
+
+---
+
+## How DataXLR8 Uses MCP
+
+### For the Self-Serve Marketplace
+```
+User → "Enrich this lead" → API → Agent Orchestrator
+  → Gateway spawns enrichment-mcp + scraper-mcp (Rust, <0.2ms per tool)
+  → Tools execute: API calls, scraping, verification
+  → Results cached, credits deducted, response streamed
+```
+
+### For Custom AI Builds (Done-For-You)
+```
+Client needs: "Automate our entire sales pipeline"
+  → DataXLR8 configures: enrichment-mcp + sales-mcp + intelligence-mcp + custom MCPs
+  → Gateway deployed with client's dataxlr8.toml config
+  → Client's AI agents connect via Streamable HTTP
+  → Full pipeline: lead → enrich → qualify → outreach → follow-up
+  → Human-in-the-loop at decision points
+```
+
+### Rust MCP Servers for Agent Marketplace
+
+| MCP Server | Tools | Purpose |
+|------------|-------|---------|
+| `dataxlr8-enrichment-mcp` | 12 | Lead/company data enrichment |
+| `dataxlr8-scraper-mcp` | 6 | Web scraping engine |
+| `dataxlr8-intelligence-mcp` | 10 | Market research, competitor analysis |
+| `dataxlr8-sales-mcp` | 10 | Email generation, scripts |
+| `dataxlr8-content-mcp` | 10 | Blog posts, social media, ads |
+| `dataxlr8-operations-mcp` | 10 | Document analysis, workflows |
+| `dataxlr8-credits-mcp` | 4 | Usage metering |
+| `dataxlr8-gateway-mcp` | 3 | Routing + health |
+
+### The Lego Block Advantage
+Each Rust MCP = an independent 6.5MB binary. For custom client builds:
+1. Pick the MCPs the client needs
+2. Add client-specific MCPs for proprietary integrations
+3. Deploy a gateway with the client's config
+4. Any AI model operates their business through one endpoint
+
+No competitor has this composability at this performance level.
+
+### Competitive MCP Position
+
+| Player | MCP Strategy | DataXLR8's Edge |
+|--------|-------------|----------------|
+| Zoho | Single MCP server (CRM only) | 8+ specialized Rust MCPs, 10x faster |
+| Salesforce | No MCP (Agentforce is proprietary) | Model-agnostic from day 1 |
+| HubSpot | No MCP (Breeze is locked-in) | We're there first |
+| Apollo | No MCP | Our agents are MCP-native |
+| Clay | No MCP | Composable MCP tools > spreadsheet UX |
 
 ---
 

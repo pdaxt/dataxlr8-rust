@@ -48,16 +48,27 @@ When an AI agent does the work of 5 people, charging per seat punishes the custo
 | Odoo Custom | $37.40/user/mo |
 | Zoho One | $45/employee/mo (45+ apps) |
 
-### Travel Software
-| Tool | Pricing | Focus |
+### Sales Intelligence / Lead Enrichment
+| Tool | Pricing | Model |
 |------|---------|-------|
-| Tourwriter | $149/user/mo | Boutique tour operators, itinerary builder |
-| Rezdy | $49-$399/mo | Tour booking management |
-| Travefy | $39/mo/agent | Itinerary planning |
-| TOOGO | Custom | Full tour operations SaaS |
-| Lemax | Custom | Large tour operators |
+| Apollo.io | $49-149/user/mo | Per-seat + credit limits |
+| ZoomInfo | $14.9K+/yr | Annual contract, per-seat |
+| Lusha | $49-79/user/mo | Per-seat + credit limits |
+| Clay | $149-349/user/mo | Per-seat + credit rows |
+| Clearbit → HubSpot Breeze | Bundled with HubSpot | Per-seat (HubSpot plan) |
+| RocketReach | $39-249/mo | Per-seat + lookups |
+| Seamless.AI | $65-147/user/mo | Per-seat + credits |
 
-**Travel agencies spend ~$8,500/year on software**
+### AI Agent / Automation Platforms
+| Tool | Pricing | Model |
+|------|---------|-------|
+| Jasper | $49-125/user/mo | Per-seat |
+| Copy.ai | $49/user/mo | Per-seat + credits |
+| Relevance AI | $19-599/mo | Credit-based |
+| Bardeen | Free-$10/mo | Freemium + credits |
+| Lindy AI | $49+/mo | Per-agent pricing |
+
+**Key insight:** Most competitors still use per-seat pricing. Credit-based is emerging but not dominant yet — first-mover advantage for DataXLR8.
 
 ---
 
@@ -102,93 +113,139 @@ Add AI to existing plan, raise price $2.50-$5/user. 60% of vendors do this.
 
 ---
 
-## DataXLR8 Recommended Pricing
+## DataXLR8 Pricing Model
 
-### Hybrid Model: Subscription + Per-Outcome
+### Two Revenue Streams
 
-| Tier | Price | Includes |
-|------|-------|----------|
-| **Starter** | $39/user/mo | CRM, contacts, basic quotations, 5 AI tasks/mo |
-| **Professional** | $99/user/mo | Full travel ops, client portal, unlimited AI, automations |
-| **Enterprise** | $199/user/mo | SSO, audit logs, API access, custom integrations, white-label |
-| **AI Agent Add-on** | $0.50/task | Per AI-completed task (quotation, lead qualification, email) |
+**Stream 1: Self-Serve Agent Marketplace (Credit-Based)**
 
-**Sweet spot for India:** $49-99/user/mo (undercutting Tourwriter at $149)
+| Tier | Price | Credits/mo | Target |
+|------|-------|-----------|--------|
+| **Free** | $0 | 50 | Try before you buy |
+| **Starter** | $29/mo | 300 | Individual users |
+| **Pro** | $79/mo | 1,500 | Growing teams |
+| **Scale** | $199/mo | 5,000 | Scaling operations |
 
-### Why This Works
-- Base subscription provides predictable revenue
-- Per-task AI pricing captures value from heavy users
-- Professional tier is the "recommended" sweet spot (where most revenue concentrates)
-- Enterprise gates behind SSO/audit (standard enterprise tax)
+| Credit Pack | Price | Per Credit | Bonus |
+|------------|-------|-----------|-------|
+| 100 credits | $9 | $0.09 | — |
+| 500 credits | $39 | $0.078 | 50 bonus |
+| 2,000 credits | $129 | $0.065 | 400 bonus |
+| 10,000 credits | $499 | $0.05 | 2,500 bonus |
 
----
+**Stream 2: Done-For-You Custom AI Builds**
 
-## Open-Source GTM Strategy
+| Engagement | Price Range | What Client Gets |
+|-----------|------------|------------------|
+| Discovery + Assessment | Free | AI Opportunity Scanner report + call |
+| Quick Win Build | $5K-15K | 1-2 custom AI agents deployed |
+| Full AI System | $25K-75K | Complete AI-first workflow automation |
+| Enterprise Transformation | $100K+ | Full business operating system migration |
+| Ongoing Operations | $2K-10K/mo | Managed AI system + support + iteration |
 
-### The Odoo Playbook
-1. Open-source core creates massive distribution
-2. Community improves product faster than internal team
-3. Enterprise features (security, compliance, multi-tenant) justify premium
-4. Hosting/support is the primary revenue stream
+### Why This Dual Model Works
+1. **Self-serve** provides predictable MRR + massive top-of-funnel
+2. **Done-for-you** provides high-value contracts + deep client relationships
+3. **Self-serve → done-for-you** is natural upsell (user hits limits, wants custom)
+4. **Done-for-you → self-serve** generates case studies + referrals
+5. Credit-based pricing aligns with industry trend (126% YoY growth)
 
-### DataXLR8 Open-Core Model
+### Pricing vs Competitors
 
-| Component | Open Source (MIT) | Paid (Cloud/Enterprise) |
-|-----------|-------------------|------------------------|
-| Core MCP tool servers | Yes | — |
-| PostgreSQL schemas + migrations | Yes | — |
-| Gateway (basic) | Yes | — |
-| AI agent features | — | Yes |
-| Managed cloud hosting | — | Yes |
-| Premium integrations (GDS, payment) | — | Yes |
-| White-labeling | — | Yes |
-| SSO/SAML, audit logs | — | Yes |
-| Priority support + SLA | — | Yes |
+| DataXLR8 | vs Apollo ($49-149/user) | vs ZoomInfo ($14.9K+/yr) | vs Clay ($149-349/user) |
+|----------|------------------------|------------------------|----------------------|
+| $29-199/mo (credits) | Cheaper, more flexible | 90% cheaper | Simpler UX, lower entry |
+| No per-seat | Per-seat locks you in | Per-seat + annual | Per-seat + rows |
+| 40+ agent types | Enrichment + sequences only | Data only | Enrichment + workflows |
+| BYOK | Their AI only | No AI agents | Their AI only |
+| Custom builds available | Self-serve only | Enterprise consulting | Self-serve only |
 
-### Why Open-Source MCP Servers
-- MCP ecosystem has 97M+ monthly SDK downloads — massive developer audience
-- Being first Rust MCP business platform in open source = category definition
-- Community builds integrations (Zapier, Slack, etc.) for free
-- Trust: enterprises can audit the code
-- Moat: community + hosting + enterprise features, not the code itself
+### Add-on Revenue
 
----
-
-## API-First Platform Play
-
-### The Stripe/Twilio Model Applied to Business Operations
-
-**Take something painful, make it an API call, charge per use:**
-- Per-invoice processed (billing automation)
-- Per-booking managed (travel operations)
-- Per-lead enriched (CRM automation)
-- Per-document generated (PDF/quotation)
-- Per-agent-action (each MCP tool call)
-
-### MCP Tools as API Product
-- Streamable HTTP transport enables cloud deployment (AWS Lambda, etc.)
-- Charge per MCP tool invocation or per workflow completed
-- Organizations report 40-60% faster agent deployment with MCP
-- Any AI agent (Claude, GPT, Gemini, LLaMA) can use the tools
+| Add-on | Price | Target |
+|--------|-------|--------|
+| HubSpot integration | $19/mo | CRM sync |
+| Salesforce integration | $29/mo | Enterprise CRM |
+| API access | $49/mo | Developers |
+| White-label | $499/mo | Agencies |
 
 ---
 
-## Vertical SaaS Metrics
+## GTM Strategy
 
-### General B2B SaaS Benchmarks (2025-2026)
-| Metric | Benchmark |
-|--------|-----------|
-| LTV:CAC ratio | 3:1 minimum, elite at 4:1+ |
-| Average B2B SaaS CAC | $702 |
-| CAC payback period | 20 months median |
-| Cost per $1 new ARR | $2.00 median |
-| SaaS spend per employee | $7,900/year |
+### Acquisition Funnel
 
-### Why Vertical > Horizontal
-- Higher ARPU (2-3x vs horizontal)
-- Lower churn (deep domain = switching costs)
-- Fewer competitors per niche
-- Industry-specific workflows can't be replicated by generic tools
+```
+FREE: AI Opportunity Scanner (no signup) → Scans any business for AI opportunities
+  ↓ 10% convert
+FREE: Sign up (50 credits) → Try agents, see value in 60 seconds
+  ↓ 8% convert
+PAID: Starter ($29) or credit pack ($9) → Hit credit limit, upgrade
+  ↓ 30% expand
+PAID: Pro ($79) or Scale ($199) → Power users, teams
+  ↓ 5% upsell
+CUSTOM: Done-for-you build ($5K-75K) → Want comprehensive AI system
+  ↓ 50% retain
+ONGOING: Managed operations ($2K-10K/mo) → Long-term relationship
+```
+
+### Channel Strategy
+
+| Channel | Investment | Expected CAC | Timeline |
+|---------|-----------|-------------|----------|
+| **PLG (free tools + Chrome Extension)** | Low (dev time) | <$20 | Month 1 |
+| **Content/SEO** | Medium (2 posts/week) | <$50 | Month 2-6 |
+| **Product Hunt launch** | Low (one-time) | <$5 | Month 2 |
+| **Referral program** | Low ($10 give/$10 get) | <$15 | Month 2 |
+| **LinkedIn outreach** | Medium (done-for-you sales) | <$100 | Month 3 |
+| **Partnerships (HubSpot/Salesforce marketplace)** | Medium | <$30 | Month 4 |
+| **Paid ads (Google/LinkedIn)** | High | $50-100 | Month 6+ |
+
+### PLG Growth Levers
+
+1. **AI Opportunity Scanner** — completely free, viral (scan your competitor!)
+2. **Chrome Extension** — LinkedIn enrichment on hover, 10 free/day
+3. **Email Verifier Widget** — embeddable, "powered by DataXLR8"
+4. **API Playground** — 50 free API calls for developers
+5. **Shareable reports** — "Share your AI Opportunity Report" on social
+
+### Open-Core Model (Future — Month 6+)
+
+| Component | Open Source | Paid |
+|-----------|-----------|------|
+| Core Rust MCP tools (CRUD) | MIT | — |
+| PostgreSQL schemas | MIT | — |
+| Basic gateway | MIT | — |
+| AI agent features | — | Marketplace |
+| Managed hosting | — | Cloud |
+| Premium integrations (CRM, GDS) | — | Add-ons |
+| White-labeling | — | Enterprise |
+| SSO/audit/multi-tenant | — | Enterprise |
+
+---
+
+## Unit Economics Target
+
+| Metric | Target | Industry Benchmark |
+|--------|--------|-------------------|
+| CAC (self-serve) | <$30 | $702 avg B2B SaaS |
+| CAC (done-for-you) | <$500 | $2,000+ for enterprise |
+| ARPU (self-serve) | $65/mo | — |
+| ARPU (done-for-you) | $5,000/mo | — |
+| Blended LTV | $1,500+ | — |
+| LTV:CAC ratio | >10:1 | 3:1 minimum |
+| Gross margin (self-serve) | 70%+ | 78-85% traditional SaaS |
+| Gross margin (done-for-you) | 60%+ | — |
+| Monthly churn | <5% | — |
+| NRR | 110%+ | 120-130% best-in-class |
+| Time to value | <5 minutes | — |
+
+### Margin Management (AI Cost Challenge)
+- **BYOK model** eliminates LLM cost for most users (they pay their own API bills)
+- **Credit-based** pricing means heavy users pay proportionally
+- **Rust performance** = lower infrastructure cost per agent run
+- **Caching** frequent enrichment results reduces API costs
+- **Target:** 70%+ gross margin by using BYOK + Rust efficiency
 
 ---
 
