@@ -63,7 +63,10 @@ class McpClient:
         result = r["result"]
         text = result["content"][0]["text"]
         is_error = result.get("isError", False)
-        return json.loads(text), is_error
+        try:
+            return json.loads(text), is_error
+        except json.JSONDecodeError:
+            return {"_raw": text}, is_error
 
     def close(self):
         self.proc.terminate()
@@ -95,12 +98,13 @@ def test(name, condition, detail=""):
 # ============================================================================
 
 print("\n" + "=" * 60)
-print("FEATURES MCP — 8 tools")
+print("FEATURES MCP — 9 tools")
 print("=" * 60)
 
 feat = McpClient("features", BINS["features"])
 tools = feat.list_tools()
-test("list_tools returns 8 tools", len(tools) == 8, f"got {len(tools)}")
+tool_names = [t["name"] for t in tools]
+test("list_tools returns 9 tools", len(tools) == 9, f"got {len(tools)}: {tool_names}")
 
 # create_flag
 flag, err = feat.call("create_flag", {"name": "dark_mode", "flag_type": "global", "description": "Enable dark mode", "enabled": True})
@@ -125,6 +129,18 @@ test("set_override", not err and ov.get("enabled") is False)
 # check_flag with override
 check2, err = feat.call("check_flag", {"name": "dark_mode", "role": "intern"})
 test("check_flag (role override)", not err and check2.get("enabled") is False, f"reason={check2.get('reason')}")
+
+# remove_override
+rm_ov, err = feat.call("remove_override", {"flag_name": "dark_mode", "override_type": "role", "target": "intern"})
+test("remove_override", not err)
+
+# verify override removed — should revert to global (enabled)
+check3, err = feat.call("check_flag", {"name": "dark_mode", "role": "intern"})
+test("check_flag after remove_override (reverts to global)", not err and check3.get("enabled") is True,
+     f"reason={check3.get('reason')}")
+
+# re-add override for bulk test
+feat.call("set_override", {"flag_name": "dark_mode", "override_type": "role", "target": "intern", "enabled": False})
 
 # check_flags_bulk
 bulk, err = feat.call("check_flags_bulk", {"names": ["dark_mode", "nonexistent"], "role": "intern"})
@@ -432,7 +448,7 @@ if failed > 0:
             print(f"  ✗ {name}: {detail}")
 
 print(f"\nMCPs tested: 4")
-print(f"Tools tested: 31")
+print(f"Tools tested: 32")
 print(f"Binary sizes: features=7.0MB, contacts=7.1MB, commissions=7.0MB, email=8.6MB")
 print(f"Total disk: ~29.7MB (vs ~440MB for TypeScript equivalent)")
 print()
