@@ -40,7 +40,7 @@ RIGHT:  Find Clients + Build MCPs + Launch Cloud → Money from Week 1
 
 **Agency (Revenue):**
 - [ ] Send 50 LinkedIn/WhatsApp messages: "$5K AI Quick Win — replace spreadsheets in 1 week"
-- [ ] Target: Delhi + Bangalore travel agencies and marketing agencies
+- [ ] Target: SMBs and agencies globally (industry agnostic), Sydney local network
 - [ ] Book 5 discovery calls → close 2 Quick Win clients ($10K)
 - [ ] Start delivering: build 1-2 AI agents per client using existing MCPs + custom code
 
@@ -117,7 +117,7 @@ RIGHT:  Find Clients + Build MCPs + Launch Cloud → Money from Week 1
 **Agency ($25K):**
 - [ ] Deliver first Core Build ($25K)
 - [ ] 3 new Quick Win clients ($15K)
-- [ ] India outreach: first local meetup in Delhi or Bangalore
+- [ ] First virtual meetup: "Replace Your SaaS Stack with AI"
 - [ ] Referral program: existing clients refer → $500 credit
 
 **Open-Source ($0 but builds pipeline):**
@@ -269,7 +269,7 @@ RIGHT:  Find Clients + Build MCPs + Launch Cloud → Money from Week 1
 | **P0** | crm-mcp | 10 | Agency + Cloud | Salesforce, HubSpot |
 | **P0** | email-mcp | 6 | Agency + Cloud | SendGrid, Outreach |
 | **P0** | gateway-mcp | 5 | Infrastructure | API gateways |
-| **P1** | finance-mcp | 8 | Agency (India GST) | QuickBooks, Tally |
+| **P1** | finance-mcp | 8 | Agency (multi-tax) | QuickBooks, Xero |
 | **P1** | sales-mcp | 10 | Agency + Cloud | Outreach, SalesLoft |
 | **P1** | scraper-mcp | 6 | Cloud + Agency | Apify, ScrapingBee |
 | **P2** | intelligence-mcp | 10 | Cloud | Crayon, Similarweb |
@@ -278,7 +278,7 @@ RIGHT:  Find Clients + Build MCPs + Launch Cloud → Money from Week 1
 | **P3** | documents-mcp | 6 | Enterprise | DocuSign, Google Docs |
 | **P3** | calendar-mcp | 5 | Agency | Google Calendar |
 | **P3** | auth-mcp | 6 | Cloud infrastructure | Auth0, Clerk |
-| **P3** | hr-mcp | 8 | Agency (India) | BambooHR, Gusto |
+| **P3** | hr-mcp | 8 | Agency | BambooHR, Gusto |
 
 ---
 
@@ -360,6 +360,6 @@ Every agent follows:
 | Enrichment data quality too low | High | High | Multi-source waterfall, confidence scores, focus on verifiable data first (email, phone) |
 | Composio builds business MCPs | Low | High | They're focused on integration gateway. Our Rust performance + agency knowledge is 2 years ahead. |
 | AWS/Cloudflare builds MCP hosting | Medium | Medium | We're not competing on hosting — we're competing on the MCPs themselves. They'd host our MCPs. |
-| India market slower than expected | Medium | Medium | Start global Cloud earlier, content marketing in English targets US/EU developers |
+| Agency clients slower than expected | Medium | Medium | Lower price to $3K, money-back guarantee, increase outreach volume, leverage Sydney local network |
 | Open-source gets no traction | Medium | High | Clearbit replacement narrative, HN launch, LangChain partnership, performance benchmarks |
 | Burn rate too high | Low | High | Agency revenue covers costs from Month 1. No external funding needed for bootstrap phase. |

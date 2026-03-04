@@ -70,7 +70,7 @@ Not wrappers around existing APIs. The actual business logic. MIT licensed.
 | `enrichment-mcp` | Lead/company data engine with waterfall enrichment | Apollo ($49-149/user), ZoomInfo ($15K+/yr), Clearbit (dead) | Direct DB access, no API rate limits, data improves with every user |
 | `crm-mcp` | Full CRM: contacts, deals, pipeline, activities | Salesforce ($25-318/user), HubSpot ($15-234/user) | 0.2ms queries vs 200ms Salesforce API, no per-user pricing |
 | `email-mcp` | Email sending, templates, sequences, tracking | SendGrid, Mailchimp, Outreach ($100/user) | Direct integration with crm-mcp, no middleware |
-| `finance-mcp` | Invoicing, expenses, tax, accounting | QuickBooks ($30-200/mo), Xero, Tally | Indian tax (GST) built-in, agent-native from day 1 |
+| `finance-mcp` | Invoicing, expenses, tax, accounting | QuickBooks ($30-200/mo), Xero | Multi-jurisdiction tax (GST/VAT/sales tax), agent-native from day 1 |
 | `sales-mcp` | Sequences, proposals, scripts, follow-ups | Outreach ($100/user), SalesLoft ($75/user) | Composes with enrichment-mcp + crm-mcp natively |
 | `intelligence-mcp` | Market research, competitor tracking, trends | Crayon ($30K+/yr), Similarweb ($149+/mo) | Automated, not dashboard-based |
 | `content-mcp` | Blog, social, SEO, ad copy generation | Jasper ($49-125/user), Copy.ai | Connected to intelligence-mcp for research |
@@ -200,14 +200,13 @@ CHANNEL 5: Content Machine (Organic — SEO + Social)
   → YouTube demos, Twitter threads, LinkedIn posts
   Expected: 50K monthly visitors by Month 6
 
-CHANNEL 6: India-First Outreach (HIGH-INTENT — Massive Market)
-  50,000+ agencies in India using Excel/WhatsApp
-  90% of Indian SMBs investing in AI (LinkedIn study)
-  → WhatsApp Business outreach + LinkedIn
-  → Local events in Delhi, Bangalore, Mumbai, Pune
-  → "$5K to replace ALL your spreadsheets with AI"
-  → GST/Indian tax compliance built into finance-mcp
-  Expected: India is 60% of Year 1 agency revenue
+CHANNEL 6: Direct Outreach (HIGH-INTENT — Global SMBs)
+  LinkedIn + cold email to agency owners and SMB founders
+  → "Your team spends $2K/mo on SaaS. We'll replace it for $49."
+  → "$5K AI Quick Win — replace your spreadsheets with AI agents in 1 week"
+  → Target: agencies, consultancies, SaaS startups (any industry)
+  → Sydney local network + global via LinkedIn/Twitter
+  Expected: 40% of Year 1 agency revenue from outreach
 
 CHANNEL 7: Framework Partnerships (Distribution — Other People's Audiences)
   LangChain, CrewAI, AutoGen docs → "Use DataXLR8 MCPs for business tools"
@@ -283,24 +282,21 @@ Try doing this with 6 different vendors' APIs + Composio connecting them. It's 1
 
 Once a business deploys 3+ DataXLR8 MCPs, switching means rewiring everything. Not because we lock them in (it's open-source, they can self-host) — but because the composability is so good that alternatives feel painful.
 
-### Moat 5: India-First Market Position (Geographic — First Mover)
+### Moat 5: Open-Source Community + Developer Trust (Network — Grows With Time)
 
-- **90% of Indian SMBs** investing in or planning AI adoption (LinkedIn, Nov 2025)
-- **59% already implementing** AI-driven solutions
-- **$100B domestic software opportunity** (SaaSBoomi research)
-- **50,000+ agencies** (travel, marketing, IT, consulting) using Excel/WhatsApp
-- **Price-sensitive but willing to pay** — $5K-50K is attractive vs $500K consulting
-- **WhatsApp-first** communication (we support natively)
-- **GST/Indian tax** compliance built into finance-mcp
+- **MIT licensed** — developers trust open-source over proprietary
+- **crates.io + GitHub** — discoverable where Rust developers look
+- **Performance benchmarks** — 50x faster is verifiable, shareable, viral
+- **Framework integrations** — LangChain, CrewAI, AutoGen docs reference us
+- **Every GitHub star, blog post, tutorial** compounds visibility
+- **Self-hosted users** become Cloud users when they scale
 
-**Nobody is serving Indian SMBs with AI-native business tools.** Salesforce is too expensive. Zoho is legacy. Odoo has no AI. DataXLR8 is custom, AI-native, affordable, and built for India.
-
-By the time a US competitor decides to enter India, we'll have 500+ Indian clients and deep market knowledge.
+**Open-source builds trust. Trust builds adoption. Adoption builds the data moat.** Composio is proprietary. We're MIT. Developers choose us by default.
 
 ### Moat 6: Agency Knowledge Loop (Insight — Can't Replicate Without Doing The Work)
 
 ```
-Build for Client A (travel agency) → learn their workflows
+Build for Client A (marketing agency) → learn their workflows
   → Abstract patterns into configurable MCPs
 Build for Client B (marketing agency) → 30% faster (reuse MCPs)
   → New patterns → better MCPs
@@ -411,38 +407,38 @@ $ dxlr8 deploy --cloud
 
 ---
 
-## Go-To-Market: India First, Then Global
+## Go-To-Market: Global From Day 1
 
-### Why India First
+### Why Global (Not Geo-Locked)
 
-| Factor | Data |
-|--------|------|
-| SMBs investing in AI | **90%** (LinkedIn, Nov 2025) |
-| Already implementing AI | **59%** |
-| Domestic software opportunity | **$100B** (SaaSBoomi) |
-| Agencies using Excel/WhatsApp | **50,000+** (travel, marketing, IT, consulting) |
-| Price sensitivity | $5K-50K is attractive (vs $500K consulting) |
-| Communication | WhatsApp-first (we support natively) |
-| Tax compliance | GST built into finance-mcp |
-| Competition | Nobody serving them with AI-native tools |
+| Factor | Why It Works |
+|--------|-------------|
+| Open-source is borderless | MIT license, crates.io, GitHub — developers find us from anywhere |
+| MCP is a global standard | AAIF members are global companies (AWS, Google, Microsoft) |
+| Cloud is instant | Sign up, deploy, done. No geographic restriction |
+| Agency is relationship-based | LinkedIn outreach works globally. Video calls, not in-person meetings |
+| Content is English-first | Technical blogs, benchmarks, tutorials reach global dev audience |
+| Sydney as HQ | APAC timezone, credibility for enterprise, access to AU/NZ/SEA markets |
 
-### India GTM Playbook
+### GTM Playbook
 
-**Month 1-3: Delhi + Bangalore**
-- 50 WhatsApp/LinkedIn outreach per week
-- "$5K AI Quick Win" — replace your spreadsheets in 1 week
-- Local meetups: "AI for Indian Agencies" events
-- Partner with Indian SaaS communities (SaaSBoomi, NASSCOM)
+**Month 1-3: Agency + Open-Source**
+- 50 LinkedIn/cold email outreach per week (global, industry agnostic)
+- "$5K AI Quick Win" — replace your spreadsheets with AI agents in 1 week
+- Target: agencies, consultancies, SaaS startups, any SMB paying $1K+/mo for SaaS
+- Publish enrichment-mcp on GitHub + crates.io + Hacker News
+- Sydney local network for first 2-3 anchor clients
 
-**Month 3-6: Expand to Mumbai, Pune, Hyderabad**
+**Month 3-6: Cloud + Content**
 - Case studies from first 10 clients
 - Referral program: existing clients refer others → $500 credit each
-- WhatsApp group for DataXLR8 clients → community effect
+- Cloud launch on Product Hunt
+- Framework partnership content (LangChain, CrewAI guides)
 
-**Month 6-12: Go Global**
-- Indian client base as proof
-- US/EU expansion through open-source + Cloud
-- Enterprise outreach globally
+**Month 6-12: Scale**
+- 800+ Cloud users, 150+ agency clients
+- Enterprise outreach (LinkedIn, conferences)
+- Community-driven growth (hackathons, contributor program)
 
 ---
 
@@ -454,19 +450,19 @@ $ dxlr8 deploy --cloud
 - No external funding needed
 
 ### Pre-Seed / Angel ($50K → $100K MRR)
-- $200K-500K angel round from Indian angels
+- $200K-500K angel round (AU/US angels)
 - Hire 1 Rust engineer + 1 agency delivery person
 - Accelerate MCP development + agency throughput
 
 ### Seed ($100K → $500K MRR)
-- $2-5M seed from Indian + US VCs
+- $2-5M seed from US/AU VCs
 - Hire: 3 engineers, 2 agency, 1 DevRel
 - Launch Cloud publicly, scale agency
 
 ### Series A ($500K MRR+)
-- $10-20M from top-tier VCs (Lightspeed, a16z, Sequoia India)
+- $10-20M from top-tier VCs (Lightspeed, a16z, Blackbird)
 - Compete: Composio raised $29M — we need similar to scale
-- Enterprise sales team, international expansion
+- Enterprise sales team, global expansion
 
 ---
 

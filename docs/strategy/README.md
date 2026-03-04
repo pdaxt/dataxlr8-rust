@@ -11,10 +11,10 @@ _Last updated: 2026-03-04_
 | Document | Description |
 |----------|-------------|
 | **[VISION.md](VISION.md)** | **START HERE** — Full strategy: replacement vs connection, three revenue engines, compound moat, client acquisition flywheel |
-| [MARKET-LANDSCAPE.md](MARKET-LANDSCAPE.md) | Honest competitive landscape: Composio ($29M), Glama, Clearbit vacuum, India opportunity |
+| [MARKET-LANDSCAPE.md](MARKET-LANDSCAPE.md) | Honest competitive landscape: Composio ($29M), Glama, Clearbit vacuum, global SMB opportunity |
 | [AI-AGENT-LANDSCAPE.md](AI-AGENT-LANDSCAPE.md) | Why native tools beat API connectors. $7.8B→$52.6B market. Cost comparisons. |
 | [MCP-ECOSYSTEM.md](MCP-ECOSYSTEM.md) | MCP adoption (97M+ downloads), AAIF, Rust performance edge, architecture |
-| [PRICING-AND-GTM.md](PRICING-AND-GTM.md) | Three revenue engines, 10 acquisition channels, India-first GTM, revenue projections |
+| [PRICING-AND-GTM.md](PRICING-AND-GTM.md) | Three revenue engines, 10 acquisition channels, global GTM, revenue projections |
 | [FEATURE-BLUEPRINT.md](FEATURE-BLUEPRINT.md) | 14 Rust MCPs, 104 tools, what each replaces, composability examples |
 | [EXECUTION-PLAN.md](EXECUTION-PLAN.md) | Week-by-week Month 1, all engines from Day 1, enrichment wedge |
 
@@ -41,7 +41,7 @@ REPLACEMENT (DataXLR8): Agent → crm-mcp → YOUR database → $49/mo total (or
 | **Business depth** | Deep CRM, not shallow API wrapper. Built from agency knowledge. |
 | **Data aggregation** | Every enrichment lookup improves data. Can't replicate without users. |
 | **Composability** | MCPs share core library. 3+ MCPs deployed = high switching cost. |
-| **India-first** | 90% of Indian SMBs investing in AI. Nobody serving them. |
+| **Open-source trust** | MIT licensed, developer-first. Composio is proprietary. |
 | **Agency knowledge loop** | Every client build makes MCPs better. Competitors guessing. |
 
 ## Revenue Targets

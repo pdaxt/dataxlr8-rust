@@ -86,10 +86,10 @@ Composio connects agents to 500+ existing APIs. DataXLR8 builds the actual busin
 
 ### Tier 2: Expansion MCPs (Months 3-6)
 
-#### `dataxlr8-finance-mcp` — Replaces QuickBooks + Tally
+#### `dataxlr8-finance-mcp` — Replaces QuickBooks + Xero
 
-**Replaces:** QuickBooks ($30-200/mo), Xero ($15-78/mo), Tally (India-specific)
-**Revenue:** Agency (India-specific builds with GST)
+**Replaces:** QuickBooks ($30-200/mo), Xero ($15-78/mo)
+**Revenue:** Agency builds + Cloud
 **Priority:** P1
 
 | Tool | What It Does |
@@ -97,13 +97,13 @@ Composio connects agents to 500+ existing APIs. DataXLR8 builds the actual busin
 | `create_invoice` | Generate invoice with tax calculation |
 | `record_payment` | Record payment against invoice |
 | `track_expense` | Log expense with category and receipt |
-| `gst_report` | Generate GST return data (India) |
+| `tax_report` | Generate tax return data (GST/VAT/sales tax) |
 | `profit_loss` | P&L statement for period |
 | `balance_sheet` | Balance sheet snapshot |
 | `recurring_invoice` | Set up auto-generated invoices |
 | `tax_calculation` | Calculate GST/VAT/sales tax by jurisdiction |
 
-**India advantage:** GST compliance built-in. QuickBooks doesn't handle Indian tax well. Tally has no AI. We're the only AI-native finance tool with Indian tax compliance.
+**Tax advantage:** Multi-jurisdiction tax compliance (GST, VAT, sales tax) built-in. QuickBooks is clunky for agents. We're the only AI-native finance tool designed for agent workflows.
 
 #### `dataxlr8-sales-mcp` — Replaces SalesLoft + Outreach
 
@@ -247,7 +247,7 @@ This shared library means every MCP:
 |----------|------|-------|---------------|
 | Enrichment & Data | 3 (enrichment, scraper, intelligence) | 28 | Cloud (per-lookup) + Agency |
 | CRM & Sales | 3 (crm, sales, email) | 26 | Agency + Cloud |
-| Finance & Ops | 3 (finance, analytics, documents) | 20 | Agency (India) |
+| Finance & Ops | 3 (finance, analytics, documents) | 20 | Agency + Cloud |
 | Content & Comm | 3 (content, calendar, notifications) | 19 | Cloud |
 | Infrastructure | 2 (gateway, auth) | 11 | Cloud platform |
 | **Total** | **14** | **104** | |

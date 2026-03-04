@@ -72,7 +72,7 @@ Our competitors aren't Composio or Glama. They're the tools agents currently use
 
 | Competitor | Revenue | Price | Our Replacement | Why We Win |
 |------------|---------|-------|----------------|-----------|
-| **QuickBooks** | $6B+ (Intuit) | $30-200/mo | finance-mcp | Indian GST built-in. Agent-native. |
+| **QuickBooks** | $6B+ (Intuit) | $30-200/mo | finance-mcp | Multi-jurisdiction tax. Agent-native. |
 | **Zoho One** | $1B+ | $45/employee/mo | All MCPs combined | AI-native vs legacy + AI bolt-on. |
 | **Odoo** | Growing | $25-37/user/mo | All MCPs combined | Same breadth, but AI agents do the work. |
 
@@ -122,36 +122,34 @@ Clearbit shut down on **April 30, 2025**:
 
 ---
 
-## India: The $100B Opportunity Nobody's Serving
+## Global SMB Opportunity
 
 ### The Data
 
 | Stat | Source |
 |------|--------|
-| **90%** of Indian SMBs investing in/planning AI adoption | LinkedIn, Nov 2025 |
-| **59%** already implementing AI solutions | LinkedIn study |
-| **$100B** domestic software opportunity | SaaSBoomi |
-| **50,000+** agencies (travel, marketing, IT, consulting) | Industry data |
-| **92%** use AI to automate workflows | LinkedIn study |
-| **76%** use AI marketing tools | LinkedIn study |
-| **74%** rely on AI in sales | LinkedIn study |
-| **83%** cite data security as top concern | LinkedIn study |
-| Top AI adoption cities | Delhi (61%), Pune (60%), Bangalore (63%), Chennai (62%) |
+| **79%** of companies say AI agents are already being adopted | Gartner, 2025 |
+| **40%** of enterprise apps embed agents by 2026 | Gartner |
+| **$7.8B → $52.6B** AI agent platform market (46% CAGR) | Multiple analysts |
+| **40%+** of agentic AI projects canceled by end 2027 | Gartner |
+| **$2.8B** in VC funding into AI agent startups in 2025 | Industry data |
+| **Small business AI adoption** surged 41% (39% → 55%) | Howays, 2025 |
 
-### Why India First
+### Why Global, Industry Agnostic
 
-1. **Massive market, zero competition** — nobody serves Indian SMBs with AI-native business tools
-2. **Price-sensitive but WILLING** — $5K-50K is attractive vs $500K consulting or $150/user SaaS
-3. **WhatsApp-first** — we support natively, SaaS tools don't
-4. **GST compliance** — built into finance-mcp, competitors ignore India-specific tax
-5. **English-speaking tech talent** — easy to hire for agency delivery
-6. **Gateway to global** — prove in India → expand to SEA → Middle East → US/EU
+1. **Every SMB overpays for SaaS** — $1K-5K/mo on tools their team barely uses
+2. **AI agents need native tools, not API connectors** — 40%+ project failure rate proves this
+3. **Open-source is borderless** — crates.io + GitHub reach developers everywhere
+4. **Clearbit vacuum is global** — every B2B company needs enrichment, not just one geography
+5. **MCP is a global standard** — AAIF members are global companies
+6. **Sydney HQ** — APAC timezone, credibility for enterprise, AU/NZ/SEA access for local clients
 
-### India GTM
+### GTM Approach
 
-**Target vertical:** Travel agencies (50,000+ in India, most use Excel)
-**Entry offer:** "$5K to replace all your spreadsheets with AI in 1 week"
-**Expansion:** Marketing agencies → IT consulting → Growing startups
+**Target:** Any SMB paying $1K+/mo for SaaS tools (industry agnostic)
+**Entry offer:** "$5K AI Quick Win — replace your spreadsheets with AI agents in 1 week"
+**Channels:** LinkedIn outreach, open-source adoption, content marketing, framework partnerships
+**Expansion:** Quick Win → Core Build ($25K-75K) → Ongoing operations ($2K-10K/mo)
 
 ---
 
@@ -181,8 +179,8 @@ DataXLR8 is in the **top-right**: AI-native tools that replace legacy SaaS entir
 - [Glama MCP Platform](https://glama.ai/mcp/servers)
 - [Official MCP Registry](http://blog.modelcontextprotocol.io/posts/2025-09-08-mcp-registry-preview/)
 - [Composio MCP Gateway](https://composio.dev/mcp-gateway)
-- [9 in 10 Indian SMBs investing in AI](https://www.business-standard.com/industry/news/india-smbs-ai-adoption-linkedin-research-2025-125111301671_1.html)
-- [India $100B Software Opportunity](https://saasboomi.org/saas/growth/india-100-billion-software-opportunity/)
+- [Small Business AI Adoption Surges 41%](https://howays.com/ai-business-applications/small-business-ai-adoption-surges-41-as-usage-jumps-from-39-to-55-in-2025-a-key-insight-for-smb-technology/)
+- [Gartner: Agentic AI Predictions](https://www.gartner.com/en/articles/intelligent-agent-in-ai)
 - [Clearbit Release Notes / Shutdown](https://clearbit.com/changelog)
 - [Best Clearbit Alternatives 2026](https://marketbetter.ai/blog/best-clearbit-alternatives-2026/)
 - [MCP Hosting Companies Comparison](https://www.mcpevals.io/blog/best-mcp-server-hosting-companies)

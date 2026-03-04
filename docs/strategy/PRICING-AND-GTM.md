@@ -96,7 +96,7 @@ Install Chrome Extension (free)
 
 ### Channel 3: "$5K AI Quick Win" Direct Outreach
 
-**What:** LinkedIn/WhatsApp outreach to Indian SMBs and agencies.
+**What:** LinkedIn + cold email outreach to SMBs and agencies globally.
 
 **Message:** "Replace your spreadsheets with AI in 1 week. $5,000. If it doesn't work, you don't pay."
 
@@ -143,19 +143,19 @@ Developer finds enrichment-mcp on crates.io/GitHub
 **Expected:** 50K monthly visitors by Month 6
 **CAC:** ~$20 per conversion (content creation cost)
 
-### Channel 6: India-First Outreach
+### Channel 6: Direct Outreach (Global)
 
-**What:** Targeted outreach to Indian agencies and SMBs.
+**What:** Targeted LinkedIn + cold email outreach to SMBs and agency owners.
 
 **Tactics:**
-- WhatsApp Business broadcasts to agency networks
-- LinkedIn outreach to agency owners in Delhi, Bangalore, Mumbai, Pune
-- Local meetups: "AI for Indian Agencies" (monthly, 4 cities)
-- Partner with SaaSBoomi, NASSCOM for event sponsorship
-- Hindi/English bilingual content
+- LinkedIn outreach to agency/SMB owners (global, industry agnostic)
+- Cold email campaigns targeting companies paying $1K+/mo for SaaS
+- Sydney local network for anchor clients
+- Virtual meetups: "Replace Your SaaS Stack with AI" (monthly)
+- Partner with startup communities and co-working spaces
 
-**Expected:** 60% of Year 1 agency revenue from India
-**CAC:** ~$100 per agency client (events + outreach)
+**Expected:** 40% of Year 1 agency revenue from outreach
+**CAC:** ~$100 per agency client (outreach + events)
 
 ### Channel 7: Framework Partnerships
 
@@ -270,7 +270,6 @@ The savings alone make the $5K Quick Win ROI-positive in the first month.
 - [SaaStr: The Great SaaS Price Surge of 2025](https://www.saastr.com/the-great-price-surge-of-2025/)
 - [Metronome: State of Usage-Based Pricing 2025](https://metronome.com/state-of-usage-based-pricing-2025)
 - [BVP: AI Pricing Playbook](https://www.bvp.com/atlas/the-ai-pricing-and-monetization-playbook)
-- [9 in 10 Indian SMBs investing in AI](https://www.business-standard.com/industry/news/india-smbs-ai-adoption-linkedin-research-2025-125111301671_1.html)
-- [India $100B Software Opportunity](https://saasboomi.org/saas/growth/india-100-billion-software-opportunity/)
+- [Gartner: Agentic AI Predictions](https://www.gartner.com/en/articles/intelligent-agent-in-ai)
 - [Small Business AI Adoption Surges 41%](https://howays.com/ai-business-applications/small-business-ai-adoption-surges-41-as-usage-jumps-from-39-to-55-in-2025-a-key-insight-for-smb-technology/)
 - Apollo, ZoomInfo, Salesforce, HubSpot — public pricing pages

@@ -124,7 +124,7 @@ Each of these companies currently builds their own internal tools or wraps APIs.
 
 ### Tier 3: Every Business Building In-House Agents
 
-**90% of Indian SMBs** investing in AI. **59% already implementing.** They need:
+**55% of small businesses** now use AI (up from 39% in 2024). **79% of companies** say agents are being adopted. They need:
 1. Affordable business tools (not $75/user Salesforce)
 2. AI-native (not legacy SaaS with AI bolt-on)
 3. Custom to their business (not generic)
@@ -227,5 +227,5 @@ This means DataXLR8 MCPs work with ANY agent, ANY framework, ANY AI model. Not l
 - [Deloitte: SaaS Meets AI Agents 2026](https://www.deloitte.com/us/en/insights/industry/technology/technology-media-and-telecom-predictions/2026/saas-ai-agents.html)
 - [Composio $29M Series A](https://composio.dev/blog/series-a)
 - [MCP joins AAIF](http://blog.modelcontextprotocol.io/posts/2025-12-09-mcp-joins-agentic-ai-foundation/)
-- [9 in 10 Indian SMBs investing in AI](https://www.business-standard.com/industry/news/india-smbs-ai-adoption-linkedin-research-2025-125111301671_1.html)
+- [Small Business AI Adoption Surges 41%](https://howays.com/ai-business-applications/small-business-ai-adoption-surges-41-as-usage-jumps-from-39-to-55-in-2025-a-key-insight-for-smb-technology/)
 - [Small Business AI Adoption Surges 41%](https://howays.com/ai-business-applications/small-business-ai-adoption-surges-41-as-usage-jumps-from-39-to-55-in-2025-a-key-insight-for-smb-technology/)

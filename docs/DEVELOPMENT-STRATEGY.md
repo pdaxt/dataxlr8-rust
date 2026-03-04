@@ -256,7 +256,7 @@ Tools (10): generate_opener, generate_sequence, handle_objection,
 Tools (8): create_invoice, record_payment, track_expense,
   gst_report, profit_loss, balance_sheet, recurring_invoice, tax_calculation
 ```
-**India advantage:** GST compliance built-in.
+**Tax advantage:** Multi-jurisdiction tax (GST/VAT/sales tax) built-in.
 
 #### Agent C: `dataxlr8-scraper-mcp`
 ```
