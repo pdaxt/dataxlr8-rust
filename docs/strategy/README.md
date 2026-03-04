@@ -17,6 +17,7 @@ _Last updated: 2026-03-04_
 | [PRICING-AND-GTM.md](PRICING-AND-GTM.md) | Three revenue engines, 10 acquisition channels, global GTM, revenue projections |
 | [FEATURE-BLUEPRINT.md](FEATURE-BLUEPRINT.md) | 14 Rust MCPs, 104 tools, what each replaces, composability examples |
 | [EXECUTION-PLAN.md](EXECUTION-PLAN.md) | Week-by-week Month 1, all engines from Day 1, enrichment wedge |
+| **[CLIENT-ACQUISITION-PLAYBOOK.md](CLIENT-ACQUISITION-PLAYBOOK.md)** | **DO THIS NOW** — Day-by-day plan to land first client next week. Messages, scripts, targets, funnel. |
 
 ## The Core Idea
 
