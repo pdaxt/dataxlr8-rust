@@ -57,24 +57,28 @@ DataXLR8 is a business operations platform built on the Model Context Protocol (
 | `google-sheets.ts` (training) | 3 functions | `dataxlr8-training-mcp` |
 | `google-sheets.ts` (deals) | 2 functions | `dataxlr8-deals-mcp` |
 | `google-sheets.ts` (invites) | 4 functions | `dataxlr8-employees-mcp` |
-| `google-calendar.ts` | 4 functions (est.) | `dataxlr8-booking-mcp` |
-| `anthropic.ts` | 4 functions (est.) | `dataxlr8-ai-analysis-mcp` |
+| `portal-write.ts` | 19 functions | `dataxlr8-portal-mcp` |
+| `google-calendar.ts` | 3 functions | `dataxlr8-booking-mcp` |
+| `anthropic.ts` | 0 functions (exports only client instance) | `dataxlr8-ai-analysis-mcp` |
 
 **From existing Python MCPs (Category A — already have tool definitions):**
 
-| Python MCP | Location | Purpose |
-|------------|----------|---------|
-| `dataxlr8_deals_mcp` | `mcp-servers/dataxlr8_deals_mcp` | Deal pipeline |
-| `dataxlr8_employees_mcp` | `mcp-servers/dataxlr8_employees_mcp` | Employee management |
-| `dataxlr8_quotation_mcp` | `mcp-servers/dataxlr8_quotation_mcp` | Quotation CRUD |
-| `dataxlr8_training_mcp` | `mcp-servers/dataxlr8_training_mcp` | Training modules |
-| `dataxlr8_builds_mcp` | `mcp-servers/dataxlr8_builds_mcp` | Build tracking |
-| `dataxlr8_costs_mcp` | `mcp-servers/dataxlr8_costs_mcp` | Cost tracking |
-| `dataxlr8_metrics_mcp` | `mcp-servers/dataxlr8_metrics_mcp` | Metrics |
-| `dataxlr8_quality_gate_mcp` | `mcp-servers/dataxlr8_quality_gate_mcp` | Quality gates |
-| `dataxlr8_requirements_mcp` | `mcp-servers/dataxlr8_requirements_mcp` | Requirements |
-| `dataxlr8_testing_mcp` | `mcp-servers/dataxlr8_testing_mcp` | Testing |
-| `dataxlr8_vision_mcp` | `mcp-servers/dataxlr8_vision_mcp` | Vision/screenshots |
+| Python MCP | Location | Tools | Purpose |
+|------------|----------|-------|---------|
+| `dataxlr8_deals_mcp` | `mcp-servers/dataxlr8_deals_mcp` | 14 | Deal pipeline + commissions |
+| `dataxlr8_employees_mcp` | `mcp-servers/dataxlr8_employees_mcp` | 14 | Employee management + sessions |
+| `dataxlr8_quotation_mcp` | `mcp-servers/dataxlr8_quotation_mcp` | 21 | Quotation CRUD + pricing |
+| `dataxlr8_training_mcp` | `mcp-servers/dataxlr8_training_mcp` | 10 | Training modules + progress |
+| `dataxlr8_builds_mcp` | `mcp-servers/dataxlr8_builds_mcp` | 12 | Build tracking |
+| `dataxlr8_costs_mcp` | `mcp-servers/dataxlr8_costs_mcp` | 11 | Cost/revenue tracking |
+| `dataxlr8_metrics_mcp` | `mcp-servers/dataxlr8_metrics_mcp` | 10 | KPIs + health checks |
+| `dataxlr8_quality_gate_mcp` | `mcp-servers/dataxlr8_quality_gate_mcp` | 10 | Quality gates + audit |
+| `dataxlr8_requirements_mcp` | `mcp-servers/dataxlr8_requirements_mcp` | 8 | Requirements tracking |
+| `dataxlr8_testing_mcp` | `mcp-servers/dataxlr8_testing_mcp` | 10 | Test runner + coverage |
+| `dataxlr8_vision_mcp` | `mcp-servers/dataxlr8_vision_mcp` | 8 | Vision + milestones |
+| **Total Python MCP tools** | | **128** | |
+
+**Note:** Python MCPs for builds, costs, metrics, quality_gate, requirements, testing, and vision are DevOps/meta tools. They are NOT part of the Rust migration (they serve the development process, not the business product). Only deals, employees, quotation, and training Python MCPs need Rust equivalents.
 
 ---
 
@@ -108,30 +112,30 @@ Claude Code / Web App
 
 Each MCP has its own BRD spec at `docs/mcps/{name}.md`.
 
-| # | MCP Name | Phase | PG Schema | Tools | BRD Spec |
-|---|----------|-------|-----------|-------|----------|
-| 0 | `dataxlr8-mcp-core` | 0 | N/A | N/A (shared lib) | [core.md](mcps/core.md) |
-| 1 | `dataxlr8-features-mcp` | 0 | `features` | 8 | [features.md](mcps/features.md) |
-| 2 | `dataxlr8-contacts-mcp` | 1 | `contacts` | 5 | [contacts.md](mcps/contacts.md) |
-| 3 | `dataxlr8-commissions-mcp` | 1 | `commissions` | 6 | [commissions.md](mcps/commissions.md) |
-| 4 | `dataxlr8-email-mcp` | 1 | `email` | 6 | [email.md](mcps/email.md) |
-| 5 | `dataxlr8-moderation-mcp` | 1 | `moderation` | 12 | [moderation.md](mcps/moderation.md) |
-| 6 | `dataxlr8-supplier-mcp` | 2 | `suppliers` | 6 | [supplier.md](mcps/supplier.md) |
-| 7 | `dataxlr8-quotation-mcp` | 2 | `quotations` | 6 | [quotation.md](mcps/quotation.md) |
-| 8 | `dataxlr8-rooming-mcp` | 2 | `rooming` | 5 | [rooming.md](mcps/rooming.md) |
-| 9 | `dataxlr8-portal-mcp` | 2 | `portal` | 8 | [portal.md](mcps/portal.md) |
-| 10 | `dataxlr8-pdf-mcp` | 2 | `pdf` | 5 | [pdf.md](mcps/pdf.md) |
-| 11 | `dataxlr8-employees-mcp` | 3 | `employees` | 9 | [employees.md](mcps/employees.md) |
-| 12 | `dataxlr8-deals-mcp` | 3 | `deals` | 6 | [deals.md](mcps/deals.md) |
-| 13 | `dataxlr8-training-mcp` | 3 | `training` | 4 | [training.md](mcps/training.md) |
-| 14 | `dataxlr8-booking-mcp` | 3 | `booking` | 4 | [booking.md](mcps/booking.md) |
-| 15 | `dataxlr8-meet-mcp` | 4 | N/A (stateless) | 9 | [meet.md](mcps/meet.md) |
-| 16 | `dataxlr8-recording-mcp` | 4 | `recordings` | 6 | [recording.md](mcps/recording.md) |
-| 17 | `dataxlr8-transcript-mcp` | 4 | `transcripts` | 9 | [transcript.md](mcps/transcript.md) |
-| 18 | `dataxlr8-analytics-mcp` | 4 | `analytics` | 8 | [analytics.md](mcps/analytics.md) |
-| 19 | `dataxlr8-calendar-mcp` | 4 | `calendar` | 7 | [calendar.md](mcps/calendar.md) |
-| 20 | `dataxlr8-copilot-mcp` | 5 | `copilot` | 6 | [copilot.md](mcps/copilot.md) |
-| 21 | `dataxlr8-notification-mcp` | 4 | `notifications` | 8 | [notification.md](mcps/notification.md) |
+| # | MCP Name | Phase | PG Schema | Tools | Source | BRD Spec |
+|---|----------|-------|-----------|-------|--------|----------|
+| 0 | `dataxlr8-mcp-core` | 0 | N/A | N/A (shared lib) | Rust | [core.md](mcps/core.md) |
+| 1 | `dataxlr8-features-mcp` | 0 | `features` | 8 (need +1) | TS: 9 fns | [features.md](mcps/features.md) |
+| 2 | `dataxlr8-contacts-mcp` | 1 | `contacts` | 5 | TS: 4 fns + 1 new | [contacts.md](mcps/contacts.md) |
+| 3 | `dataxlr8-commissions-mcp` | 1 | `commissions` | 5 | TS: 5 fns | [commissions.md](mcps/commissions.md) |
+| 4 | `dataxlr8-email-mcp` | 1 | `email` | 6 | TS: 6 fns | [email.md](mcps/email.md) |
+| 5 | `dataxlr8-moderation-mcp` | 1 | `moderation` | TBD | **GREENFIELD** | [moderation.md](mcps/moderation.md) |
+| 6 | `dataxlr8-supplier-mcp` | 2 | `suppliers` | 6 | TS: 5 fns + 1 new | [supplier.md](mcps/supplier.md) |
+| 7 | `dataxlr8-quotation-mcp` | 2 | `quotations` | 21 | Py: 21 tools | [quotation.md](mcps/quotation.md) |
+| 8 | `dataxlr8-rooming-mcp` | 2 | `rooming` | 5 | TS: 4 fns + 1 new | [rooming.md](mcps/rooming.md) |
+| 9 | `dataxlr8-portal-mcp` | 2 | `portal` | 18 | TS: 26 fns (deduped) | [portal.md](mcps/portal.md) |
+| 10 | `dataxlr8-pdf-mcp` | 2 | `pdf` | 5 | TS: 5 fns | [pdf.md](mcps/pdf.md) |
+| 11 | `dataxlr8-employees-mcp` | 3 | `employees` | 14 | Py: 14 tools | [employees.md](mcps/employees.md) |
+| 12 | `dataxlr8-deals-mcp` | 3 | `deals` | 14 | Py: 14 tools | [deals.md](mcps/deals.md) |
+| 13 | `dataxlr8-training-mcp` | 3 | `training` | 10 | Py: 10 tools | [training.md](mcps/training.md) |
+| 14 | `dataxlr8-booking-mcp` | 3 | `booking` | 3 | TS: 3 fns | [booking.md](mcps/booking.md) |
+| 15 | `dataxlr8-meet-mcp` | 4 | N/A (stateless) | TBD | **GREENFIELD** | [meet.md](mcps/meet.md) |
+| 16 | `dataxlr8-recording-mcp` | 4 | `recordings` | TBD | **GREENFIELD** | [recording.md](mcps/recording.md) |
+| 17 | `dataxlr8-transcript-mcp` | 4 | `transcripts` | TBD | **GREENFIELD** | [transcript.md](mcps/transcript.md) |
+| 18 | `dataxlr8-analytics-mcp` | 4 | `analytics` | TBD | Py: 10 tools (metrics) | [analytics.md](mcps/analytics.md) |
+| 19 | `dataxlr8-calendar-mcp` | 4 | `calendar` | TBD | **GREENFIELD** (overlap w/ booking) | [calendar.md](mcps/calendar.md) |
+| 20 | `dataxlr8-copilot-mcp` | 5 | `copilot` | TBD | **GREENFIELD** | [copilot.md](mcps/copilot.md) |
+| 21 | `dataxlr8-notification-mcp` | 4 | `notifications` | TBD | **GREENFIELD** (overlap w/ email) | [notification.md](mcps/notification.md) |
 | 22 | `dataxlr8-ai-analysis-mcp` | 5 | `ai_analysis` | 4 | [ai-analysis.md](mcps/ai-analysis.md) |
 | GW | `dataxlr8-gateway-mcp` | 5 | N/A | N/A (router) | [gateway.md](mcps/gateway.md) |
 

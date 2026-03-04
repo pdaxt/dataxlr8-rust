@@ -3,35 +3,49 @@
 **Phase:** 3
 **Status:** NOT STARTED
 **PG Schema:** `deals`
-**Source:** `apps/web/lib/google-sheets.ts` (Google Sheets `Deals` tab) + `mcp-servers/dataxlr8_deals_mcp`
+**Source:** `apps/web/lib/google-sheets.ts` (2 functions) + `mcp-servers/dataxlr8_deals_mcp/server.py` (14 tools)
 
 ---
 
 ## Purpose
 
-Sales pipeline management — deals, stages, activities, enrichment data. Track deals from lead to close.
+Sales pipeline — deals, stages, activities, commissions, leaderboard.
 
-## Tools (6)
+## Existing Python MCP Tools (14)
 
-| # | Tool | Params | Returns | Source Function |
-|---|------|--------|---------|----------------|
-| 1 | `list_deals` | `employee_id?`, `status?`, `stage?`, `limit?` | Array of Deal | `getDeals()` |
-| 2 | `get_deal` | `id` (required) | Full deal with activities | NEW |
-| 3 | `create_deal` | `title`, `client_name`, `value`, `stage` | Created deal | `createDeal()` |
-| 4 | `update_deal` | `id`, `stage?`, `value?`, `status?` | Updated deal | NEW |
-| 5 | `add_activity` | `deal_id`, `type`, `notes` | Created activity | NEW |
-| 6 | `get_pipeline_summary` | none | Stage counts + total value | NEW |
+From `dataxlr8_deals_mcp`:
 
-## Migration Notes
+| # | Tool | Description |
+|---|------|-------------|
+| 1 | `list_deals` | List deals with filters |
+| 2 | `get_deal` | Get full deal by ID |
+| 3 | `create_deal` | Create new deal |
+| 4 | `update_deal` | Update deal fields |
+| 5 | `advance_deal_stage` | Move deal to next pipeline stage |
+| 6 | `close_deal` | Close deal (won/lost) |
+| 7 | `list_deal_activities` | List activities for a deal |
+| 8 | `add_deal_activity` | Add activity (call, email, meeting) |
+| 9 | `get_pipeline_summary` | Pipeline stats by stage |
+| 10 | `get_commissions` | List commission records |
+| 11 | `record_commission` | Record a commission |
+| 12 | `pay_commission` | Mark commission as paid |
+| 13 | `get_leaderboard` | Sales leaderboard |
+| 14 | `deals_status` | System status |
 
-- Source is Google Sheets `Deals` tab + `Deal_Activities` tab
-- Existing Python MCP at `mcp-servers/dataxlr8_deals_mcp` — use its tool definitions as reference
-- Pipeline stages: lead → qualified → proposal → negotiation → closed_won / closed_lost
+## TypeScript Functions (2)
+
+From `google-sheets.ts`:
+- `getDeals(employeeId?)` — list deals
+- `createDeal(data)` — create deal
+
+**Note:** TS source is minimal because most deal logic was already in the Python MCP.
+
+## Target Tool Count: 14 (match Python MCP)
 
 ## Acceptance Criteria
 
 - [ ] `cargo build --release` < 10MB
-- [ ] Schema auto-creates
-- [ ] Pipeline summary aggregation works
-- [ ] Activity log ordered by date
+- [ ] All 14 tools ported
+- [ ] Pipeline stage progression works correctly
+- [ ] Commission tracking integrated
 - [ ] Claude Code integration works

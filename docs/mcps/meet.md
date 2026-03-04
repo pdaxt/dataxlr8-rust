@@ -2,22 +2,26 @@
 
 **Phase:** 4 | **Status:** NOT STARTED | **PG Schema:** N/A (stateless)
 **External Dependency:** LiveKit API
+**Source:** NO EXISTING CODE — this is a greenfield MCP.
 
 ## Purpose
-Video meeting management — create rooms, manage participants, control recording via LiveKit.
+Video meeting management via LiveKit API.
 
-## Tools (9)
-| # | Tool | Description |
-|---|------|-------------|
-| 1 | `create_room` | Create a new meeting room |
-| 2 | `list_rooms` | List active rooms |
-| 3 | `get_room` | Get room details |
-| 4 | `delete_room` | Close and delete room |
-| 5 | `create_token` | Generate participant access token |
-| 6 | `list_participants` | List current participants |
-| 7 | `remove_participant` | Kick participant from room |
-| 8 | `mute_participant` | Mute audio/video |
-| 9 | `start_recording` | Begin room recording |
+## Tools: TBD
+
+**No existing TypeScript or Python source.** Tool definitions below are speculative and must be validated against LiveKit Rust SDK capabilities before implementation.
+
+| # | Tool | Description | Confidence |
+|---|------|-------------|------------|
+| 1 | `create_room` | Create a meeting room | SPECULATIVE |
+| 2 | `list_rooms` | List active rooms | SPECULATIVE |
+| 3 | `delete_room` | Close room | SPECULATIVE |
+| 4 | `create_token` | Generate participant token | SPECULATIVE |
+| 5 | `list_participants` | List participants | SPECULATIVE |
+
+**Action required:** Evaluate `livekit-api` Rust crate capabilities before finalizing tool list.
 
 ## Acceptance Criteria
-- [ ] Build, LiveKit API integration, all tools, Claude Code integration
+- [ ] LiveKit Rust SDK evaluated
+- [ ] Tool list finalized from actual SDK capabilities
+- [ ] Build, integration, Claude Code

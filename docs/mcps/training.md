@@ -1,18 +1,34 @@
 # BRD: dataxlr8-training-mcp
 
 **Phase:** 3 | **Status:** NOT STARTED | **PG Schema:** `training`
-**Source:** `apps/web/lib/google-sheets.ts` (Google Sheets `Training_Modules` + `Training_Progress` tabs)
+**Source:** `apps/web/lib/google-sheets.ts` (3 functions) + `mcp-servers/dataxlr8_training_mcp/server.py` (10 tools)
 
 ## Purpose
-Training module management and employee progress tracking. Migrate from Google Sheets.
+Training module management and employee progress tracking.
 
-## Tools (4)
-| # | Tool | Params | Source Function |
-|---|------|--------|----------------|
-| 1 | `list_modules` | none | `getTrainingModules()` |
-| 2 | `get_progress` | `employee_id` | `getTrainingProgress()` |
-| 3 | `update_progress` | `employee_id`, `module_id`, `status`, `quiz_score?` | `updateTrainingProgress()` |
-| 4 | `get_completion_report` | none | NEW (aggregate stats) |
+## Existing Python MCP Tools (10)
+
+From `dataxlr8_training_mcp`:
+
+| # | Tool | Description |
+|---|------|-------------|
+| 1 | `list_modules` | List training modules |
+| 2 | `get_module` | Get module details |
+| 3 | `create_module` | Create new module |
+| 4 | `update_module` | Update module |
+| 5 | `get_progress` | Get employee progress |
+| 6 | `start_module` | Mark module as started |
+| 7 | `complete_module` | Mark module as completed |
+| 8 | `get_completion_report` | Aggregate completion stats |
+| 9 | `get_employee_transcript` | Full training transcript for employee |
+| 10 | `training_status` | System status |
+
+## TypeScript Functions (3)
+
+From `google-sheets.ts`:
+- `getTrainingModules()`, `getTrainingProgress(employeeId)`, `updateTrainingProgress(employeeId, moduleId, status, quizScore?)`
+
+## Target Tool Count: 10 (match Python MCP)
 
 ## Acceptance Criteria
-- [ ] Build, schema, all tools, Claude Code integration
+- [ ] Build, schema, all 10 tools, Claude Code integration

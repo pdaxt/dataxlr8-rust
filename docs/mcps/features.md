@@ -14,7 +14,9 @@ Manage feature flags with role-based and user-specific overrides. Controls which
 
 ## Source (TypeScript)
 
-`apps/web/lib/features-client.ts` — 9 exported functions (8 mapped to tools + `removeOverride` handled via `delete_flag` cascade).
+`apps/web/lib/features-client.ts` — 9 exported functions.
+
+**GAP:** `removeOverride` exists in TS but is missing from Rust. It removes a single override without deleting the flag. The Rust MCP needs a `remove_override` tool added (making it 9 tools total).
 
 ## Database Schema
 

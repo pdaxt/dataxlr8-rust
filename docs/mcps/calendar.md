@@ -2,20 +2,26 @@
 
 **Phase:** 4 | **Status:** NOT STARTED | **PG Schema:** `calendar`
 **External Dependency:** Google Calendar API
+**Source:** NO EXISTING CODE beyond `google-calendar.ts` (3 functions, already covered by booking-mcp).
 
 ## Purpose
-Calendar management — broader than booking, handles all calendar events, availability, scheduling across the org.
+Org-wide calendar management — broader than booking-mcp.
 
-## Tools (7)
-| # | Tool | Description |
-|---|------|-------------|
-| 1 | `list_events` | List calendar events with filters |
-| 2 | `create_event` | Create calendar event |
-| 3 | `update_event` | Modify event |
-| 4 | `delete_event` | Cancel event |
-| 5 | `check_availability` | Check free/busy slots |
-| 6 | `find_common_slot` | Find mutual availability |
-| 7 | `sync_calendar` | Sync with Google Calendar |
+## Overlap Warning
 
+`booking-mcp` (Phase 3) already covers the 3 functions in `google-calendar.ts`. This MCP would add org-wide features like:
+- Cross-employee availability checking
+- Scheduling across multiple calendars
+- Calendar sync
+
+## Decision Required
+
+Should this MCP exist separately, or should `booking-mcp` be expanded to cover org-wide calendaring?
+
+**Action required:** Decide before Phase 4.
+
+## Tools: TBD (SPECULATIVE)
 ## Acceptance Criteria
-- [ ] Build, Google Calendar API integration, Claude Code integration
+- [ ] Scope vs booking-mcp decided
+- [ ] Tool list finalized
+- [ ] Build, Google Calendar API, Claude Code

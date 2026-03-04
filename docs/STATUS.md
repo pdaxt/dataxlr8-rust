@@ -25,28 +25,28 @@ Phase 5 [          ]   0%  — copilot, ai-analysis, gateway
 | # | Component | Repo | Phase | Status | Binary | Tools | Schema | Claude Code | Notes |
 |---|-----------|------|-------|--------|--------|-------|--------|-------------|-------|
 | 0 | mcp-core | [link](https://github.com/pdaxt/dataxlr8-mcp-core) | 0 | VERIFIED | N/A (lib) | N/A | N/A | N/A | DB pool, config, errors, logging |
-| 1 | features-mcp | [link](https://github.com/pdaxt/dataxlr8-features-mcp) | 0 | VERIFIED | 7.0MB | 8/8 | `features` | Pending | All 8 tools pass stdio E2E test |
-| 2 | contacts-mcp | — | 1 | NOT STARTED | — | 0/5 | — | — | |
-| 3 | commissions-mcp | — | 1 | NOT STARTED | — | 0/6 | — | — | |
-| 4 | email-mcp | — | 1 | NOT STARTED | — | 0/6 | — | — | |
-| 5 | moderation-mcp | — | 1 | NOT STARTED | — | 0/12 | — | — | |
-| 6 | supplier-mcp | — | 2 | NOT STARTED | — | 0/6 | — | — | |
-| 7 | quotation-mcp | — | 2 | NOT STARTED | — | 0/6 | — | — | |
-| 8 | rooming-mcp | — | 2 | NOT STARTED | — | 0/5 | — | — | |
-| 9 | portal-mcp | — | 2 | NOT STARTED | — | 0/8 | — | — | |
-| 10 | pdf-mcp | — | 2 | NOT STARTED | — | 0/5 | — | — | |
-| 11 | employees-mcp | — | 3 | NOT STARTED | — | 0/9 | — | — | |
-| 12 | deals-mcp | — | 3 | NOT STARTED | — | 0/6 | — | — | |
-| 13 | training-mcp | — | 3 | NOT STARTED | — | 0/4 | — | — | |
-| 14 | booking-mcp | — | 3 | NOT STARTED | — | 0/4 | — | — | |
-| 15 | meet-mcp | — | 4 | NOT STARTED | — | 0/9 | — | — | |
-| 16 | recording-mcp | — | 4 | NOT STARTED | — | 0/6 | — | — | |
-| 17 | transcript-mcp | — | 4 | NOT STARTED | — | 0/9 | — | — | |
-| 18 | analytics-mcp | — | 4 | NOT STARTED | — | 0/8 | — | — | |
-| 19 | calendar-mcp | — | 4 | NOT STARTED | — | 0/7 | — | — | |
-| 20 | notification-mcp | — | 4 | NOT STARTED | — | 0/8 | — | — | |
-| 21 | copilot-mcp | — | 5 | NOT STARTED | — | 0/6 | — | — | |
-| 22 | ai-analysis-mcp | — | 5 | NOT STARTED | — | 0/4 | — | — | |
+| 1 | features-mcp | [link](https://github.com/pdaxt/dataxlr8-features-mcp) | 0 | VERIFIED | 7.0MB | 8/9 | `features` | Pending | 8 tools pass; `remove_override` missing |
+| 2 | contacts-mcp | — | 1 | NOT STARTED | — | 0/5 | — | — | TS: 4 fns + 1 new |
+| 3 | commissions-mcp | — | 1 | NOT STARTED | — | 0/5 | — | — | TS: 5 fns |
+| 4 | email-mcp | — | 1 | NOT STARTED | — | 0/6 | — | — | TS: 6 fns |
+| 5 | moderation-mcp | — | 1 | NOT STARTED | — | 0/TBD | — | — | GREENFIELD — no source |
+| 6 | supplier-mcp | — | 2 | NOT STARTED | — | 0/6 | — | — | TS: 5 fns + 1 new |
+| 7 | quotation-mcp | — | 2 | NOT STARTED | — | 0/21 | — | — | Py: 21 tools |
+| 8 | rooming-mcp | — | 2 | NOT STARTED | — | 0/5 | — | — | TS: 4 fns + 1 new |
+| 9 | portal-mcp | — | 2 | NOT STARTED | — | 0/18 | — | — | TS: 26 fns (deduped to 18) |
+| 10 | pdf-mcp | — | 2 | NOT STARTED | — | 0/5 | — | — | TS: 5 fns |
+| 11 | employees-mcp | — | 3 | NOT STARTED | — | 0/14 | — | — | Py: 14 tools |
+| 12 | deals-mcp | — | 3 | NOT STARTED | — | 0/14 | — | — | Py: 14 tools |
+| 13 | training-mcp | — | 3 | NOT STARTED | — | 0/10 | — | — | Py: 10 tools |
+| 14 | booking-mcp | — | 3 | NOT STARTED | — | 0/3 | — | — | TS: 3 fns |
+| 15 | meet-mcp | — | 4 | NOT STARTED | — | 0/TBD | — | — | GREENFIELD |
+| 16 | recording-mcp | — | 4 | NOT STARTED | — | 0/TBD | — | — | GREENFIELD |
+| 17 | transcript-mcp | — | 4 | NOT STARTED | — | 0/TBD | — | — | GREENFIELD |
+| 18 | analytics-mcp | — | 4 | NOT STARTED | — | 0/TBD | — | — | Py metrics: 10 tools (scope TBD) |
+| 19 | calendar-mcp | — | 4 | NOT STARTED | — | 0/TBD | — | — | GREENFIELD (overlap w/ booking) |
+| 20 | notification-mcp | — | 4 | NOT STARTED | — | 0/TBD | — | — | GREENFIELD (overlap w/ email) |
+| 21 | copilot-mcp | — | 5 | NOT STARTED | — | 0/TBD | — | — | GREENFIELD |
+| 22 | ai-analysis-mcp | — | 5 | NOT STARTED | — | 0/TBD | — | — | GREENFIELD (no fns in anthropic.ts) |
 | GW | gateway-mcp | — | 5 | NOT STARTED | — | N/A | — | — | |
 
 ---

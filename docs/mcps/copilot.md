@@ -2,24 +2,21 @@
 
 **Phase:** 5 | **Status:** NOT STARTED | **PG Schema:** `copilot`
 **External Dependency:** Anthropic Claude API
+**Source:** NO EXISTING CODE — greenfield MCP.
 
 ## Purpose
-AI copilot for meetings — real-time suggestions, agenda tracking, action item generation during live meetings.
+AI copilot for meetings — real-time suggestions during live meetings.
 
-## Tools (6)
-| # | Tool | Description |
-|---|------|-------------|
-| 1 | `start_copilot` | Activate copilot for a meeting room |
-| 2 | `stop_copilot` | Deactivate copilot |
-| 3 | `get_suggestions` | Get current AI suggestions |
-| 4 | `track_agenda` | Track agenda progress |
-| 5 | `generate_summary` | Generate meeting summary |
-| 6 | `extract_action_items` | Extract action items from discussion |
+## Tools: TBD (SPECULATIVE)
 
-## Notes
-- This is one of the few MCPs that calls an external AI API
-- Uses Anthropic Claude API for real-time analysis
-- Consider streaming responses for live suggestions
+**No existing source.** This MCP requires:
+1. LiveKit integration (to receive meeting audio/transcripts)
+2. Anthropic API integration (to generate suggestions)
+3. Streaming responses
+
+All tool definitions are speculative until the meeting infrastructure (meet-mcp, recording-mcp, transcript-mcp) is built.
 
 ## Acceptance Criteria
-- [ ] Build, Claude API integration, streaming works, Claude Code integration
+- [ ] Depends on meet-mcp + transcript-mcp being VERIFIED first
+- [ ] Tool list designed from actual meeting infrastructure
+- [ ] Build, streaming works, Claude Code

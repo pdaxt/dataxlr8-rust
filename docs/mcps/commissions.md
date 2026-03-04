@@ -62,7 +62,7 @@ CREATE INDEX ON commissions.records(status);
 CREATE INDEX ON commissions.managers(email);
 ```
 
-## Tools (6)
+## Tools (5)
 
 | # | Tool | Params | Returns | Source Function |
 |---|------|--------|---------|----------------|
@@ -71,7 +71,8 @@ CREATE INDEX ON commissions.managers(email);
 | 3 | `list_commissions` | `manager_id?` | Array of CommissionRecord | `getCommissions()` |
 | 4 | `get_commission_stats` | `manager_id?` | `{totalEarned, totalPending, totalPaid, recentCommissions}` | `getCommissionStats()` |
 | 5 | `get_leaderboard` | none | Sorted array `{email, name, totalEarned, dealCount}` | `getLeaderboard()` |
-| 6 | `create_commission` | `manager_id`, `client_id`, `project_id`, `amount`, `description` | Created record | NEW (not in TS) |
+
+**Note:** The Python `dataxlr8_deals_mcp` also has commission tools (`get_commissions`, `record_commission`, `pay_commission`, `get_leaderboard`). Need to decide: does commission logic live in commissions-mcp or deals-mcp? Currently overlapping.
 
 ## Data Types
 

@@ -3,44 +3,65 @@
 **Phase:** 3
 **Status:** NOT STARTED
 **PG Schema:** `employees`
-**Source:** `apps/web/lib/google-sheets.ts` (Google Sheets spreadsheet `1FvC4-9Y1Z3dyQoIJ_N3JCpI5cbM3_WJ0oyZQRxrbPT4`)
+**Source:** `apps/web/lib/google-sheets.ts` (14 functions) + `mcp-servers/dataxlr8_employees_mcp/server.py` (14 tools)
 
 ---
 
 ## Purpose
 
-Employee management — team members, roles, Google OAuth integration, invite system. Currently stored in Google Sheets, migrating to PostgreSQL for proper CRUD and faster access.
+Employee management — team members, roles, Google OAuth, sessions, invites. Currently in Google Sheets, migrating to PostgreSQL.
 
-## Current Data Store
+## Existing Python MCP Tools (14)
 
-Google Sheets `Employees` tab with columns: id, full_name, email, role, google_id, status, commission_rate, created_at, updated_at.
-Google Sheets `Invites` tab with columns: id, email, full_name, role, commission_rate, token, status, created_at, accepted_at.
+From `dataxlr8_employees_mcp`:
 
-## Tools (9)
+| # | Tool | Description |
+|---|------|-------------|
+| 1 | `list_employees` | List all employees |
+| 2 | `get_employee` | Get employee by ID |
+| 3 | `create_employee` | Create new employee |
+| 4 | `update_employee` | Update employee fields |
+| 5 | `deactivate_employee` | Deactivate employee |
+| 6 | `search_employees` | Search by name/email |
+| 7 | `get_employee_stats` | Aggregate stats |
+| 8 | `list_invites` | List invite tokens |
+| 9 | `create_invite` | Create invite |
+| 10 | `validate_invite` | Check if invite is valid |
+| 11 | `accept_invite` | Accept invite |
+| 12 | `verify_session` | Verify session cookie |
+| 13 | `create_session` | Create auth session |
+| 14 | `employees_status` | System status |
 
-| # | Tool | Params | Returns | Source Function |
-|---|------|--------|---------|----------------|
-| 1 | `list_employees` | `status?`, `role?` | Array of Employee | `getEmployees()` |
-| 2 | `get_employee_by_email` | `email` (required) | Employee or null | `getEmployeeByEmail()` |
-| 3 | `get_employee_by_google_id` | `google_id` (required) | Employee or null | `getEmployeeByGoogleId()` |
-| 4 | `create_employee` | `full_name`, `email`, `role` | Created employee (returns id) | `createEmployee()` |
-| 5 | `update_employee` | `id` (required), partial fields | Updated employee | `updateEmployee()` |
-| 6 | `list_invites` | `status?` | Array of Invite | `getInvites()` |
-| 7 | `create_invite` | `email`, `full_name`, `role`, `commission_rate` | Invite with token | `createInvite()` |
-| 8 | `get_invite_by_token` | `token` (required) | Invite or null | `getInviteByToken()` |
-| 9 | `accept_invite` | `token` (required) | `{success}` | `acceptInvite()` |
+## TypeScript Functions (14)
+
+From `google-sheets.ts`:
+- `getEmployees()`, `getEmployeeByEmail()`, `getEmployeeByGoogleId()`, `createEmployee()`, `updateEmployee()` — 5 employee functions
+- `getTrainingModules()`, `getTrainingProgress()`, `updateTrainingProgress()` — 3 training (belongs in training-mcp)
+- `getDeals()`, `createDeal()` — 2 deals (belongs in deals-mcp)
+- `getInvites()`, `createInvite()`, `getInviteByToken()`, `acceptInvite()` — 4 invite functions
+
+## Key Differences
+
+- Python MCP has `verify_session` and `create_session` — critical for auth flow
+- Python MCP has `deactivate_employee` and `search_employees` — missing from TS
+- TS has `getEmployeeByGoogleId()` — needed for OAuth callback
+- TS has `getEmployeeByEmail()` — Python uses `get_employee` with ID only
+
+## Target Tool Count: 14 (match Python MCP)
 
 ## Migration Notes
 
-- Google Sheets → PostgreSQL one-time migration
-- Must preserve all existing employee IDs and google_ids
-- Invite tokens need to remain valid through migration
-- Web app auth flow (`/api/auth/google/callback`) needs to switch from Sheets to PG
+- Google Sheets `Employees` + `Invites` tabs → PostgreSQL
+- Preserve existing employee IDs and google_ids
+- Session management is critical for web app auth
+- `getEmployeeByGoogleId` must be fast (called on every OAuth callback)
 
 ## Acceptance Criteria
 
 - [ ] `cargo build --release` < 10MB
 - [ ] Schema auto-creates
-- [ ] `get_employee_by_google_id` works (critical for OAuth flow)
-- [ ] Invite create → accept flow works end-to-end
+- [ ] All 14 tools ported from Python MCP
+- [ ] `get_employee` supports lookup by ID, email, AND google_id
+- [ ] Session create/verify works (critical for auth)
+- [ ] Invite create → validate → accept flow works
 - [ ] Claude Code integration works
