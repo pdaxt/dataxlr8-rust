@@ -25,7 +25,7 @@ Phase 5 [          ]   0%  — copilot, ai-analysis, gateway
 | # | Component | Repo | Phase | Status | Binary | Tools | Schema | Claude Code | Notes |
 |---|-----------|------|-------|--------|--------|-------|--------|-------------|-------|
 | 0 | mcp-core | [link](https://github.com/pdaxt/dataxlr8-mcp-core) | 0 | VERIFIED | N/A (lib) | N/A | N/A | N/A | DB pool, config, errors, logging |
-| 1 | features-mcp | [link](https://github.com/pdaxt/dataxlr8-features-mcp) | 0 | VERIFIED | 7.0MB | 8/9 | `features` | Pending | 8 tools pass; `remove_override` missing |
+| 1 | features-mcp | [link](https://github.com/pdaxt/dataxlr8-features-mcp) | 0 | VERIFIED | 7.0MB | 9/9 | `features` | Pending | All 9 tools pass E2E |
 | 2 | contacts-mcp | — | 1 | NOT STARTED | — | 0/5 | — | — | TS: 4 fns + 1 new |
 | 3 | commissions-mcp | — | 1 | NOT STARTED | — | 0/5 | — | — | TS: 5 fns |
 | 4 | email-mcp | — | 1 | NOT STARTED | — | 0/6 | — | — | TS: 6 fns |
@@ -66,19 +66,22 @@ Each entry records when an MCP was tested and what passed.
 ### dataxlr8-features-mcp (Phase 0)
 | Check | Result | Date |
 |-------|--------|------|
-| `cargo build --release` | PASS | 2026-03-04 |
+| `cargo build --release` | PASS (zero warnings) | 2026-03-04 |
 | Binary size < 10MB | PASS (7.0MB) | 2026-03-04 |
 | Schema auto-creates | PASS | 2026-03-04 |
-| `tools/list` returns 8 tools | PASS | 2026-03-04 |
+| `tools/list` returns 9 tools | PASS | 2026-03-04 |
 | `create_flag` | PASS | 2026-03-04 |
-| `get_flag` | PASS (via get_all) | 2026-03-04 |
-| `check_flag` | PASS | 2026-03-04 |
-| `check_flags_bulk` | NOT TESTED | — |
-| `update_flag` | NOT TESTED | — |
-| `set_override` | NOT TESTED | — |
-| `delete_flag` | PASS | 2026-03-04 |
-| `get_all_flags` | PASS | 2026-03-04 |
-| Error on unknown flag | NOT TESTED | — |
+| `get_flag` | PASS | 2026-03-04 |
+| `check_flag` (global) | PASS | 2026-03-04 |
+| `check_flag` (with user override) | PASS — returns `enabled:false, reason:"user override"` | 2026-03-04 |
+| `check_flags_bulk` (batch) | PASS — known=enabled, unknown=disabled (fail-closed) | 2026-03-04 |
+| `update_flag` | PASS | 2026-03-04 |
+| `set_override` | PASS | 2026-03-04 |
+| `remove_override` | PASS — override removed, reverts to global | 2026-03-04 |
+| `delete_flag` | PASS — cascades to overrides | 2026-03-04 |
+| `get_all_flags` | PASS — batch fetch with overrides (no N+1) | 2026-03-04 |
+| Unknown tool error | PASS — `isError:true, "Unknown tool: fake_tool"` | 2026-03-04 |
+| Graceful shutdown (SIGINT) | PASS — closes DB pool on ctrl+c | 2026-03-04 |
 | Claude Code integration | NOT TESTED | — |
 
 ---
