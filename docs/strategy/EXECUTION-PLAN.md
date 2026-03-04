@@ -317,6 +317,41 @@ Every MCP follows these standards:
 
 ---
 
+## Development Orchestration
+
+**Full technical details:** [../DEVELOPMENT-STRATEGY.md](../DEVELOPMENT-STRATEGY.md) | [../TMUX-LAYOUT.md](../TMUX-LAYOUT.md)
+
+### How We Build This Fast
+
+48 Claude agents work in parallel across 4 tmux screens:
+
+| Screen | Focus | Agents | What Gets Built |
+|--------|-------|--------|----------------|
+| 1 (`claude6`) | MCP Development | 12 | enrichment, crm, gateway, sales, finance, scraper MCPs |
+| 2 (`claude6-screen2`) | Web + Portals | 12 | Public site, employee portal, client portal, training |
+| 3 (`claude6-screen3`) | Testing + CI/CD | 12 | Integration tests, E2E, GitHub Actions, benchmarks |
+| 4 (`claude6-screen4`) | Infrastructure | 12 | PostgreSQL, data migration, Chrome Extension, Cloud |
+
+### Wave Mapping to Weekly Plan
+
+| Week | Wave | Screen 1 (MCPs) | Screen 2 (Web) | Screen 3 (Test) | Screen 4 (Infra) |
+|------|------|-----------------|----------------|-----------------|-------------------|
+| 1-2 | Wave 1 | enrichment + crm + gateway | Public website | CI templates | PostgreSQL setup |
+| 3-4 | Wave 2 | sales + finance + scraper | Employee + Client portal | Integration + E2E | Data migration |
+| 5-8 | Wave 3 | Internal MCPs (8) | Training + Docs + Blog | Full test coverage | Chrome Ext + Cloud |
+| 9-12 | Wave 4 | Meeting domain (8) | Enterprise features | Performance tests | Production deployment |
+
+### Git-First Protocol
+
+Every agent follows:
+1. `cargo test` — must pass before commit
+2. `cargo clippy -- -D warnings` — no warnings
+3. `cargo build --release` — binary <7MB
+4. Small commits, always buildable, push after every feature
+5. No agent modifies another agent's repo
+
+---
+
 ## Risk Mitigation
 
 | Risk | Probability | Impact | Mitigation |

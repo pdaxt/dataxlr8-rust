@@ -76,67 +76,69 @@ The current `pdaxt/dataxlr8` monorepo is a TypeScript/Next.js application with 8
 
 ---
 
-## Migration Phases
+## Migration Approach: Wave-Based Parallel Development
+
+**Previous approach** (sequential phases) is replaced by **parallel waves** using tmux multi-agent development. See [DEVELOPMENT-STRATEGY.md](DEVELOPMENT-STRATEGY.md) for full details and [TMUX-LAYOUT.md](TMUX-LAYOUT.md) for pane assignments.
 
 ### Phase 0: Foundation ✅ COMPLETE
 - [x] Install Rust toolchain
 - [x] Create `dataxlr8-mcp-core` shared crate
 - [x] Build `dataxlr8-features-mcp` as proof-of-concept (8 tools)
 - [x] Code review and fix all critical/high issues
+- [x] Build `dataxlr8-contacts-mcp` (9 tools)
+- [x] Build `dataxlr8-commissions-mcp` (8 tools)
+- [x] Build `dataxlr8-email-mcp` (6 tools)
+- [x] Start `dataxlr8-web` (Axum, Google OAuth, team portal)
 - [ ] Install PostgreSQL and verify end-to-end
 - [ ] Connect to Claude Desktop and test
 
-### Phase 1: Leaf MCPs — No Cross-Dependencies
-| MCP | Complexity | Notes |
-|-----|-----------|-------|
-| `dataxlr8-contacts-mcp` | Low | Simple CRUD |
-| `dataxlr8-commissions-mcp` | Low | JSON file → PostgreSQL |
-| `dataxlr8-email-mcp` | Low | Resend API calls |
-| `dataxlr8-moderation-mcp` | Medium | 12 tools |
+### Wave 1 — Week 1-2 (4 parallel workstreams, 16 agents)
 
-### Phase 2: Core Business MCPs
-| MCP | Complexity | Notes |
-|-----|-----------|-------|
-| `dataxlr8-supplier-mcp` | Medium | Seasonal rates |
-| `dataxlr8-quotation-mcp` | Medium | Complex pricing logic |
-| `dataxlr8-rooming-mcp` | Medium | References quotations |
-| `dataxlr8-portal-mcp` | High | Full CRUD + activity logging |
-| `dataxlr8-pdf-mcp` | Medium | PDF generation (typst crate) |
+All run simultaneously on Screen 1 + Screen 2:
 
-### Phase 3: Google Sheets → PostgreSQL MCPs
-| MCP | Complexity | Notes |
-|-----|-----------|-------|
-| `dataxlr8-employees-mcp` | Medium | Migrate from Google Sheets |
-| `dataxlr8-deals-mcp` | Medium | Pipeline logic |
-| `dataxlr8-training-mcp` | Medium | Progress tracking |
-| `dataxlr8-booking-mcp` | Medium | Google Calendar API |
+| Workstream | MCP/Project | Tools | Agent Screen |
+|-----------|-------------|-------|-------------|
+| **A** | `enrichment-mcp` — THE WEDGE (Clearbit replacement) | 12 | Screen 1, W0 |
+| **B** | `crm-mcp` — Salesforce replacement | 10 | Screen 1, W1 |
+| **C** | `gateway-mcp` — Infrastructure for Cloud | 5 | Screen 1, W2 |
+| **D** | `dataxlr8-web` — Public website revamp | — | Screen 2, W0 |
 
-### Phase 4: Meeting Domain MCPs
-| MCP | Complexity | Notes |
-|-----|-----------|-------|
-| `dataxlr8-meet-mcp` | Medium | LiveKit Rust SDK |
-| `dataxlr8-recording-mcp` | Medium | LiveKit egress + S3 |
-| `dataxlr8-transcript-mcp` | Medium | Full-text search |
-| `dataxlr8-analytics-mcp` | Medium | Aggregations |
-| `dataxlr8-calendar-mcp` | Medium | Google Calendar |
-| `dataxlr8-copilot-mcp` | High | Anthropic API streaming |
-| `dataxlr8-notification-mcp` | Medium | Resend + PostgreSQL |
+**Deliverables:** 4 repos with CI/CD, published to GitHub, binaries on Releases
 
-### Phase 5: AI + Gateway
-| MCP | Complexity | Notes |
-|-----|-----------|-------|
-| `dataxlr8-ai-analysis-mcp` | High | Multi-provider AI routing |
-| `dataxlr8-gateway-mcp` | High | Process manager, tool aggregation, HTTP server |
+### Wave 2 — Week 3-4 (4 parallel workstreams, +16 agents)
 
-### Phase 6: Web App Rewiring
-- Create `lib/mcp-gateway-client.ts` in apps/web
-- Replace each `lib/xxx-client.ts` with gateway calls
-- Run existing tests after each rewiring
+| Workstream | MCP/Project | Tools | Agent Screen |
+|-----------|-------------|-------|-------------|
+| **A** | `sales-mcp` — Outreach replacement | 10 | Screen 1, W3 |
+| **B** | `finance-mcp` — QuickBooks replacement (GST) | 8 | Screen 1, W3 |
+| **C** | `scraper-mcp` — Data collection engine | 6 | Screen 1, W3 |
+| **D** | Employee + Client Portal | — | Screen 2, W1+W2 |
 
-### Phase 7: Cleanup
-- Archive old TypeScript MCPs
-- Update configs to point to Rust binaries
-- Update Claude Desktop to use gateway
+**Deliverables:** 3 more MCPs, employee portal expanded, client portal MVP
+
+### Wave 3 — Month 2 (expansion, +12 agents)
+
+| Workstream | What |
+|-----------|------|
+| Internal MCPs | deals, employees, training, supplier, quotation, portal, rooming, booking |
+| New revenue MCPs | intelligence-mcp, content-mcp, analytics-mcp |
+| Chrome Extension | LinkedIn enrichment overlay |
+| Cloud alpha | Gateway deployed on GCP, first external user |
+| Data migration | Google Sheets → PostgreSQL |
+
+### Wave 4 — Month 3+ (platform, all 48 agents)
+
+| Workstream | What |
+|-----------|------|
+| Meeting domain | meet, recording, transcript, calendar, copilot, moderation, notification |
+| Enterprise | SSO, RBAC, audit logs |
+| Community | Contribution framework, crates.io publishing |
+
+### Legacy Cleanup (parallel with Wave 3+)
+- Archive Python MCPs in `mcp-servers/dataxlr8_*`
+- Archive TypeScript MCPs in `dataxlr8/mcps/`
+- Retire Google Sheets backend
+- Update Claude Desktop config to use gateway
 
 ---
 
