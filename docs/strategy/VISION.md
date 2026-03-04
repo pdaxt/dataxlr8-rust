@@ -4,340 +4,364 @@ _Updated: 2026-03-04_
 
 ## The One Sentence
 
-> **DataXLR8 is the AI-native operating system that replaces your entire SaaS stack.**
+> **DataXLR8 builds custom AI-powered business systems that the client owns and runs.**
 
-Not an agent marketplace. Not a consulting shop. Not another point tool. A complete, end-to-end platform where AI agents run every function of your business — CRM, marketing, operations, finance, HR, documents, communication, analytics — all built in-house on Rust MCP infrastructure.
-
----
-
-## The Problem
-
-A typical business today uses **15-25 SaaS tools** that don't talk to each other:
-
-| Function | Tool | Cost/user/mo | Problem |
-|----------|------|-------------|---------|
-| CRM | Salesforce | $25-318 | Complex, expensive, AI bolted on |
-| Data | ZoomInfo | $1,250+/mo | Opaque pricing, stagnant |
-| Marketing | HubSpot | $15-234 | Gets expensive, locked-in |
-| Project Mgmt | Asana/Monday | $11-25 | No AI, just task boards |
-| Communication | Slack | $13+ | Chat, not action |
-| Docs | Notion/Google Docs | $10-20 | Manual creation |
-| Automation | Zapier | $30+ | If-then rules, not intelligence |
-| Accounting | QuickBooks | $30+ | Zero AI |
-| HR | BambooHR | $6-8 | Manual processes |
-| Analytics | Tableau | $75+ | Dashboards, not insights |
-| Email Marketing | Mailchimp | $13+ | Template-based |
-| Proposals | PandaDoc | $35+ | Manual assembly |
-| **Total** | **12+ tools** | **$500-2,000+/user/mo** | **Nothing is connected** |
-
-**Total SaaS spend per employee: $7,900/year** (up 27% in 2 years)
-
-The result:
-- Data siloed across 15 tools
-- Manual copy-paste between systems
-- No single source of truth
-- AI features are chatbot wrappers, not real intelligence
-- Switching costs keep you locked in
-- Integration tax (Zapier/Make) to connect anything
+Not SaaS. Not consulting. Not a shared platform. Every client gets software built specifically for their business — their workflows, their data, their rules. A dedicated person helps them through the entire process. At the end, they own it. They run the show.
 
 ---
 
-## The Solution
+## How It's Different From Everything Else
 
-**One platform. AI-first. Everything connected. Agents do the work.**
+| Model | What You Get | Who Owns It | Lock-in |
+|-------|-------------|------------|---------|
+| **SaaS** (Salesforce, HubSpot) | Same product as everyone else | Vendor owns it | Trapped. Leave = lose everything |
+| **Consulting** (Accenture, Deloitte) | Custom build, $500K+ | You own it (eventually) | Dependent on consultants forever |
+| **No-code** (Zapier, Bubble) | You build it yourself | Platform owns it | Locked to their runtime |
+| **Open source** (Odoo, ERPNext) | Free but generic | You own it | Need developers to customize |
+| **DataXLR8** | **Custom-built for YOU, by a dedicated person, using AI + MCP building blocks** | **YOU own it. Full code. Full control.** | **None. Walk away anytime with your software.** |
+
+---
+
+## How It Works
 
 ```
-┌─────────────────────────────────────────────────────────────────────┐
-│                        DATAXLR8 PLATFORM                            │
-│                                                                     │
-│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐              │
-│  │   CRM &      │  │  MARKETING   │  │  OPERATIONS  │              │
-│  │   SALES      │  │  & CONTENT   │  │  & PROJECTS  │              │
-│  │              │  │              │  │              │              │
-│  │ • Contacts   │  │ • Email      │  │ • Tasks      │              │
-│  │ • Deals      │  │ • Social     │  │ • Workflows  │              │
-│  │ • Pipeline   │  │ • SEO        │  │ • Documents  │              │
-│  │ • Enrichment │  │ • Content    │  │ • Templates  │              │
-│  │ • Sequences  │  │ • Ads        │  │ • Approvals  │              │
-│  │ • Forecasting│  │ • Analytics  │  │ • Automation │              │
-│  └──────┬───────┘  └──────┬───────┘  └──────┬───────┘              │
-│         │                 │                 │                       │
-│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐              │
-│  │   FINANCE    │  │     HR &     │  │ COMMUNICATION│              │
-│  │   & BILLING  │  │    PEOPLE    │  │   & COLLAB   │              │
-│  │              │  │              │  │              │              │
-│  │ • Invoicing  │  │ • Hiring     │  │ • Email      │              │
-│  │ • Expenses   │  │ • Onboarding │  │ • Chat       │              │
-│  │ • Accounting │  │ • Performance│  │ • WhatsApp   │              │
-│  │ • Payments   │  │ • Payroll    │  │ • Video      │              │
-│  │ • Tax (GST)  │  │ • Training   │  │ • Calendars  │              │
-│  │ • Commissions│  │ • Time Track │  │ • Meetings   │              │
-│  └──────┬───────┘  └──────┬───────┘  └──────┬───────┘              │
-│         │                 │                 │                       │
-│  ┌─────────────────────────────────────────────────────────┐        │
-│  │                    AI AGENT LAYER                        │        │
-│  │                                                         │        │
-│  │  Agents don't assist. Agents DO THE WORK.               │        │
-│  │  • AI generates proposals, not you                      │        │
-│  │  • AI qualifies leads, not you                          │        │
-│  │  • AI writes content, not you                           │        │
-│  │  • AI reconciles accounts, not you                      │        │
-│  │  • AI schedules meetings, not you                       │        │
-│  │  • AI handles support, not you                          │        │
-│  │  • Human steps in only for decisions that NEED a human  │        │
-│  └─────────────────────────┬───────────────────────────────┘        │
-│                             │                                       │
-│  ┌─────────────────────────────────────────────────────────┐        │
-│  │              RUST MCP INFRASTRUCTURE                     │        │
-│  │                                                         │        │
-│  │  20+ Rust MCP servers, <0.2ms per tool call             │        │
-│  │  Any AI model: Claude, GPT, Grok, Llama, Gemini        │        │
-│  │  Single gateway, composable tools, model-agnostic       │        │
-│  │  Built in-house. No third-party dependencies.           │        │
-│  └─────────────────────────────────────────────────────────┘        │
-│                                                                     │
-└─────────────────────────────────────────────────────────────────────┘
+1. FIND THE CLIENT
+   → AI Opportunity Scanner (free tool) identifies businesses with AI potential
+   → BusinessAnalyzer chatbot qualifies them
+   → High-intent leads get Slack alert → human follows up
+   → Discovery call: understand their business, pain points, workflows
+
+2. DEDICATE A PERSON
+   → Every client gets a dedicated AI solutions architect
+   → This person understands the client's business deeply
+   → They're the single point of contact — not a ticket queue
+
+3. BUILD THEIR SYSTEM
+   → Using Rust MCP building blocks, assemble a custom AI business system
+   → CRM configured for THEIR pipeline? Done.
+   → Finance module with THEIR tax rules? Done.
+   → AI agents trained on THEIR processes? Done.
+   → Each build is 10x faster because MCP modules are reusable
+   → AI agents assist the build process itself
+
+4. CLIENT OWNS IT
+   → Full source code. Full database. Full control.
+   → Deploy on their infrastructure or DataXLR8 managed hosting
+   → No subscription lock-in. No vendor dependency.
+   → They can modify, extend, or hire their own devs to work on it
+
+5. ONGOING SUPPORT (OPTIONAL)
+   → Managed hosting + monitoring
+   → Iteration: new features, new agents, optimization
+   → Dedicated person stays with them
+   → But they can leave anytime — their software, their choice
 ```
 
 ---
 
-## Why This Wins
+## Why This Model Wins
 
-### 1. Everything Connected by Default
-In Salesforce + HubSpot + Asana + QuickBooks: your deal data doesn't know about your project status doesn't know about your invoice doesn't know about your email campaign.
+### 1. Clients Actually Own Their Software
+Every SaaS company holds your data hostage. Leave Salesforce? Good luck exporting 10 years of CRM data in a usable format. Leave HubSpot? Your email templates, workflows, and analytics disappear.
 
-In DataXLR8: **one data model, one platform**. When a deal closes, the project auto-creates, the invoice generates, the onboarding email sends, the team gets assigned — all through AI agents talking to each other via MCP tools.
+DataXLR8 clients own everything. Code. Data. Agents. Infrastructure. **Zero lock-in.** Paradoxically, this creates MORE loyalty — clients stay because the product works, not because they're trapped.
 
-### 2. AI Agents, Not AI Assistants
-Every other platform: "AI helps you write an email."
-DataXLR8: **AI writes the email, sends it, follows up, handles the response, books the meeting, and preps the deck.** You step in when a human decision is needed.
+### 2. Custom Beats Generic Every Time
+Salesforce gives everyone the same 500 settings to configure. Most businesses use 10% of the features and work around the rest.
 
-### 3. One Price, Everything Included
-No per-module pricing. No integration tax. No "upgrade to get AI." One platform, one price, everything included. AI isn't an add-on — it's how everything works.
+DataXLR8 builds exactly what the client needs. No bloat. No workarounds. No "we'll figure out how to make Salesforce do this." Just software that matches the business.
 
-### 4. Built In-House on Rust MCPs
-Not aggregating third-party APIs. Not wrapping other people's tools. Everything built in-house:
-- Own enrichment engine (not reselling Apollo/ZoomInfo data)
-- Own email sending (not wrapping Mailchimp)
-- Own document generation (not embedding Google Docs)
-- Own analytics (not plugging in Tableau)
-- Own automation (not if-then rules like Zapier)
+### 3. Dedicated Person > Support Tickets
+SaaS support: submit a ticket, wait 48 hours, get a generic response from someone who doesn't know your business.
 
-Each module = a Rust MCP server. Sub-millisecond. 6.5MB binary. Composable.
+DataXLR8: your dedicated person knows your business, your team, your processes. They pick up the phone. They fix things. They proactively suggest improvements.
 
-### 5. Model Agnostic (BYOK)
-Not locked to OpenAI or Anthropic. Users bring their own API keys. Use Claude for reasoning, GPT for content, Llama for privacy-sensitive tasks — all through the same MCP interface.
+### 4. MCP Building Blocks Make Custom Affordable
+The reason custom software is expensive ($500K+ from Accenture) is because everything is built from scratch.
+
+DataXLR8's Rust MCP modules are **reusable building blocks**:
+- Need CRM? Snap in `crm-mcp` → configure for client's pipeline
+- Need invoicing? Snap in `finance-mcp` → configure for client's tax rules
+- Need enrichment? Snap in `enrichment-mcp` → configure for client's data sources
+- Need AI agents? Configure against client's specific workflows
+
+Each module is battle-tested, sub-millisecond, 6.5MB. Custom builds that would take 6 months take 2-4 weeks.
+
+### 5. AI Agents Do the Heavy Lifting
+The client's system isn't just forms and dashboards. AI agents actively run their business:
+- Agents enrich leads as they come in
+- Agents draft and send follow-up emails
+- Agents generate proposals from deal context
+- Agents reconcile invoices
+- Agents create project plans from signed contracts
+- Agents monitor competitors weekly
+
+The client focuses on decisions and relationships. Agents handle everything else.
 
 ---
 
-## The Platform Modules
+## What Gets Built For Each Client
 
-### Module 1: CRM & Sales
-_Replaces: Salesforce, HubSpot CRM, Pipedrive, Apollo, ZoomInfo_
+Every build is custom, but draws from these MCP modules:
 
-| Feature | AI Agent Capability |
-|---------|-------------------|
-| Contact management | Auto-enrichment on create, dedup, merge |
-| Deal pipeline | AI scoring, auto-progression, win prediction |
-| Lead enrichment | In-house: email, phone, LinkedIn, company data |
-| Email sequences | AI-written, personalized, auto-optimizing |
-| Meeting scheduling | AI books, preps, summarizes |
-| Proposals | AI-generated from deal context |
-| Forecasting | Weighted pipeline, AI-adjusted projections |
-| Territory management | AI-optimized assignment |
+### CRM & Sales
+_Replaces: Salesforce, HubSpot CRM, Pipedrive, Apollo_
 
-**Rust MCPs:** `crm-mcp`, `enrichment-mcp`, `sales-mcp`, `email-mcp`
+Configured for the client's specific:
+- Pipeline stages and deal workflow
+- Lead scoring rules
+- Territory/assignment logic
+- Proposal templates and branding
+- Email sequence style and tone
+- Enrichment sources relevant to their industry
 
-### Module 2: Marketing & Content
-_Replaces: HubSpot Marketing, Mailchimp, Jasper, Buffer, Surfer SEO_
+**Rust MCPs used:** `crm-mcp`, `enrichment-mcp`, `sales-mcp`, `email-mcp`
 
-| Feature | AI Agent Capability |
-|---------|-------------------|
-| Email campaigns | AI-written, A/B tested, auto-optimized |
-| Social media | AI creates, schedules, repurposes across platforms |
-| Blog/SEO content | AI-written, SEO-optimized, keyword-researched |
-| Ad copy | AI-generated variants for Google/Meta/LinkedIn |
-| Landing pages | AI-designed, conversion-optimized |
-| Analytics | AI-generated insights, not just dashboards |
-| Lead magnets | AI-created from your content |
-| Newsletter | AI-curated and written |
+### Marketing & Content
+_Replaces: HubSpot Marketing, Mailchimp, Jasper, Buffer_
 
-**Rust MCPs:** `content-mcp`, `social-mcp`, `seo-mcp`, `analytics-mcp`
+Configured for the client's specific:
+- Brand voice and content guidelines
+- Target audience and personas
+- Social media accounts and schedule
+- SEO strategy and keyword targets
+- Email templates and campaign logic
 
-### Module 3: Operations & Projects
-_Replaces: Asana, Monday.com, Notion, Trello, Zapier_
+**Rust MCPs used:** `content-mcp`, `social-mcp`, `seo-mcp`
 
-| Feature | AI Agent Capability |
-|---------|-------------------|
-| Project management | AI creates tasks from deals/meetings, auto-assigns |
-| Task automation | AI decides next actions, not if-then rules |
-| Document management | AI-generated proposals, contracts, reports |
-| Workflow builder | Describe in natural language, AI builds the flow |
-| Approvals | AI routes to right person, follows up |
-| Templates | AI-generated from past successful projects |
-| Time tracking | Auto-tracked from activity, AI-categorized |
-| Resource planning | AI-optimized allocation |
+### Operations & Projects
+_Replaces: Asana, Monday.com, Notion, Zapier_
 
-**Rust MCPs:** `projects-mcp`, `documents-mcp`, `workflows-mcp`
+Configured for the client's specific:
+- Project templates for their service types
+- Approval chains and stakeholders
+- Document templates (proposals, contracts, reports)
+- Workflow rules for their processes
+- Client portal with their branding
 
-### Module 4: Finance & Billing
-_Replaces: QuickBooks, Xero, Stripe Billing, FreshBooks, Tally_
+**Rust MCPs used:** `projects-mcp`, `documents-mcp`, `workflows-mcp`, `portal-mcp`
 
-| Feature | AI Agent Capability |
-|---------|-------------------|
-| Invoicing | Auto-generated from deals/projects |
-| Expense tracking | AI-categorized, receipt scanning |
-| Accounting | AI reconciliation, journal entries |
-| Payments | Stripe/Razorpay/UPI integration |
-| Tax compliance | GST, TCS, export invoicing (India-first) |
-| Commission tracking | Auto-calculated from deal rules |
-| Financial reports | AI-generated P&L, cash flow, forecasts |
-| Budgeting | AI-projected from historical data |
+### Finance & Billing
+_Replaces: QuickBooks, Xero, Tally, FreshBooks_
 
-**Rust MCPs:** `finance-mcp`, `payments-mcp`, `tax-mcp`, `commissions-mcp`
+Configured for the client's specific:
+- Invoice templates and numbering
+- Tax rules (GST, VAT, sales tax — whatever applies)
+- Payment methods (Stripe, Razorpay, UPI, bank transfer)
+- Commission structures
+- Expense categories and approval rules
+- Chart of accounts matching their accountant's setup
 
-### Module 5: HR & People
-_Replaces: BambooHR, Gusto, Workday, Google Sheets_
+**Rust MCPs used:** `finance-mcp`, `payments-mcp`, `tax-mcp`, `commissions-mcp`
 
-| Feature | AI Agent Capability |
-|---------|-------------------|
-| Hiring pipeline | AI screens resumes, schedules interviews |
-| Onboarding | AI-guided onboarding flows |
-| Employee portal | Self-service: leave, expenses, training |
-| Performance reviews | AI-drafted from activity data |
-| Training/LMS | AI-personalized learning paths |
-| Payroll | Auto-calculated, compliance-ready |
-| Time off management | AI-approved based on team coverage |
-| Org chart | Auto-generated, always current |
+### HR & People
+_Replaces: BambooHR, Gusto, Google Sheets_
 
-**Rust MCPs:** `hr-mcp`, `employees-mcp`, `training-mcp`, `payroll-mcp`
+Configured for the client's specific:
+- Org structure and roles
+- Leave policies
+- Training programs
+- Performance review cadence
+- Payroll rules and compliance
 
-### Module 6: Communication & Collaboration
-_Replaces: Slack, Zoom, Gmail, WhatsApp Business, Calendly_
+**Rust MCPs used:** `hr-mcp`, `employees-mcp`, `training-mcp`
 
-| Feature | AI Agent Capability |
-|---------|-------------------|
-| Email | AI-composed, context-aware, auto-filed |
-| Internal chat | AI-summarized threads, action extraction |
-| WhatsApp Business | AI-handled client communication |
-| Video meetings | AI-scheduled, recorded, summarized, action-tracked |
-| Calendar | AI-optimized scheduling, prep materials |
-| Client portal | Self-service project status, documents, chat |
-| Notifications | AI-prioritized, bundled, actionable |
+### Communication
+_Replaces: Slack, Gmail, WhatsApp Business, Calendly_
 
-**Rust MCPs:** `communication-mcp`, `calendar-mcp`, `portal-mcp`, `meetings-mcp`
+Configured for the client's specific:
+- Email accounts and signatures
+- WhatsApp Business number
+- Calendar and availability rules
+- Meeting templates and prep workflows
+- Client communication preferences
 
-### Module 7: Intelligence & Analytics
-_Replaces: Tableau, Google Analytics, Crayon, Similarweb_
+**Rust MCPs used:** `communication-mcp`, `calendar-mcp`, `meetings-mcp`
 
-| Feature | AI Agent Capability |
-|---------|-------------------|
-| Business dashboards | AI-generated, anomaly detection |
-| Competitor monitoring | Auto-tracked: pricing, features, hiring, news |
-| Market research | AI-compiled TAM/SAM/SOM |
-| Customer insights | AI-analyzed behavior patterns |
-| Revenue analytics | AI-forecasted, trend detection |
-| Custom reports | Describe in natural language, AI builds |
-| Alerts | AI-triggered on anomalies/opportunities |
+### Intelligence & Analytics
+_Replaces: Tableau, Google Analytics, Crayon_
 
-**Rust MCPs:** `intelligence-mcp`, `analytics-mcp`, `reporting-mcp`
+Configured for the client's specific:
+- KPIs and metrics they track
+- Competitors they monitor
+- Report formats their leadership wants
+- Alert thresholds for anomalies
+- Dashboard views per role
+
+**Rust MCPs used:** `intelligence-mcp`, `analytics-mcp`, `reporting-mcp`
+
+---
+
+## Revenue Model
+
+### Build Revenue (One-Time)
+
+| Engagement | Price Range | Timeline | What Client Gets |
+|-----------|------------|---------|------------------|
+| Quick Win | $5K-15K | 1-2 weeks | 1-2 modules, basic AI agents |
+| Core Build | $25K-50K | 3-4 weeks | 3-4 modules, full AI automation |
+| Full System | $75K-150K | 6-8 weeks | All modules, complete business OS |
+| Enterprise | $200K+ | 8-12 weeks | Multi-department, complex integrations |
+
+### Ongoing Revenue (Recurring, Optional)
+
+| Service | Price Range | What They Get |
+|---------|------------|---------------|
+| Managed Hosting | $500-2K/mo | Infrastructure, monitoring, backups, uptime SLA |
+| Support & Iteration | $2K-5K/mo | Bug fixes, new features, agent optimization |
+| Dedicated Operations | $5K-15K/mo | Full managed operations, dedicated person stays |
+| AI Agent Tuning | $1K-3K/mo | Continuous improvement of AI agents, new workflows |
+
+### Why Clients Stay (Without Lock-in)
+
+They stay because:
+1. The dedicated person understands their business deeply
+2. Iteration is faster than rebuilding with someone else
+3. The software actually works and improves over time
+4. New MCP modules/agents become available → easy to add
+5. Trust built through ownership model — they know they CAN leave
+
+Target: **70%+ of build clients convert to ongoing services.**
 
 ---
 
 ## Competitive Position
 
-### vs Odoo ($24.90-37.40/user/mo, 80+ apps)
-- Odoo is comprehensive but **zero AI**. Everything manual.
-- DataXLR8: AI agents do the work across all modules.
-- Odoo requires dev expertise to customize. DataXLR8: describe what you want in natural language.
+```
+                  Generic ←──────────────────────→ Custom
+                     │                               │
+                     │                               │
+  Client Owns   ERPNext ──────────────────────── DataXLR8
+  (no lock-in)   Odoo CE                         (custom + AI +
+                     │                            dedicated person)
+                     │                               │
+                     │                               │
+  Vendor Owns   Salesforce ─────────────────── Accenture
+  (locked in)    HubSpot                       Deloitte
+                 Zoho One                      McKinsey
+                     │                               │
+                  $25-300/user/mo              $500K+ projects
+```
 
-### vs Salesforce ($25-318/user/mo + ecosystem)
-- Salesforce is CRM-first with expensive add-ons for everything else.
-- Agentforce is AI bolted onto 20-year-old architecture.
-- DataXLR8: AI-native from ground up. One price. Everything included.
+DataXLR8 occupies the **top-right quadrant**: custom, client-owned, AI-native, with a dedicated human relationship. Nobody else is here.
 
-### vs Zoho One ($45/employee/mo, 45+ apps)
-- Zoho is the closest comp: all-in-one, affordable.
-- But Zoho's AI (Zia) is an assistant layer, not agent-native.
-- Zoho has an MCP server — they see the future but can't rebuild from scratch.
-- DataXLR8: built for AI from day one. No legacy.
-
-### vs "Best of Breed" Stack
-- Apollo + HubSpot + Asana + QuickBooks + Slack + ... = $500-2,000/user/mo
-- Nothing talks to each other. Zapier tax to connect.
-- DataXLR8: one platform, one data model, AI connects everything.
-
----
-
-## The Moat (Why This Can't Be Easily Copied)
-
-1. **Rust MCP infrastructure** — sub-millisecond, composable, model-agnostic. Nobody else has this.
-2. **In-house everything** — not aggregating APIs. Own data, own engines, own stack.
-3. **AI-native architecture** — can't retrofit AI onto legacy platforms (Salesforce has been trying for years).
-4. **Network effects** — more modules used → more data flows between them → better AI predictions.
-5. **Switching cost** — once your CRM + marketing + finance + HR + ops are all in one place, you don't leave.
-6. **Speed** — a solo founder with AI agents building AI-agent-powered software moves faster than any enterprise.
+- **Odoo/ERPNext** are open-source and client-owned, but generic and zero AI
+- **Salesforce/HubSpot** are polished but vendor-owned and generic
+- **Accenture/Deloitte** are custom but insanely expensive and slow
+- **DataXLR8** is custom + AI + fast + affordable + client-owned
 
 ---
 
-## Pricing Philosophy
+## The MCP Advantage (Why We Can Do Custom at Scale)
 
-**Kill the per-module, per-seat, per-feature model.**
+Traditional custom software agency: every build starts from scratch. Each project is 3-6 months. Each developer reinvents the wheel.
 
-| Tier | Price | What You Get |
-|------|-------|-------------|
-| **Starter** | $49/user/mo | All modules. All AI. Limited usage (500 agent actions/mo) |
-| **Growth** | $99/user/mo | All modules. All AI. Higher usage (2,500 actions/mo) |
-| **Scale** | $199/user/mo | All modules. All AI. Unlimited actions. API access |
-| **Enterprise** | Custom | SSO, audit logs, custom integrations, SLA, white-label |
+DataXLR8: **Lego blocks.**
 
-**Every tier gets every module.** No "upgrade to Marketing Hub" or "add Sales add-on." The differentiation is usage volume, not features.
+```
+Client needs CRM + Finance + Operations?
 
-**Done-for-you builds:** $5K-75K for custom AI system setup + $2K-10K/mo ongoing managed operations.
+  ┌─────────────┐  ┌─────────────┐  ┌─────────────┐
+  │   crm-mcp   │  │ finance-mcp │  │ projects-mcp│
+  │  (6.5MB)    │  │  (6.5MB)    │  │  (6.5MB)    │
+  └──────┬──────┘  └──────┬──────┘  └──────┬──────┘
+         │                │                │
+         └────────────────┼────────────────┘
+                          │
+                  ┌───────┴───────┐
+                  │  gateway-mcp  │  ← Single endpoint
+                  └───────┬───────┘
+                          │
+                  ┌───────┴───────┐
+                  │ Client's AI   │  ← Claude/GPT/Grok
+                  │ (BYOK)        │     whatever they prefer
+                  └───────────────┘
+
+  Configure each module for THIS client's business.
+  Deploy. Done in 2-4 weeks, not 6 months.
+```
+
+Each Rust MCP module:
+- **0.2ms** per tool call (sub-millisecond)
+- **6.5MB** binary (tiny, deployable anywhere)
+- **10MB** memory (run 20 modules on a $5 VPS)
+- **Independent** — pick only what the client needs
+- **Configurable** — same module, different rules per client
+- **Model-agnostic** — client chooses their AI provider
+
+**This is the moat.** A normal agency can't compete on speed or price because they don't have reusable Rust MCP building blocks. An incumbent SaaS can't compete on customization because they built one product for everyone.
 
 ---
 
-## Go-To-Market Sequence
+## Go-To-Market
 
-### Phase 1: Wedge (Month 1-3)
-Start with **CRM + Sales + Enrichment** — the module with the most pain, the most competition, and the clearest ROI.
-- Free AI Opportunity Scanner (lead gen)
-- Chrome Extension (LinkedIn enrichment)
-- Credit-based self-serve agents
-- Beat Apollo on quality, beat ZoomInfo on price, beat Clay on simplicity
+### How We Find Clients
 
-### Phase 2: Expand (Month 4-6)
-Add **Marketing + Content + Communication**. Users who came for CRM now get email campaigns, social scheduling, and client communication — all connected to their deals.
+1. **AI Opportunity Scanner** (free) — any business scans for AI savings potential
+2. **BusinessAnalyzer chatbot** — qualifies via conversation, detects high intent
+3. **Slack alert** — dedicated person follows up immediately
+4. **Discovery call** — understand their business, map their workflows
+5. **Proposal** — here's what we'd build, here's what it costs, here's the timeline
+6. **Build** — dedicated person + MCP building blocks + AI agents
+7. **Handover** — client owns everything, optional ongoing services
 
-### Phase 3: Full Platform (Month 7-12)
-Add **Operations + Finance + HR**. Now it's a complete business OS. Deals flow into projects flow into invoices flow into accounting. All AI-powered.
+### Target Clients
 
-### Phase 4: Ecosystem (Month 12+)
-- Open-source core Rust MCPs
-- Community marketplace for third-party modules
-- White-label for agencies
-- API platform for developers
-- Custom agent builder for power users
+| Segment | Company Size | Build Range | Why They Buy |
+|---------|-------------|-------------|-------------|
+| **Small agencies** | 5-20 people | $5K-25K | Replace 10 spreadsheets with one AI system |
+| **Growing startups** | 20-100 people | $25K-75K | Need operations infrastructure, can't afford Salesforce |
+| **Mid-market** | 100-500 people | $75K-200K | Want custom, tired of configuring Salesforce/HubSpot |
+| **Enterprises** | 500+ people | $200K+ | Want AI-native, can't retrofit into legacy systems |
+
+### Phase 1 Focus: Indian SMBs + Agencies
+- 50,000+ travel agencies in India, most use Excel
+- Thousands of marketing/IT/consulting agencies with same problem
+- Price-sensitive → custom at $5K-50K is attractive vs $500K consulting
+- WhatsApp-first communication (we support this natively)
+- GST/Indian tax compliance built-in
+
+---
+
+## Team Model
+
+### Now (Solo + AI)
+- Pran: finds clients, does discovery, architects solutions, builds using AI agents + MCP modules
+- AI agents: assist in builds, handle repetitive code, test, deploy
+
+### Month 3-6 (Pran + 1-2 Dedicated People)
+- Each dedicated person handles 3-5 clients
+- They know their clients' businesses intimately
+- They build using MCP modules + AI agents
+- Pran architects, they execute
+
+### Month 6-12 (Scale)
+- 5-10 dedicated people, each handling 3-5 clients
+- 15-50 active clients
+- $50K-200K MRR from builds + ongoing services
+- New MCP modules built from patterns across client builds
+
+### The Flywheel
+```
+Build for Client A (travel agency)
+  → Patterns emerge → New MCP module
+  → Build for Client B (marketing agency) → 30% faster
+  → More patterns → Better modules
+  → Build for Client C → 50% faster
+  → Eventually: builds that took 4 weeks take 1 week
+  → More clients per person → higher margins
+```
 
 ---
 
 ## The End State
 
-A business signs up for DataXLR8. They describe their business in natural language. AI agents configure the platform: set up their pipeline, import contacts, connect their email, create their project templates, set up invoicing rules, build their employee portal.
+DataXLR8 is known as the company that builds you YOUR business operating system.
 
-From that point on, AI agents handle:
-- Lead capture and enrichment
-- Outreach and follow-up
-- Meeting scheduling and prep
-- Proposal generation
-- Deal tracking and forecasting
-- Project creation and management
-- Invoice generation and payment tracking
-- Content creation and publishing
-- Employee onboarding and training
-- Financial reporting and compliance
-- Competitor monitoring and market intelligence
+- You don't subscribe to someone else's software
+- You don't configure a generic tool to sort-of-work for you
+- You don't spend $500K on consultants who leave and you can't maintain it
 
-Humans step in for: strategic decisions, relationship building, creative direction, and anything that requires judgment.
+You come to DataXLR8. A dedicated person understands your business. They build you a custom AI-powered system using battle-tested MCP building blocks. You own every line of code. AI agents run your business. You focus on what matters.
 
-**That's DataXLR8. Not a tool. Not an agent marketplace. The AI-native operating system for every business.**
+**That's DataXLR8. Your software. Your AI. Your business. Built by us. Owned by you.**
