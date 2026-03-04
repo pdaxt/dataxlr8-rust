@@ -1,742 +1,617 @@
-# DataXLR8: AI-Native Business Tools That Replace Your SaaS Stack
+# DataXLR8 — War Plan
 
-_Updated: 2026-03-05_
-
-## The One Sentence
-
-> **DataXLR8 builds the actual business tools that AI agents use — the CRM, the enrichment engine, the finance system — not connectors to legacy SaaS. Open-source. Rust. 50x faster. You own everything.**
-
-Composio connects your AI agent TO Salesforce. DataXLR8 **replaces** the need for Salesforce entirely.
+_Updated: 2026-03-05. This is not a pitch deck. This is how we survive._
 
 ---
 
-## Why NOW
+## The Situation
 
-Five forces have converged in 2025-2026 that make this the exact right moment. None of them existed 18 months ago.
+**We need $50K/month to survive. Starting now.**
 
-### 1. MCP Became the Standard (Nov 2024 → Now)
+We have:
+- A working Rust MCP platform (core library, features-mcp, contacts-mcp — all shipped)
+- A working employee portal (deals pipeline, training, commissions, invites, Google OAuth)
+- An AI Opportunity Scanner (chatbot that finds AI savings for businesses)
+- Strategy docs, market research, Go-To-Market materials
+- One founder (Pran) + a fleet of AI agents that ship as fast as a 5-8 person team
 
-Anthropic released the Model Context Protocol in November 2024. Within 6 months, every major player adopted it:
+We don't have:
+- A single paying client
+- The enrichment-mcp (our biggest wedge)
+- The crm-mcp or email-mcp
+- Cloud hosting infrastructure
+- Revenue
 
-- **Anthropic** — created MCP, Claude Code uses it natively
-- **OpenAI** — added MCP support to ChatGPT (Mar 2025)
-- **Google** — MCP support in Gemini and Android Studio
-- **Microsoft** — MCP in Copilot Studio, VS Code, Windows
-- **AWS, Stripe, Cloudflare, Block, Shopify** — all AAIF members building MCP
-
-MCP downloads crossed **97M+ on npm** in early 2026. This isn't a bet on a standard — the standard has already won. The question is now: what tools get built FOR this standard?
-
-### 2. AI Agents Went From Demo to Production (2025 → 2026)
-
-- **Claude Code** runs production tasks autonomously with tool use
-- **Devin** — AI software engineer handling real engineering tickets
-- **Cursor, Windsurf** — AI-native IDEs with millions of users
-- **Enterprise adoption** — Salesforce Agentforce, ServiceNow AI agents, SAP Joule
-
-Agents are no longer demo toys. They're running production workloads. They need production tools — not API wrappers to SaaS dashboards designed for humans clicking buttons.
-
-### 3. Clearbit Died, Leaving a Vacuum (Apr 2025)
-
-HubSpot acquired Clearbit in late 2023, then shut it down in April 2025. Tens of thousands of companies that relied on Clearbit for enrichment are now scrambling. Apollo raised prices. ZoomInfo is enterprise-only ($15K+ minimums). There is no good, affordable, developer-friendly enrichment option.
-
-This is our entry point. Not theoretical — the market is actively searching for a replacement RIGHT NOW.
-
-### 4. SaaS Fatigue Hit a Breaking Point
-
-The average mid-size company runs **130+ SaaS applications** and spends **$1,040 per employee per month** on software (Zylo 2025 SaaS Benchmark). Companies are:
-- Drowning in subscription costs that increase 15-20% annually
-- Managing dozens of vendor relationships, contracts, logins
-- Getting zero AI benefit from legacy tools designed for human UI interaction
-- Locked into per-user pricing that scales linearly with headcount
-
-When someone shows them "all of this for $49/mo total, no per-user pricing, and your AI agents can use it directly" — the conversation is over.
-
-### 5. Rust MCP Servers Don't Exist Yet
-
-Search crates.io for MCP business tools. Search GitHub for Rust MCP servers that implement CRM, enrichment, or finance logic. They don't exist. The entire MCP ecosystem is Python and TypeScript — slow, memory-hungry, and fragile.
-
-We're not entering a crowded market. We're creating the category of high-performance, open-source, Rust-native business MCPs. First mover in an empty field.
+**The clock is ticking. Here's exactly what we do.**
 
 ---
 
-## What Exists Today
+## What We Sell
 
-### Built and Running
+### Three products, three price points:
 
-| Component | Status | Details |
-|-----------|--------|---------|
-| `dataxlr8-mcp-core` | **Shipped** | Shared Rust library: DB pool, config, error handling, logging. Used by all MCPs. |
-| `dataxlr8-features-mcp` | **Shipped** | 8 tools, 6.5MB binary. Feature flags, A/B testing. Proof of architecture. |
-| `dataxlr8-contacts-mcp` | **Shipped** | Contact management MCP with search, CRUD, tagging. |
-| `dataxlr8-web` | **Shipped** | Full employee portal: deals pipeline, training academy, commissions, leaderboard, invite system. Axum + HTMX + Tailwind. |
-| AI Opportunity Scanner | **Shipped** | BusinessAnalyzer chatbot. Scans any business for AI savings. Slack webhook for high-intent leads. |
-| Employee Portal | **Shipped** | Google OAuth, role-based access, team management, feature flags, invite system. |
-| Strategy docs | **Shipped** | Complete market analysis, competitive landscape, GTM playbook, execution plan. |
-| Internal ops | **Shipped** | Deals tracking, commission calculations, training progress, contact management. |
+**Product 1: AI Quick Win — $5,000 (1 week delivery)**
+Replace one painful manual workflow with AI agents.
+- Lead enrichment automation (replace Apollo)
+- Email sequence automation (replace Outreach)
+- CRM setup + data migration (replace Salesforce)
+- Reporting dashboard (replace spreadsheets)
+- Money-back guarantee: saves 10+ hrs/week or don't pay
 
-### Building Next
+**Product 2: AI Core Build — $25,000-75,000 (4-6 weeks)**
+Replace 3-5 SaaS tools with a unified AI system.
+- Full CRM + pipeline (replaces Salesforce: $75/user/mo)
+- Lead enrichment + email verification (replaces Apollo: $49/user/mo)
+- Email automation + sequences (replaces Outreach: $100/user/mo)
+- Custom AI agents for their specific workflows
+- Everything connected, all data in one place
 
-| Component | Timeline | Priority |
-|-----------|----------|----------|
-| `dataxlr8-enrichment-mcp` | Month 1 | **Critical** — the Clearbit replacement wedge |
-| `dataxlr8-crm-mcp` | Month 1-2 | Core — full CRM replacing Salesforce |
-| `dataxlr8-email-mcp` | Month 2 | Core — email sending, sequences, tracking |
-| `dxlr8` CLI | Month 2-3 | Developer experience — deploy MCPs with one command |
-| DataXLR8 Cloud | Month 3 | Revenue engine — managed MCP hosting |
-| Chrome Extension | Month 3-4 | Growth lever — instant enrichment on LinkedIn |
+**Product 3: Managed Operations — $2,000-10,000/month (ongoing)**
+We run and optimize the system after build.
+- Monitoring, updates, new features
+- New AI agents as needs evolve
+- Priority support
+- This is the recurring revenue that compounds
 
----
-
-## The Team
-
-### Pranjal Daga — Founder
-
-- Full-stack engineer building with Rust, TypeScript, Python
-- Built and shipped the entire DataXLR8 stack (MCPs, web portal, AI agents, strategy) in weeks, not months
-- Uses 48-pane tmux setup with multiple AI agents coordinated via custom MCP orchestration system
-- Operates at 10x individual developer velocity by treating AI agents as team members, not tools
-- Based in Sydney — APAC timezone advantage for enterprise clients in AU/NZ/SEA
-
-### The AI Engineering Team
-
-DataXLR8 is built with a novel development approach: a single human founder directing a fleet of AI agents (Claude Code instances) that work in parallel across the codebase. This isn't a parlor trick — it's the operational model:
-
-- **Pran + 4-12 concurrent Claude agents** = output equivalent to a 5-8 person engineering team
-- Custom MCP orchestration coordinates file locks, shared knowledge, and task assignment across agents
-- Each agent specializes: one builds MCPs, one tests, one writes docs, one handles DevOps
-- This IS the product thesis in action: AI agents using MCP tools to build business systems
-
-The first hire is a Rust engineer (once agency revenue covers salary). Until then, the AI team ships faster than most funded startups.
-
----
-
-## Why "Replacement" Beats "Connection"
-
-### The Connector Problem
-
-Every MCP platform today (Composio, Glama, Pipedream) does the same thing: connects AI agents to existing SaaS tools through API wrappers.
+### The $50K/Month Math
 
 ```
-THE CONNECTOR MODEL (Composio, etc.):
+MONTH 1-2 (RAMP):
+  4 × Quick Wins         = $20,000
+  1 × Core Build (start) = $25,000 (50% upfront)
+  0 × Managed Ops        = $0
+  TOTAL                   = $32,500  ← won't hit $50K yet, that's OK
 
-  Your Agent → Composio Gateway → Salesforce API → Salesforce DB
-                                → Apollo API → Apollo DB
-                                → QuickBooks API → QuickBooks DB
+MONTH 3-4 (STEADY STATE):
+  2 × Quick Wins         = $10,000
+  1 × Core Build         = $50,000 (2nd half + new start)
+  3 × Managed Ops        = $12,000
+  TOTAL                   = $72,000  ← now exceeding target
 
-  Problems:
-  ✗ Still paying $75/user for Salesforce
-  ✗ Still paying $49/user for Apollo
-  ✗ Still paying Composio for the connector
-  ✗ Triple latency (agent → connector → API → DB → back)
-  ✗ Breaks when Salesforce changes their API
-  ✗ Your data scattered across 15 vendors
-  ✗ Total cost: $150-500+/user/month
+MONTH 6+ (COMPOUNDING):
+  1 × Quick Win          = $5,000
+  1 × Core Build         = $35,000
+  6 × Managed Ops        = $24,000
+  Cloud subscribers      = $5,000
+  TOTAL                   = $69,000
 ```
 
+**Key insight: Quick Wins are the engine. Every Quick Win client becomes a Core Build prospect (30% convert). Every Core Build becomes a Managed Ops client (60% convert). The pipeline compounds.**
+
+---
+
+## Who We Sell To
+
+### Primary Targets (These People Are Bleeding Money)
+
+#### 1. Recruitment & Staffing Agencies (5-50 people)
+
+**Why them:** They spend the MOST on SaaS per employee. Apollo + LinkedIn Recruiter + Bullhorn/JobAdder + Outreach + CRM = $300-500/user/month. They live and die by lead data.
+
+**The buyer:** Agency owner, Managing Director, Head of Operations
+
+**The pain:**
+- Paying $15K+/yr for Apollo or ZoomInfo for candidate/client sourcing
+- Manual data entry between 4-5 different tools
+- Sequences are manual or use expensive Outreach ($100/user/mo)
+- Can't get real-time pipeline visibility without clicking through 3 dashboards
+
+**What we build them:**
+- AI agent that auto-enriches candidates from LinkedIn (replaces Apollo)
+- Unified CRM with candidate + client pipeline (replaces Bullhorn: $99/user/mo)
+- Automated outreach sequences (replaces Outreach)
+- Daily KPI report generated automatically (replaces Tableau)
+
+**The pitch:** "You're spending $4K/month on tools for a 10-person team. We'll replace all of it with AI agents for $5K setup + $3K/month managed. That's break-even in Month 2 and $45K/year savings after that."
+
+**How to find them:**
+- LinkedIn Sales Navigator: Title = "Managing Director" OR "Founder", Industry = "Staffing and Recruiting", Size = 11-50
+- Google: "recruitment agency sydney" / "staffing agency [city]"
+- Job board sites: agencies posting multiple roles = they have budget
+
+#### 2. Digital Marketing / Creative Agencies (5-30 people)
+
+**Why them:** They already sell AI to their clients but don't have the tools. They're desperate for a white-label solution. And they spend $200-400/user/month on HubSpot + Mailchimp + SEMrush + Jasper.
+
+**The buyer:** Agency founder, Head of Client Services
+
+**The pain:**
+- Each client needs reporting → hours of manual work per week
+- HubSpot costs $234/user/mo at Marketing Hub Pro
+- Content generation tools (Jasper, Copy.ai) are expensive and mediocre
+- Clients asking for "AI" but agency can't deliver
+
+**What we build them:**
+- AI-powered client reporting (auto-generated weekly/monthly reports)
+- Content generation pipeline (replaces Jasper)
+- Lead enrichment for their clients' sales teams (replaces Apollo)
+- White-label option: they resell to THEIR clients
+
+**The pitch:** "You're charging clients $3K/month for marketing but spending $500/month on tools per team member. We'll cut your tool costs by 80% AND give you an AI offering you can sell to clients at a markup."
+
+**How to find them:**
+- LinkedIn: "digital marketing agency" + 11-50 employees
+- Clutch.co: browse marketing agencies by city
+- Ask existing marketing contacts for referrals
+
+#### 3. Real Estate Agencies (10-100 agents)
+
+**Why them:** They use terrible CRMs (Rex, AgentBox, Reapit) that cost $200-400/agent/month. They're all about lead follow-up speed. AI can 10x their response time.
+
+**The buyer:** Principal, Office Manager, Head of Sales
+
+**The pain:**
+- CRM costs $200-400/agent/month (Rex, AgentBox)
+- Lead response time is slow — buyers go to whoever replies first
+- Manual property matching (search filters are primitive)
+- Commission tracking is done in spreadsheets
+
+**What we build them:**
+- AI agent that responds to enquiries in <60 seconds (24/7)
+- Smart property matching based on buyer preferences
+- Automated follow-up sequences for open home attendees
+- Commission calculator + pipeline dashboard
+
+**The pitch:** "Your 20 agents cost you $6K/month in CRM alone. We'll replace that AND add AI that responds to leads in 60 seconds — before any competitor can. $5K setup, $2K/month."
+
+**How to find them:**
+- Domain.com.au: find agencies with 10+ agents
+- LinkedIn: "real estate principal" or "real estate director"
+- Local networking events in Sydney
+
+#### 4. Professional Services (Accountants, Lawyers, Consultants — 5-50 people)
+
+**Why them:** They track time, send invoices, manage client comms — all manually or with expensive tools. They're risk-averse but once they buy, they never leave.
+
+**The buyer:** Managing Partner, Practice Manager
+
+**The pain:**
+- Xero/QuickBooks for invoicing ($30-200/mo)
+- Practice management software ($50-150/user/mo)
+- Client communication scattered across email, phone, portals
+- Document management is chaos
+
+**What we build them:**
+- AI that generates invoices from time entries
+- Client portal with document management
+- Automated follow-up for overdue invoices
+- Tax-ready reporting (GST for AU, VAT for UK, sales tax for US)
+
+**The pitch:** "Your practice management software costs $100/user/month and your staff still does everything manually. We'll automate invoicing, client follow-up, and reporting for $5K setup."
+
+#### 5. E-Commerce Businesses ($500K-10M revenue, 5-30 people)
+
+**Why them:** They use Shopify + Klaviyo + Gorgias + inventory tools = $500-2000/month. Customer service is their biggest cost.
+
+**The buyer:** Founder, Head of Operations, E-commerce Manager
+
+**The pain:**
+- Klaviyo costs $150-1000/mo for email marketing
+- Gorgias costs $50-750/mo for customer service
+- Inventory management done in spreadsheets or expensive tools
+- Abandoned cart, post-purchase, win-back — all manual
+
+**What we build them:**
+- AI customer service agent (handles 70% of tickets)
+- Smart email sequences (abandoned cart, post-purchase, win-back)
+- Inventory alerts and reorder automation
+- Unified dashboard: orders, customers, revenue, inventory
+
+---
+
+## How We Get Our First Client (This Week)
+
+### Day 1 (Tomorrow)
+
+**Morning (2 hours):**
+1. Update LinkedIn headline: "Building AI agents that replace your $400/user SaaS stack | DataXLR8"
+2. Create target list: 50 recruitment agency owners + 50 marketing agency founders on LinkedIn
+3. Write 3 personalized connection request templates (see below)
+4. Set up Calendly for discovery calls
+
+**Afternoon (2 hours):**
+5. Send 25 LinkedIn connection requests to recruitment agency owners
+6. Send 25 LinkedIn connection requests to marketing agency founders
+7. Post on LinkedIn: The SaaS Cost Bomb post (see Content section below)
+
+**Outreach template (recruitment agencies):**
 ```
+Hi [Name], I noticed [Agency] does [type of recruiting]. We just built an AI system
+that replaces Apollo + Bullhorn + Outreach — saves agencies like yours $3K+/month
+on tools alone. Worth a 15-min chat?
+```
+
+**Outreach template (marketing agencies):**
+```
+Hi [Name], saw [Agency]'s work with [notable client/campaign]. We're helping
+agencies replace HubSpot + Jasper + their reporting stack with AI agents — cuts
+tool costs 80% and gives you an AI offering for clients. Quick call this week?
+```
+
+### Day 2-3
+
+- Follow up with anyone who accepted connections
+- Send 25 more connection requests (real estate + professional services)
+- Comment on 10 prospects' posts (genuine value, no pitch)
+- Send cold emails to 20 agencies found on Clutch.co / Google
+
+### Day 4-5
+
+- Take discovery calls (target: 3-5 booked by now)
+- Send proposals to warm leads
+- Post another LinkedIn piece (Quick Win offer)
+
+### Day 6-7
+
+- Follow up on proposals
+- Close first client
+- Start delivery immediately
+
+### Conversion Expectations (Be Honest)
+
+```
+Week 1:
+  100 outreach messages sent
+  → 30 connections accepted (30%)
+  → 10 conversations (33% of connections)
+  → 4 discovery calls (40% of conversations)
+  → 2 proposals sent (50% of calls)
+  → 1 close (50% of proposals)
+
+Week 2: Pipeline from Week 1 continues warming
+  → 2 more closes from existing pipeline
+  → Start new outreach batch
+
+Week 3-4: Steady state
+  → 1-2 closes per week
+  → First Quick Win delivered → testimonial → case study
+```
+
+**If Week 1 doesn't close:** Lower price to $3,000. Offer free pilot (we build it, they only pay if it works). The first client matters more than the revenue — it's a case study.
+
+---
+
+## What We Need Built to Deliver
+
+### Already Built (Can Sell Against TODAY)
+
+| Component | Status | Can Deliver With It |
+|-----------|--------|-------------------|
+| `dataxlr8-mcp-core` | Shipped | Foundation for all MCPs |
+| `dataxlr8-features-mcp` | Shipped (8 tools) | Feature flags, A/B testing |
+| `dataxlr8-contacts-mcp` | Shipped | Contact management |
+| Employee Portal (dataxlr8-web) | Shipped | Deals pipeline, training, commissions, leaderboard |
+| AI Opportunity Scanner | Shipped | Lead qualification tool |
+| Google OAuth + Invite System | Shipped | Team onboarding |
+
+### Must Build ASAP (Need to Deliver Quick Wins)
+
+**Priority 1: enrichment-mcp (Week 1-2)**
+The Clearbit replacement. This is our biggest selling point.
+
+| Tool | What It Does | Why Clients Need It |
+|------|-------------|-------------------|
+| `enrich_person` | Name + company → email, phone, LinkedIn, title | Recruitment agencies need this 100x/day |
+| `enrich_company` | Domain → size, funding, tech stack, employees | Marketing agencies need this for prospecting |
+| `verify_email` | Email → deliverable/bounce/disposable check | Everyone sending cold outreach needs this |
+| `domain_emails` | Domain → all discoverable emails | Sales teams use this constantly |
+| `search_people` | Query → matching people by title/company/location | Recruitment agencies live on this |
+| `tech_stack` | Domain → technologies used | Marketing agencies sell this insight to clients |
+| `bulk_enrich` | CSV → enriched records | Every client will want batch processing |
+
+**Priority 2: crm-mcp (Week 2-3)**
+The Salesforce replacement. Every client needs a CRM.
+
+| Tool | What It Does |
+|------|-------------|
+| `create_contact` | Create contact with custom fields |
+| `search_contacts` | Full-text search with filters |
+| `upsert_deal` | Create/update deal in pipeline |
+| `move_deal` | Move deal between stages |
+| `log_activity` | Log calls, emails, meetings |
+| `get_pipeline` | Pipeline overview with totals |
+| `create_task` | Follow-up tasks linked to contacts/deals |
+| `import_contacts` | Bulk import from CSV |
+
+**Priority 3: email-mcp (Week 3-4)**
+Outreach replacement. Sequences are the #1 time saver.
+
+| Tool | What It Does |
+|------|-------------|
+| `send_email` | Send with template variables + tracking |
+| `create_sequence` | Multi-step email drip with delays |
+| `create_template` | Reusable email templates |
+| `track_opens` | Open and click tracking |
+| `manage_unsubscribes` | Compliance handling |
+| `bulk_send` | Personalized bulk email |
+
+### Nice to Have (Month 2-3)
+
+| MCP | Tools | Replaces | When |
+|-----|-------|----------|------|
+| `finance-mcp` | 8 | QuickBooks, Xero | Month 2 |
+| `sales-mcp` | 10 | Outreach advanced, SalesLoft | Month 2 |
+| `scraper-mcp` | 6 | Apify, ScrapingBee | Month 2-3 |
+| `analytics-mcp` | 6 | Tableau, Metabase | Month 3 |
+| `documents-mcp` | 6 | DocuSign, Google Docs API | Month 3 |
+| `intelligence-mcp` | 10 | Crayon, Similarweb | Month 4 |
+| `content-mcp` | 10 | Jasper, Copy.ai | Month 4 |
+
+### The Full Feature Vision (14 MCPs, 104 Tools)
+
+When complete, DataXLR8 replaces:
+
+```
+BEFORE (10-person team, monthly cost):
+  Salesforce CRM         $750/mo   ($75/user)
+  Apollo enrichment      $490/mo   ($49/user)
+  Outreach sequences     $1,000/mo ($100/user)
+  Mailchimp email        $100/mo
+  QuickBooks finance     $80/mo
+  Tableau reporting      $700/mo   ($70/user)
+  Jasper content         $490/mo   ($49/user)
+  Calendly scheduling    $100/mo   ($10/user)
+  TOTAL                  $3,710/mo
+
+AFTER (DataXLR8):
+  Cloud Pro              $49/mo    (or $0 self-hosted)
+  SAVINGS                $3,661/mo = $43,932/year
+```
+
+**Every MCP spec:** Standalone Rust binary. <6.5MB. <0.2ms tool calls. <10MB memory. MIT licensed.
+
+---
+
+## Why Replacement Beats Connection
+
+This is the core thesis. Get this right and everything else follows.
+
+```
+THE CONNECTOR MODEL (Composio, Glama, Pipedream):
+
+  Your Agent → Connector → Salesforce API → Their Database
+                         → Apollo API → Their Database
+                         → QuickBooks API → Their Database
+
+  STILL paying $75/user for Salesforce
+  STILL paying $49/user for Apollo
+  STILL paying for the connector
+  Triple latency: agent → connector → API → DB → back
+  Data scattered across 15 vendors
+  Breaks when they change their API
+  Total: $400+/user/month
+
 THE REPLACEMENT MODEL (DataXLR8):
 
   Your Agent → DataXLR8 CRM MCP → YOUR database (0.2ms)
              → DataXLR8 Enrichment MCP → YOUR database (0.2ms)
              → DataXLR8 Finance MCP → YOUR database (0.2ms)
 
-  Advantages:
-  ✓ No Salesforce license needed
-  ✓ No Apollo license needed
-  ✓ No connector middleware
-  ✓ 0.2ms direct tool calls (50x faster)
-  ✓ All data in ONE place you control
-  ✓ Total cost: $49/mo flat (no per-user)
+  No Salesforce license
+  No Apollo license
+  No connector middleware
+  0.2ms direct tool calls (50x faster)
+  All data in ONE place you control
+  Total: $49/mo flat, no per-user pricing
 ```
 
-### The Stripe Analogy
-
-Stripe didn't build "a connector to PayPal." Stripe built a payment system so good that developers stopped using PayPal entirely.
-
-DataXLR8 doesn't build "a connector to Salesforce." DataXLR8 builds a CRM so native to AI agents that businesses stop needing Salesforce entirely.
-
-**That's the difference between a $29M integration company and a $95B infrastructure company.**
+**Stripe didn't build a "connector to PayPal." Stripe built a payment system so good developers stopped using PayPal. That's the difference between a $29M integration company and a $95B infrastructure company.**
 
 ---
 
-## What DataXLR8 Builds
+## Revenue Engines
 
-### Open-Source Rust MCP Servers (The Tools Themselves)
+### Engine 1: Agency (Revenue from Day 1)
 
-Not wrappers around existing APIs. The actual business logic. MIT licensed.
+Sell custom AI builds using our own MCPs. $5K-200K/project.
 
-| MCP Server | What It IS | What It REPLACES | Why Agents Prefer It |
-|------------|-----------|-----------------|---------------------|
-| `enrichment-mcp` | Lead/company data engine with waterfall enrichment | Apollo ($49-149/user), ZoomInfo ($15K+/yr), Clearbit (dead) | Direct DB access, no API rate limits, data improves with every user |
-| `crm-mcp` | Full CRM: contacts, deals, pipeline, activities | Salesforce ($25-318/user), HubSpot ($15-234/user) | 0.2ms queries vs 200ms Salesforce API, no per-user pricing |
-| `email-mcp` | Email sending, templates, sequences, tracking | SendGrid, Mailchimp, Outreach ($100/user) | Direct integration with crm-mcp, no middleware |
-| `finance-mcp` | Invoicing, expenses, tax, accounting | QuickBooks ($30-200/mo), Xero | Multi-jurisdiction tax (GST/VAT/sales tax), agent-native from day 1 |
-| `sales-mcp` | Sequences, proposals, scripts, follow-ups | Outreach ($100/user), SalesLoft ($75/user) | Composes with enrichment-mcp + crm-mcp natively |
-| `intelligence-mcp` | Market research, competitor tracking, trends | Crayon ($30K+/yr), Similarweb ($149+/mo) | Automated, not dashboard-based |
-| `content-mcp` | Blog, social, SEO, ad copy generation | Jasper ($49-125/user), Copy.ai | Connected to intelligence-mcp for research |
-| `scraper-mcp` | Web scraping, data extraction, tech stack detection | Apify, ScrapingBee | Rust performance, handles JS rendering |
-| `analytics-mcp` | KPIs, dashboards, reports, alerts | Tableau, Metabase | Agent-queryable, not click-through dashboards |
-| `documents-mcp` | Generate, analyze, sign, store documents | DocuSign, Google Docs API | Agent-native document workflows |
+Every agency build:
+1. Battle-tests our MCPs with real business needs
+2. Teaches us what businesses actually want (knowledge moat)
+3. Custom features get abstracted into the platform
+4. Client becomes a case study and referral source
 
-**Every MCP:** Standalone Rust binary. <6.5MB. <0.2ms tool calls. <10MB memory. MIT licensed. Published to crates.io.
+**Target: $15K Month 1, $50K by Month 4**
 
-### DataXLR8 Cloud (Managed Hosting)
+### Engine 2: Cloud (Recurring from Month 2-3)
 
-Deploy our MCPs with one command. Managed infrastructure, monitoring, scaling.
+Managed MCP hosting. Developers install open-source MCPs locally, then deploy to Cloud for production.
 
-```
-$ dxlr8 deploy enrichment-mcp crm-mcp email-mcp --config my-business.toml
-✓ 3 MCPs deployed (19.5MB total, 30MB RAM)
-✓ Gateway: https://my-org.dataxlr8.cloud
-✓ Auth, monitoring, billing active
-✓ PostgreSQL provisioned, migrations run
-```
+| Tier | Price | Target Customer |
+|------|-------|----------------|
+| Free | $0 | Developers trying MCPs (3 MCPs, 10K calls/mo) |
+| Pro | $49/mo | Small teams (10 MCPs, 500K calls/mo) |
+| Team | $199/mo | Growing companies (unlimited MCPs, 5M calls/mo) |
+| Enterprise | Custom | Large orgs (SSO, audit, SLA, dedicated infra) |
 
-| Tier | Price | What You Get |
-|------|-------|-------------|
-| **Free** | $0 | 3 MCPs, 10K tool calls/mo, shared infra |
-| **Pro** | $49/mo | 10 MCPs, 500K tool calls/mo, custom domain |
-| **Team** | $199/mo | Unlimited MCPs, 5M tool calls/mo, RBAC |
-| **Enterprise** | Custom | SSO, audit, SLA, dedicated infra, compliance |
+Plus usage-based enrichment: $0.005/lookup (vs Apollo's $0.30+)
 
-### DataXLR8 Agency (Custom AI Business Systems)
+**Target: 150 paid users at $80 avg = $12K/mo by Month 6**
 
-We BUILD complete AI business systems for clients using our own MCPs. Revenue from Day 1.
+### Engine 3: Data Moat (Compounds Forever from Month 3)
 
-| Engagement | Price | Timeline | What Client Gets |
-|-----------|-------|---------|-----------------|
-| **$5K AI Quick Win** | $5,000 | 1 week | 1-2 AI agents replacing manual work |
-| **Core Build** | $25K-75K | 4-6 weeks | Complete AI system replacing 3-5 SaaS tools |
-| **Enterprise** | $75K-200K | 8-12 weeks | Multi-department AI business OS |
-| **Ongoing Ops** | $2K-10K/mo | Ongoing | Managed operations, new features, optimization |
-
-**Every agency build:**
-1. Uses our open-source MCPs (battle-tests them)
-2. Reveals what businesses actually need (knowledge moat)
-3. Custom features get abstracted into configurable MCPs (product improvement)
-4. Client becomes case study (acquisition engine)
-
----
-
-## Who Buys This (Customer Personas)
-
-### Persona 1: The AI-First Developer
-
-**Who:** Software engineer building AI agents for their company or clients. Uses Claude Code, LangChain, CrewAI.
-
-**Problem:** Needs business tools (CRM, enrichment, email) their agents can use. Current options are slow Python wrappers or expensive SaaS APIs.
-
-**Entry point:** Finds `enrichment-mcp` on crates.io or GitHub. Installs it in 2 minutes. Blown away by 0.2ms response times. Adds crm-mcp, then email-mcp. Now needs production hosting → DataXLR8 Cloud.
-
-**Revenue:** $49-199/mo Cloud subscription. High LTV, low touch.
-
-### Persona 2: The SaaS-Drowning SMB Founder
-
-**Who:** Runs a 5-50 person company. Paying $2K-10K/mo for Salesforce + Apollo + HubSpot + Outreach + Mailchimp + Slack + Tableau.
-
-**Problem:** SaaS costs scaling linearly with headcount. Each new hire = $400+/mo in software licenses. No AI benefit from any of these tools.
-
-**Entry point:** Sees "$49/mo replaces $400+/user/month" messaging. Hears about it from a developer on their team, or finds it through content marketing. Books a demo. Starts with $5K AI Quick Win.
-
-**Revenue:** $5K Quick Win → $25K-75K Core Build → $2K-10K/mo ongoing ops. Highest revenue per customer.
-
-### Persona 3: The Agency Owner
-
-**Who:** Runs a digital/marketing/IT consulting agency. Needs to deliver AI solutions to THEIR clients.
-
-**Problem:** Clients asking for "AI" but agency doesn't have the tools. Building custom for every client is expensive. Can't compete with agencies that have AI capabilities.
-
-**Entry point:** "$5K AI Quick Win" outreach. Sees DataXLR8 as a white-label platform they can resell. Uses our MCPs to build client systems faster.
-
-**Revenue:** Core Build ($25K-75K) + ongoing ops ($5K-10K/mo). Becomes a channel partner bringing more clients.
-
-### Persona 4: The Enterprise IT Leader
-
-**Who:** VP Engineering or CTO at a 200-5000 person company. Evaluating AI transformation.
-
-**Problem:** Current SaaS stack ($500K+/yr) provides no AI capability. Wants to build AI agents but they can't talk to Salesforce efficiently. Security team won't approve sending data through third-party connectors.
-
-**Entry point:** Self-hosted MCPs (MIT licensed, deploy on their own infrastructure). Data never leaves their network. Enterprise Cloud tier with SSO, audit logs, SLA.
-
-**Revenue:** Enterprise tier ($10K-50K/mo) + professional services. Longest sales cycle but highest contract value.
-
----
-
-## Three Revenue Engines (Concurrent, Not Sequential)
-
-```
-ENGINE 1: AGENCY (Day 1 → $$$$)
-  ┌─────────────────────────────────────────────────┐
-  │ Find clients → Build custom AI systems → Revenue │
-  │ $5K-200K/project, $2K-10K/mo ongoing             │
-  │ Target: 3 clients/month × $25K avg = $75K/mo     │
-  └───────────────────────┬─────────────────────────┘
-                          │ every build improves MCPs
-                          ▼
-ENGINE 2: CLOUD (Month 2 → $$$)
-  ┌─────────────────────────────────────────────────┐
-  │ Open-source MCPs → developers adopt → need hosting│
-  │ $49-199/mo + $0.10/1K calls overage               │
-  │ Target: 200 paid users × $80/mo = $16K/mo by M6   │
-  └───────────────────────┬─────────────────────────┘
-                          │ more users → better data
-                          ▼
-ENGINE 3: DATA MOAT (Month 3 → Compounds Forever)
-  ┌─────────────────────────────────────────────────┐
-  │ Enrichment lookups aggregate anonymized patterns  │
-  │ More users → better enrichment → more users       │
-  │ THIS IS THE MOAT THAT CAN'T BE REPLICATED         │
-  └─────────────────────────────────────────────────┘
-```
-
-### Revenue Milestones (Specific Actions, Not Hope)
-
-| Month | Agency | Cloud | Total MRR | How |
-|-------|--------|-------|-----------|-----|
-| **1** | $15K | $0 | $15K | 3 quick win clients at $5K each |
-| **2** | $25K | $500 | $25.5K | 1 core build ($25K) + Cloud alpha launches |
-| **3** | $35K | $2K | $37K | Steady agency + enrichment-mcp goes viral |
-| **6** | $50K | $12K | $62K | 2 core builds/mo + 150 Cloud users |
-| **9** | $60K | $35K | $95K | Agency + Cloud + first enterprise |
-| **12** | $50K | $70K | $120K | Cloud overtakes agency as primary |
-| **18** | $30K | $180K | $210K | Cloud dominant, agency selective |
-| **24** | $20K | $450K | $470K | Platform flywheel in full effect |
-
-Agency revenue is HIGH early (funds development) then DECREASES as Cloud scales. Cloud starts LOW then COMPOUNDS. Data moat makes the whole thing unassailable.
-
-### Unit Economics
-
-**Agency:**
-- Cost of delivery: ~20% (Pran's time + AI agent compute)
-- Gross margin: **~80%**
-- Payback: Immediate (cash on delivery)
-- LTV: $25K initial + $60K/yr ongoing = $85K average
-
-**Cloud Pro ($49/mo):**
-- Infrastructure cost per user: ~$3/mo (Rust efficiency)
-- Gross margin: **~94%**
-- CAC (developer): ~$20 (organic from open-source)
-- CAC (SMB): ~$200 (content + outreach)
-- LTV (24-month): $1,176
-- LTV:CAC ratio: **59:1** (developer) / **6:1** (SMB)
-
-**Cloud Team ($199/mo):**
-- Infrastructure cost: ~$12/mo
-- Gross margin: **~94%**
-- Average contract: 12 months
-- LTV: $2,388
-- Expansion revenue: 40% upgrade to Team from Pro within 6 months
-
-**Enrichment (usage-based, $0.005/lookup):**
-- Cost per lookup: ~$0.001 (free data sources + DB query)
-- Gross margin: **~80%**
-- Average user: 5K lookups/mo = $25/mo incremental
-- Power users: 100K lookups/mo = $500/mo
-- THIS is where the data moat generates cash
-
----
-
-## Client Acquisition Flywheel
-
-### 7 Channels Running Simultaneously
-
-```
-CHANNEL 1: AI Opportunity Scanner (FREE — Top of Funnel)
-  Any business → scans for AI savings → personalized report
-  → "Your business spends $X on manual processes AI can do"
-  → High intent → Slack alert → human follows up in <1 hour
-  → Agency proposal ($5K-75K)
-  Expected: 100 scans/week → 10 high-intent → 3 clients/month
-
-CHANNEL 2: Chrome Extension (FREE — Developer + Sales Team Hook)
-  LinkedIn profile → hover → instant enrichment
-  → 10 free lookups/day → need more → Cloud account
-  → Sales teams install → company buys Cloud
-  Expected: 10K installs in 6 months → 500 Cloud signups → 50 paid
-
-CHANNEL 3: "$5K AI Quick Win" Offer (LOW BARRIER — Agency Entry)
-  LinkedIn + cold email → "Replace your spreadsheets with AI in 1 week for $5K"
-  → Quick win delivered → client sees value → upsell to $25K-75K build
-  → Client becomes case study → attracts more clients
-  Expected: 30% upsell rate to larger engagements
-
-CHANNEL 4: Open-Source MCPs (FREE — Developer Adoption)
-  Rust MCPs on GitHub/crates.io → developers try locally
-  → "Why is this 50x faster than my Python MCP?"
-  → Need production hosting → Cloud account
-  → Blog: "We Replaced Apollo with a 6.5MB Rust Binary"
-  Expected: 100K downloads in 6 months → 5K Cloud signups → 200 paid
-
-CHANNEL 5: Content Machine (Organic — SEO + Social)
-  Weekly blog: benchmarks, case studies, tutorials
-  → "How [Agency] Replaced 7 SaaS Tools with DataXLR8 MCPs"
-  → "Rust MCP vs Python MCP: 50x Performance Benchmark"
-  → YouTube demos, Twitter threads, LinkedIn posts
-  Expected: 50K monthly visitors by Month 6
-
-CHANNEL 6: Direct Outreach (HIGH-INTENT — Global SMBs)
-  LinkedIn + cold email to agency owners and SMB founders
-  → "Your team spends $2K/mo on SaaS. We'll replace it for $49."
-  → "$5K AI Quick Win — replace your spreadsheets with AI agents in 1 week"
-  → Target: agencies, consultancies, SaaS startups (any industry)
-  → Sydney local network + global via LinkedIn/Twitter
-  Expected: 40% of Year 1 agency revenue from outreach
-
-CHANNEL 7: Framework Partnerships (Distribution — Other People's Audiences)
-  LangChain, CrewAI, AutoGen docs → "Use DataXLR8 MCPs for business tools"
-  → We write the integration guides
-  → Their users → our Cloud users
-  Expected: 20% of Cloud signups from partner referrals
-```
-
-### The Flywheel Effect
-
-```
-Agency client → custom build → case study
-  → Blog post → SEO traffic → more agency clients
-  → Case study → social proof → Cloud signups
-  → Cloud user → hits limits → Enterprise tier
-  → Custom features → better MCPs → more developers
-  → More developers → more Cloud users → more data
-  → More data → better enrichment → more users
-  → Cycle accelerates, becomes self-sustaining by Month 9
-```
-
----
-
-## Making It Unassailable (The Compound Moat)
-
-### Moat 1: Rust Performance (Technical — Can't Copy Quickly)
-
-| Metric | DataXLR8 (Rust) | Composio (Python) | Advantage |
-|--------|-----------------|-------------------|-----------|
-| Tool call latency | 0.2ms | ~10ms | **50x faster** |
-| Memory per MCP | 10MB | 110MB | **11x less** |
-| Binary size | 6.5MB | ~100MB | **15x smaller** |
-| MCPs per $5 server | 20+ | 1-2 | **10x cheaper to run** |
-| Cold start | 5ms | 500ms | **100x faster** |
-
-Composio would need to rewrite their entire stack in Rust to match. That's 2+ years of work. By then, we have the community.
-
-### Moat 2: Business Depth (Knowledge — Can't Copy Without Clients)
-
-Composio has 500+ shallow integrations (API wrappers to Salesforce, Slack, GitHub, etc.).
-
-DataXLR8 has **deep business MCPs** — actual CRM logic, enrichment algorithms, financial calculations, sales pipeline management. Not wrappers. The actual implementation.
-
-This depth comes from **agency work**: we build real AI systems for real businesses. Every client teaches us what the MCPs need. Composio doesn't build for clients. They can't learn what we learn.
-
-### Moat 3: Data Aggregation (Network Effects — Compounds Over Time)
-
-Our enrichment-mcp aggregates anonymized patterns across all users:
-- Company X queried 1000 times → we know their tech stack, size, growth rate
+Enrichment lookups aggregate anonymized patterns:
+- Company X queried 1000 times → we know tech stack, size, growth
 - Domain Y verified 500 times → we know deliverability patterns
-- Industry Z enriched 10K times → we know hiring patterns, funding signals
+- More users → better enrichment → more users → better enrichment
 
-**More users → better enrichment data → more users choose us → even better data.**
+Apollo has 275M contacts. ZoomInfo has 321M. We build this into the MCP layer. Once we have 10M lookups, the data advantage is permanent.
 
-Apollo built this moat (275M contacts). ZoomInfo built this moat (321M contacts). We build it natively into the MCP layer. Once we have 10M enrichment lookups, the data advantage is permanent.
+### Revenue Targets
 
-### Moat 4: Composability (Switching Cost — Can't Leave Easily)
+| Month | Agency | Cloud | Total |
+|-------|--------|-------|-------|
+| 1 | $15K | $0 | $15K |
+| 2 | $25K | $500 | $25.5K |
+| 3 | $35K | $2K | $37K |
+| 4 | $50K | $4K | $54K ← crosses $50K |
+| 6 | $50K | $12K | $62K |
+| 9 | $60K | $35K | $95K |
+| 12 | $50K | $70K | $120K |
 
-Our MCPs share `dataxlr8-mcp-core` and work together seamlessly:
+**Agency is the lifeline for Months 1-4. Cloud takes over by Month 12.**
+
+---
+
+## Go-To-Market: What to Do Each Week
+
+### Week 1: Outreach Blitz
+
+| Day | Actions | Goal |
+|-----|---------|------|
+| Mon | Update LinkedIn, build 100-person target list, prep templates | Ready to outreach |
+| Tue | 25 LinkedIn connections (recruitment agencies) + 10 cold emails | Pipeline starts |
+| Wed | 25 LinkedIn connections (marketing agencies) + follow up Tue | Conversations begin |
+| Thu | 25 LinkedIn connections (real estate + professional services) + calls | 2-3 calls booked |
+| Fri | Follow up all warm leads, send proposals | 1-2 proposals out |
+
+### Week 2: Close + Deliver
+
+- Close first Quick Win client ($5K)
+- Begin delivery using existing MCPs + custom code
+- Ship enrichment-mcp v0.1 to GitHub
+- Continue outreach (50 more messages)
+
+### Week 3-4: Compound
+
+- Deliver first Quick Win → get testimonial
+- Close 2 more Quick Wins ($10K)
+- Ship crm-mcp + email-mcp
+- Start first Core Build conversation ($25K pipeline)
+- Publish blog: "We Replaced [Client's SaaS Stack] with AI Agents — Here's How"
+
+### Month 2+: Steady State
+
+- 50 outreach messages/week (ongoing)
+- 1-2 new clients/month
+- Ship 1 new MCP every 2 weeks
+- Post 2x/week on LinkedIn
+- Ask every client for referrals
+
+---
+
+## Content That Sells
+
+### LinkedIn Post 1: The SaaS Cost Bomb
 
 ```
-enrichment-mcp finds a lead
-  → crm-mcp creates the contact
-  → intelligence-mcp researches their company
-  → sales-mcp generates a personalized sequence
-  → email-mcp sends the first message
-  → analytics-mcp tracks the pipeline
+Your 10-person team's SaaS bill:
 
-All through one gateway. Shared auth. Shared data. Zero glue code.
+Salesforce: $750/mo
+Apollo: $490/mo
+Outreach: $500/mo
+Mailchimp: $100/mo
+QuickBooks: $80/mo
+Total: $1,920/mo = $23K/yr
+
+What if you could replace ALL of that for $49/mo?
+
+Not "connect to" them through another tool.
+Actually REPLACE them.
+
+Open-source Rust MCPs that ARE the CRM, the enrichment
+engine, the email automation.
+
+97% savings. 50x faster. You own the data.
+
+DM me "REPLACE" if you want to see how.
 ```
 
-Try doing this with 6 different vendors' APIs + Composio connecting them. It's 10x more work, 50x slower, and breaks constantly.
-
-Once a business deploys 3+ DataXLR8 MCPs, switching means rewiring everything. Not because we lock them in (it's open-source, they can self-host) — but because the composability is so good that alternatives feel painful.
-
-### Moat 5: Open-Source Community + Developer Trust (Network — Grows With Time)
-
-- **MIT licensed** — developers trust open-source over proprietary
-- **crates.io + GitHub** — discoverable where Rust developers look
-- **Performance benchmarks** — 50x faster is verifiable, shareable, viral
-- **Framework integrations** — LangChain, CrewAI, AutoGen docs reference us
-- **Every GitHub star, blog post, tutorial** compounds visibility
-- **Self-hosted users** become Cloud users when they scale
-
-**Open-source builds trust. Trust builds adoption. Adoption builds the data moat.** Composio is proprietary. We're MIT. Developers choose us by default.
-
-### Moat 6: Agency Knowledge Loop (Insight — Can't Replicate Without Doing The Work)
+### LinkedIn Post 2: The Quick Win Offer
 
 ```
-Build for Client A (marketing agency) → learn their workflows
-  → Abstract patterns into configurable MCPs
-Build for Client B (marketing agency) → 30% faster (reuse MCPs)
-  → New patterns → better MCPs
-Build for Client C (IT consulting) → 50% faster
-  → MCPs now handle 80% of common business patterns
-Build for Client D → 1 week instead of 6 weeks
-  → Each build makes the product better
-  → Competitors building from scratch can NEVER catch up
+Offer for agency owners and founders:
+
+We'll replace your most painful manual workflow
+with AI agents. In 1 week. For $5K.
+
+If it doesn't save you 10+ hours/week, you don't pay.
+
+What we typically replace:
+→ Manual lead research → AI enrichment (saves 15 hrs/week)
+→ Manual follow-up emails → AI sequences (saves 8 hrs/week)
+→ Spreadsheet reporting → AI dashboards (saves 5 hrs/week)
+
+3 spots available this month. DM "QUICK WIN" if interested.
+```
+
+### LinkedIn Post 3: The Clearbit Vacuum
+
+```
+Clearbit shut down April 2025. 12,000+ companies lost their enrichment.
+
+Apollo charges $49-149/user/mo. ZoomInfo starts at $15K/yr.
+
+We built an open-source replacement in Rust:
+- 6.5MB binary (vs 100MB+ Python packages)
+- 0.2ms per lookup (vs 200ms API calls)
+- $0.005/lookup (vs $0.30+ from Apollo)
+- Self-host for free. Forever.
+
+Link in comments.
 ```
 
 ---
 
-## Competitive Landscape (Honest)
+## Competitive Position
 
-### Who Actually Exists
+### We don't compete with Composio. Different category.
 
-| Company | What They Do | Funding | Our Relationship |
-|---------|-------------|---------|-----------------|
-| **Composio** | MCP Gateway — connects agents to existing SaaS APIs | $29M, 100K devs | **Different category.** They connect to Salesforce. We replace Salesforce. |
-| **Glama** | Hosts MCP servers, directory of 4,700+ servers | ~$26-80/mo | They host others' MCPs. We build AND host the business MCPs. |
-| **Smithery** | MCP discovery/registry | Free | Discovery layer only. We're the tools being discovered. |
-| **Official MCP Registry** | Standard MCP server catalog | Free (AAIF) | Our MCPs get listed there too. Complementary. |
-| **Cloudflare Workers** | Generic edge compute that can host MCPs | Pay-as-you-go | Generic hosting. We're MCP-specific with business domain depth. |
-| **Google Cloud Run** | Generic container hosting with MCP support | Pay-as-you-go | Same — generic. We're specific. |
+| | Composio | DataXLR8 |
+|---|---------|----------|
+| What they do | Connect agents to existing SaaS APIs | Replace the SaaS entirely |
+| Revenue model | Connector fees | Agency + Cloud + Data |
+| Funding | $29M raised | Bootstrapped |
+| Technology | Python | Rust (50x faster) |
+| # of integrations | 500+ shallow wrappers | 14 deep business tools |
+| Customer still pays | Salesforce + Apollo + etc. | Nothing else. Just us. |
 
-### Who We ACTUALLY Replace
+### Who we actually replace
 
-| Tool | Their Revenue | Their Price | DataXLR8 Replacement | Our Price |
-|------|-------------|------------|---------------------|-----------|
-| Salesforce CRM | $34B | $25-318/user/mo | crm-mcp | $0 (open-source) or $49/mo (Cloud) |
-| Apollo.io | $150M ARR | $49-149/user/mo | enrichment-mcp | $0.005/lookup |
-| ZoomInfo | $1.25B rev | $15K-45K+/yr | enrichment-mcp | $0.005/lookup |
-| HubSpot | $2.6B rev | $15-234/user/mo | crm-mcp + email-mcp + content-mcp | $49/mo total |
-| Clearbit | DEAD (Apr 2025) | Was $75+/mo | enrichment-mcp | FREE (open-source) |
-| Outreach | $200M+ ARR | $100/user/mo | sales-mcp | Part of $49/mo Cloud |
-| QuickBooks | $6B+ rev | $30-200/mo | finance-mcp | Part of $49/mo Cloud |
-
-**The math for any business:**
-- Before: Salesforce ($150/user) + Apollo ($49/user) + Outreach ($100/user) + Mailchimp ($30/mo) + Tableau ($70/user) = **$400+/user/month**
-- After: DataXLR8 Cloud = **$49/month total. No per-user pricing.**
-
-At 10 users, that's $4,000/mo vs $49/mo. **80x cheaper.**
+| Tool | Their Price | Our Price | Savings |
+|------|-----------|-----------|---------|
+| Salesforce CRM | $75/user/mo | $49/mo total | $700+/mo for 10 users |
+| Apollo.io | $49/user/mo | $0.005/lookup | 60x cheaper |
+| Outreach | $100/user/mo | Part of $49/mo | $950+/mo for 10 users |
+| HubSpot | $234/user/mo | $49/mo total | $2,290+/mo for 10 users |
+| QuickBooks | $80/mo | Part of $49/mo | Included |
 
 ---
 
-## Technical Architecture
+## Performance Edge (This Is Real, Not Marketing)
 
-```
-┌─────────────────────────────────────────────────────────┐
-│                    YOUR BUSINESS                         │
-│                                                          │
-│   Claude / GPT / Grok / LangChain / CrewAI / Custom     │
-│                          │                               │
-│              ┌───────────┴───────────┐                   │
-│              │   DataXLR8 Gateway    │  ← Auth, routing  │
-│              │   (Rust, <1ms)        │  ← Rate limiting  │
-│              └───────────┬───────────┘  ← Usage metering │
-│                          │                               │
-│       ┌──────────────────┼──────────────────┐            │
-│       │                  │                  │            │
-│  ┌────┴─────┐   ┌───────┴──────┐   ┌───────┴──────┐    │
-│  │ crm-mcp  │   │enrichment-mcp│   │  email-mcp   │    │
-│  │  0.2ms   │   │   0.2ms      │   │   0.2ms      │    │
-│  │  6.5MB   │   │   6.5MB      │   │   6.5MB      │    │
-│  └────┬─────┘   └───────┬──────┘   └───────┬──────┘    │
-│       └──────────────────┼──────────────────┘            │
-│                          │                               │
-│              ┌───────────┴───────────┐                   │
-│              │    PostgreSQL         │  ← YOUR data      │
-│              │    (your database)    │  ← YOU own it     │
-│              └───────────────────────┘                   │
-│                                                          │
-│  Total: 19.5MB RAM. 0.2ms per call. $49/mo.             │
-│  vs Salesforce+Apollo+Outreach: 3 SaaS logins,          │
-│  200ms API calls, $400+/user/month.                      │
-└─────────────────────────────────────────────────────────┘
-```
+| Metric | DataXLR8 (Rust) | Competitors (Python) |
+|--------|-----------------|---------------------|
+| Tool call latency | 0.2ms | ~10ms (50x slower) |
+| Memory per MCP | 10MB | 110MB (11x more) |
+| Binary size | 6.5MB | ~100MB (15x bigger) |
+| MCPs per $5 server | 20+ | 1-2 (10x less dense) |
+| Cold start | 5ms | 500ms (100x slower) |
+
+**To match our performance, a competitor would need to rewrite their entire stack in Rust. That's 2+ years of work.**
 
 ---
 
-## The Enrichment Wedge (How We Get In The Door)
+## What Makes This Unassailable (6 Moats)
 
-Clearbit shut down April 2025. The enrichment market is in chaos. This is our entry point.
-
-### The "Replace Clearbit in 5 Minutes" Campaign
-
-```
-$ cargo install dxlr8
-$ dxlr8 init my-enrichment
-$ dxlr8 add enrichment-mcp
-$ dxlr8 run
-
-# Now you have a Clearbit replacement running locally
-# Or deploy to DataXLR8 Cloud:
-$ dxlr8 deploy --cloud
-✓ Endpoint: https://my-org.dataxlr8.cloud/enrichment
-✓ Pricing: $0.005/lookup (vs Apollo's $0.30+)
-```
-
-### Why Enrichment Is THE Wedge
-
-1. **Immediate need:** Clearbit dead, developers searching for replacement NOW
-2. **Easy to try:** One MCP, one command, instant value
-3. **Usage-based revenue:** Every lookup = $0.005 on Cloud = revenue from Day 1
-4. **Data compounds:** Every lookup improves the aggregate data
-5. **Natural expansion:** "I use enrichment-mcp, what else does DataXLR8 have?" → crm-mcp, email-mcp, etc.
-6. **Agency lead gen:** "Your enrichment costs $5K/yr on Apollo. It's free with DataXLR8. Want us to build you a full AI system too?"
+1. **Rust performance** — 50x faster. Can't be matched without a full rewrite.
+2. **Business depth** — Deep CRM/enrichment/finance logic, not API wrappers. Comes from agency work.
+3. **Data aggregation** — Every enrichment lookup improves the data. More users = better data = more users.
+4. **Composability** — MCPs share `dataxlr8-mcp-core`. 3+ MCPs deployed = too good to leave.
+5. **Open-source trust** — MIT licensed. Developers choose open-source over proprietary (Composio).
+6. **Agency knowledge loop** — Every client build makes the MCPs better. Can't replicate without doing the work.
 
 ---
 
-## Product Roadmap
+## Risks (Honest)
 
-### Month 1: Foundation + First Revenue
-
-| Week | Deliverable | Revenue Impact |
-|------|-------------|----------------|
-| 1 | `enrichment-mcp` v0.1 (waterfall: DNS, WHOIS, GitHub, LinkedIn scraping) | Open-source launch on GitHub + Hacker News |
-| 2 | `crm-mcp` v0.1 (contacts, deals, pipeline, activities) | Agency Quick Win delivery begins |
-| 2 | Chrome Extension v0.1 (LinkedIn hover → instant enrichment) | Growth lever + developer adoption |
-| 3-4 | First 3 agency clients ($5K Quick Win each) | **$15K revenue** |
-
-### Month 2-3: Cloud + Content
-
-| Deliverable | Revenue Impact |
-|-------------|----------------|
-| `email-mcp` v0.1 (sending, templates, sequences) | Completes the sales stack |
-| `dxlr8` CLI tool (init, deploy, manage) | Developer experience |
-| DataXLR8 Cloud alpha (managed hosting on Cloud Run) | First Cloud subscribers |
-| Blog: "We Replaced Clearbit with a 6.5MB Rust Binary" | Viral content play |
-| First Core Build client ($25K-75K) | **$25K+ revenue** |
-
-### Month 4-6: Scale + Compound
-
-| Deliverable | Revenue Impact |
-|-------------|----------------|
-| `finance-mcp` v0.1 (invoicing, expenses, multi-currency) | Replaces QuickBooks |
-| `sales-mcp` v0.1 (sequences, scripts, proposals) | Replaces Outreach |
-| Cloud launch on Product Hunt | Spike in signups |
-| 10 agency case studies published | Social proof flywheel |
-| Framework integration guides (LangChain, CrewAI) | Partnership distribution |
-
-### Month 6-12: Platform
-
-| Deliverable | Revenue Impact |
-|-------------|----------------|
-| `intelligence-mcp`, `content-mcp`, `analytics-mcp` | Full business suite |
-| Enterprise Cloud tier (SSO, audit, SLA) | $10K-50K/mo contracts |
-| Data moat crosses 1M enrichment lookups | Enrichment quality becomes differentiated |
-| 150+ Cloud paid users, 10+ agency clients/mo | **$95K+ MRR** |
-
----
-
-## Go-To-Market: Global From Day 1
-
-### Why Global (Not Geo-Locked)
-
-| Factor | Why It Works |
-|--------|-------------|
-| Open-source is borderless | MIT license, crates.io, GitHub — developers find us from anywhere |
-| MCP is a global standard | AAIF members are global companies (AWS, Google, Microsoft) |
-| Cloud is instant | Sign up, deploy, done. No geographic restriction |
-| Agency is relationship-based | LinkedIn outreach works globally. Video calls, not in-person meetings |
-| Content is English-first | Technical blogs, benchmarks, tutorials reach global dev audience |
-| Sydney as HQ | APAC timezone, credibility for enterprise, access to AU/NZ/SEA markets |
-
-### GTM Playbook
-
-**Month 1-3: Agency + Open-Source**
-- 50 LinkedIn/cold email outreach per week (global, industry agnostic)
-- "$5K AI Quick Win" — replace your spreadsheets with AI agents in 1 week
-- Target: agencies, consultancies, SaaS startups, any SMB paying $1K+/mo for SaaS
-- Publish enrichment-mcp on GitHub + crates.io + Hacker News
-- Sydney local network for first 2-3 anchor clients
-
-**Month 3-6: Cloud + Content**
-- Case studies from first 10 clients
-- Referral program: existing clients refer others → $500 credit each
-- Cloud launch on Product Hunt
-- Framework partnership content (LangChain, CrewAI guides)
-
-**Month 6-12: Scale**
-- 800+ Cloud users, 150+ agency clients
-- Enterprise outreach (LinkedIn, conferences)
-- Community-driven growth (hackathons, contributor program)
-
----
-
-## Risks and Mitigations (Honest Assessment)
-
-### Risk 1: "MCP might not be the winning standard"
-
-**Likelihood:** Low. OpenAI, Google, Microsoft, AWS all adopted it. 97M+ npm downloads. AAIF has 50+ member companies.
-
-**Mitigation:** Our MCPs are Rust binaries with PostgreSQL. Even if MCP dies, the business logic (CRM, enrichment, finance) works via any protocol — REST, gRPC, GraphQL. MCP is the distribution channel, not the product.
-
-### Risk 2: "Composio or a well-funded competitor builds the same thing"
-
-**Likelihood:** Medium. Composio has $29M and 100K developers.
-
-**Mitigation:** Composio's entire business model is connectors — rebuilding as replacements means cannibalizing their existing product and rewriting from Python to Rust. That's a 2-3 year pivot. Our agency knowledge loop gives us business depth they can't buy. And by the time they notice, we have the data moat.
-
-### Risk 3: "Enterprise sales cycles are long and we're bootstrapped"
-
-**Likelihood:** High. Enterprise deals take 3-6 months.
-
-**Mitigation:** We don't need enterprise to survive. Agency Quick Wins ($5K, 1-week delivery) + Cloud subscriptions ($49/mo) generate cash from Month 1. Enterprise is upside, not dependency. We can wait them out because we're already profitable.
-
-### Risk 4: "Solo founder, limited bandwidth"
-
-**Likelihood:** Medium. One human building a platform company.
-
-**Mitigation:** The AI agent team model is real — 4-12 concurrent Claude agents working in parallel produce the output of a 5-8 person team. Agency revenue funds the first Rust engineer hire by Month 3-4. Open-source community contributes after GitHub launch. This is a temporary constraint, not a permanent one.
-
-### Risk 5: "Open-source means anyone can copy us"
-
-**Likelihood:** Low impact. Open-source is the distribution strategy, not a vulnerability.
-
-**Mitigation:** The code is MIT licensed. The moat is the data (enrichment lookups), the agency knowledge, and the community. Redis is open-source — Redis Labs is worth $2B. GitLab is open-source — worth $8B. Elastic is open-source — worth $10B. Open-source with a managed cloud offering is the most proven business model in infrastructure.
-
----
-
-## North Star Metrics
-
-### What We Track
-
-| Metric | Month 1 Target | Month 6 Target | Month 12 Target | Why It Matters |
-|--------|----------------|-----------------|------------------|----------------|
-| **MRR** | $15K | $62K | $120K | Revenue is survival |
-| **Enrichment lookups** | 10K | 500K | 5M | Data moat growth |
-| **Cloud paid users** | 0 | 150 | 500 | Recurring revenue base |
-| **GitHub stars** | 100 | 2K | 10K | Community traction |
-| **Agency clients (total)** | 3 | 20 | 40 | Knowledge loop inputs |
-| **MCPs shipped** | 3 | 7 | 10 | Platform breadth |
-| **Tool calls/day (Cloud)** | 0 | 50K | 500K | Usage = revenue = data |
-
-### The One Metric That Matters Most
-
-**Enrichment lookups per month.** This is the flywheel metric:
-- More lookups → better data quality → more users → more lookups
-- Each lookup = $0.005 revenue on Cloud
-- 5M lookups/mo = $25K/mo just from enrichment
-- At 50M lookups/mo, the data advantage is permanent and unassailable
-
----
-
-## Funding Path
-
-### Bootstrap (Now → $50K MRR)
-- Agency revenue funds everything
-- Pran + AI agents build MCPs
-- No external funding needed
-
-### Pre-Seed / Angel ($50K → $100K MRR)
-- $200K-500K angel round (AU/US angels)
-- Hire 1 Rust engineer + 1 agency delivery person
-- Accelerate MCP development + agency throughput
-
-### Seed ($100K → $500K MRR)
-- $2-5M seed from US/AU VCs
-- Hire: 3 engineers, 2 agency, 1 DevRel
-- Launch Cloud publicly, scale agency
-
-### Series A ($500K MRR+)
-- $10-20M from top-tier VCs (Lightspeed, a16z, Blackbird)
-- Compete: Composio raised $29M — we need similar to scale
-- Enterprise sales team, global expansion
+| Risk | What We Do About It |
+|------|-------------------|
+| No clients in Month 1 | Lower price to $3K. Offer free pilot. First case study > first dollar. |
+| Enrichment data quality low at start | Use waterfall of free sources (DNS, WHOIS, GitHub, Google). Focus on email verification first — most immediately useful. |
+| Solo founder, limited bandwidth | AI agent team = 5-8x multiplier. Hire first person when agency revenue covers salary (Month 3-4). |
+| Composio notices and pivots | They'd have to rewrite from Python to Rust AND pivot from connectors to replacements. That's 2-3 years. We'll have the data moat by then. |
+| Enterprise sales too slow | Don't need enterprise. Quick Wins ($5K) + Core Builds ($25K) + Managed Ops ($3-10K/mo) gets us to $50K without a single enterprise deal. |
 
 ---
 
@@ -744,14 +619,24 @@ $ dxlr8 deploy --cloud
 
 In 2030, every business runs AI agents. Those agents need tools — not connectors to legacy SaaS, but native tools built for agents.
 
-DataXLR8 IS those tools. Open-source Rust MCPs that are the CRM, the enrichment engine, the finance system, the email platform. Faster, cheaper, and better than anything agents access through API wrappers.
+DataXLR8 IS those tools. Open-source Rust MCPs that are the CRM, the enrichment engine, the finance system. Faster, cheaper, and better than anything accessed through API wrappers.
 
-We don't compete with Composio (connectors). We don't compete with Salesforce (legacy SaaS). We make BOTH of them unnecessary.
+**The business that buys a $5K Quick Win today runs on DataXLR8 forever. The developer who installs enrichment-mcp today deploys 10 MCPs on Cloud tomorrow. Every client, every MCP, every lookup makes the system better and harder to compete with.**
 
-**The business that starts with our $5K Quick Win today runs on DataXLR8 MCPs forever. The developer who installs enrichment-mcp today deploys 10 MCPs on Cloud tomorrow. The agent framework that integrates with us today sends us 10,000 users.**
-
-**Every client we serve, every MCP we build, every lookup we process makes the whole system better and harder to compete with. That's the compound moat. That's what makes it unassailable.**
+**But right now, today, the only thing that matters is the first client. Everything else follows from that.**
 
 ---
 
-_DataXLR8 — Replace Your SaaS Stack. Not Connect To It._
+## Action Items (Starting Tomorrow Morning)
+
+- [ ] Update LinkedIn headline
+- [ ] Build 100-person target list (50 recruitment, 50 marketing agencies)
+- [ ] Send first 25 connection requests
+- [ ] Ship enrichment-mcp v0.1 by end of week
+- [ ] Book 3 discovery calls by Friday
+- [ ] Close first client by end of Week 2
+- [ ] Deliver Quick Win by end of Week 3
+- [ ] Get testimonial → publish case study
+- [ ] Repeat
+
+**$50K/month by Month 4. $120K/month by Month 12. This is how we survive.**
