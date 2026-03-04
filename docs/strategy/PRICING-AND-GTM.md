@@ -51,24 +51,24 @@ When an AI agent does the work of 5 people, charging per seat punishes the custo
 ### Sales Intelligence / Lead Enrichment
 | Tool | Pricing | Model |
 |------|---------|-------|
-| Apollo.io | $49-149/user/mo | Per-seat + credit limits |
-| ZoomInfo | $14.9K+/yr | Annual contract, per-seat |
-| Lusha | $49-79/user/mo | Per-seat + credit limits |
-| Clay | $149-349/user/mo | Per-seat + credit rows |
-| Clearbit → HubSpot Breeze | Bundled with HubSpot | Per-seat (HubSpot plan) |
-| RocketReach | $39-249/mo | Per-seat + lookups |
-| Seamless.AI | $65-147/user/mo | Per-seat + credits |
+| Apollo.io | $49-119/user/mo (annual) | Per-seat + credits. 1 credit/email, 8/phone. $150M ARR |
+| ZoomInfo | $15K-45K+/yr (mandatory annual) | Per-seat, quote-based. 10-20% auto-increase. $1.25B rev |
+| Lusha | $22-52/user/mo (annual) | Per-seat + credits. 1 credit/email, 5/phone. $64M rev |
+| Clay | $134-720/mo (annual) | Credit-based. Waterfall across 150+ providers. $100M ARR |
+| Clearbit → Breeze | Min $75/mo (HubSpot sub + credits) | HubSpot-only. Standalone dead Apr 2026. |
+| RocketReach | $399-2,099/yr | Lookup-based. $0.30-0.45/lookup overage. ~$60M rev |
+| Seamless.AI | $147-299/user/mo (annual) | Per-seat + daily credits. Worst cancellation reputation |
+| Cognism | $15K-25K+/yr (quote-based) | Enterprise. Phone-verified. Best EU data. $83M rev |
 
 ### AI Agent / Automation Platforms
-| Tool | Pricing | Model |
-|------|---------|-------|
-| Jasper | $49-125/user/mo | Per-seat |
-| Copy.ai | $49/user/mo | Per-seat + credits |
-| Relevance AI | $19-599/mo | Credit-based |
-| Bardeen | Free-$10/mo | Freemium + credits |
-| Lindy AI | $49+/mo | Per-agent pricing |
+| Tool | Pricing | Revenue/Funding | Model |
+|------|---------|----------------|-------|
+| Relevance AI | $19-599/mo | $24M Series B | Credit-based, low-code, 40K agents/month |
+| Lindy AI | Free-$49.99/mo | $49.9M funding, $5.1M rev | Natural language agents, Claude 4.5 + Computer Use |
+| Bardeen | Free-$99/mo | $25M funding | Browser automation, 1 action = 1 credit |
+| Beam AI | Enterprise (sales-gated) | Undisclosed | Agents that continuously learn |
 
-**Key insight:** Most competitors still use per-seat pricing. Credit-based is emerging but not dominant yet — first-mover advantage for DataXLR8.
+**Key insight:** Credit-based pricing surged 126% YoY (79 companies in PricingSaaS 500). Clay proves it works at scale ($100M ARR). DataXLR8's credit model is aligned with the winning trend.
 
 ---
 
