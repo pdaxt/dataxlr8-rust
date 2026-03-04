@@ -1,358 +1,253 @@
-# DataXLR8 Feature Blueprint — Infrastructure Platform
+# DataXLR8 Feature Blueprint — AI-Native Business MCPs
 
 _Updated: 2026-03-04_
 
-## Two Product Lines
+## What We Build: Business Tools, Not Connectors
 
-1. **Open-Source Rust MCPs** — free, drives adoption
-2. **DataXLR8 Cloud** — managed hosting, drives revenue
+Composio connects agents to 500+ existing APIs. DataXLR8 builds the actual business tools agents use — the CRM, enrichment engine, finance system. Not wrappers. The implementations.
 
 ---
 
-## Product 1: Open-Source Rust MCP Servers
+## The MCP Catalog (What Each Replaces)
 
-### The Catalog
+### Tier 1: Revenue MCPs (Build First — Months 1-3)
 
-Every MCP below is a standalone Rust binary. MIT licensed. Published to crates.io and GitHub.
+#### `dataxlr8-enrichment-mcp` — THE WEDGE
 
-#### Business Operations MCPs
+**Replaces:** Apollo ($49-149/user), ZoomInfo ($15K+/yr), Clearbit (dead), Lusha ($49-79/user)
+**Revenue:** $0.005/lookup on Cloud, agency builds, data moat
+**Priority:** P0 — ship in Week 2
 
-| MCP Server | Tools | Domain | Replaces |
-|------------|-------|--------|----------|
-| `dataxlr8-crm-mcp` | 10 | Contacts, deals, pipeline, activities | Salesforce API, HubSpot API |
-| `dataxlr8-enrichment-mcp` | 12 | Lead/company data enrichment, verification | Apollo, ZoomInfo, Clearbit |
-| `dataxlr8-email-mcp` | 6 | Send, receive, templates, tracking | SendGrid API, Resend API |
-| `dataxlr8-finance-mcp` | 8 | Invoicing, expenses, tax, accounting | QuickBooks API, Xero API |
-| `dataxlr8-payments-mcp` | 5 | Stripe, Razorpay, payment processing | Stripe SDK, payment wrappers |
-| `dataxlr8-hr-mcp` | 8 | Employees, leave, payroll, performance | BambooHR API, Gusto API |
-| `dataxlr8-calendar-mcp` | 5 | Events, availability, scheduling | Google Calendar API |
-| `dataxlr8-documents-mcp` | 6 | Generate, analyze, sign, store | DocuSign API, Google Docs API |
+| Tool | What It Does | Data Sources |
+|------|-------------|-------------|
+| `enrich_person` | Name + company → email, phone, LinkedIn, title | LinkedIn, GitHub, Google, public records |
+| `enrich_company` | Domain → size, funding, tech stack, key people, socials | Website analysis, DNS, Crunchbase-like, job boards |
+| `verify_email` | Email → deliverable, catch-all, disposable check | SMTP verification, MX records, pattern detection |
+| `domain_emails` | Domain → all discoverable email addresses | Pattern detection + SMTP verification |
+| `search_people` | Query (title, company, location) → matching people | Aggregated data from all enrichment lookups |
+| `reverse_ip` | IP → company identification | IP-to-ASN mapping, WHOIS |
+| `bulk_enrich` | CSV/list → enriched records | All sources, batched |
+| `tech_stack` | Domain → technologies used | HTTP headers, JS libraries, DNS records |
+| `funding_tracker` | Company → funding history, investors | Public data aggregation |
+| `hiring_signals` | Company → open positions, growth rate | Job board scraping |
+| `social_profiles` | Person/company → all social accounts | Cross-platform search |
+| `news_mentions` | Company → recent news, press releases | News aggregation |
 
-#### Intelligence & Data MCPs
+**The data moat:** Every lookup feeds aggregate data. More users → better results → more users.
 
-| MCP Server | Tools | Domain | Replaces |
-|------------|-------|--------|----------|
-| `dataxlr8-intelligence-mcp` | 10 | Market research, competitor tracking | Crayon, Similarweb |
-| `dataxlr8-scraper-mcp` | 6 | Web scraping, data extraction | ScrapingBee, Apify |
-| `dataxlr8-analytics-mcp` | 6 | KPIs, dashboards, reports | Tableau API, Metabase |
-| `dataxlr8-search-mcp` | 4 | Full-text search, semantic search | Algolia, Elasticsearch |
+#### `dataxlr8-crm-mcp` — Replaces Salesforce
 
-#### Content & Communication MCPs
+**Replaces:** Salesforce ($25-318/user), HubSpot CRM ($15-234/user), Pipedrive ($14-99/user)
+**Revenue:** Agency builds (every client needs CRM), Cloud hosting
+**Priority:** P0 — ship in Week 3-4
 
-| MCP Server | Tools | Domain | Replaces |
-|------------|-------|--------|----------|
-| `dataxlr8-content-mcp` | 10 | Blog, social, SEO, ad copy | Jasper API, Copy.ai |
-| `dataxlr8-social-mcp` | 6 | Post to Twitter, LinkedIn, scheduling | Buffer API, Hootsuite |
-| `dataxlr8-communication-mcp` | 5 | WhatsApp, SMS, chat | Twilio API |
-| `dataxlr8-notifications-mcp` | 4 | Push, email, in-app alerts | OneSignal, Firebase |
+| Tool | What It Does |
+|------|-------------|
+| `create_contact` | Create contact with custom fields per business |
+| `search_contacts` | Full-text search with filters, pagination |
+| `upsert_deal` | Create/update deal in pipeline |
+| `move_deal` | Move deal between stages with notes |
+| `log_activity` | Log calls, emails, meetings against contacts/deals |
+| `get_pipeline` | Pipeline overview with stage counts and values |
+| `assign_contact` | Assign contact to team member |
+| `create_task` | Create follow-up task linked to contact/deal |
+| `import_contacts` | Bulk import from CSV/JSON |
+| `export_contacts` | Export with filters to CSV/JSON |
 
-#### Sales & Marketing MCPs
+**Agent-native advantage:** Agents don't need to navigate Salesforce's 500 UI settings. `upsert_deal` in 0.2ms vs Salesforce API in 200ms.
 
-| MCP Server | Tools | Domain | Replaces |
-|------------|-------|--------|----------|
-| `dataxlr8-sales-mcp` | 10 | Sequences, proposals, scripts | Outreach, SalesLoft |
-| `dataxlr8-marketing-mcp` | 8 | Campaigns, segmentation, A/B testing | Mailchimp, HubSpot Marketing |
-| `dataxlr8-seo-mcp` | 5 | Keywords, rankings, optimization | Ahrefs API, Surfer SEO |
+#### `dataxlr8-email-mcp` — Replaces Outreach + SendGrid
 
-#### Infrastructure MCPs
+**Replaces:** Outreach ($100/user), SalesLoft ($75/user), SendGrid ($20-90/mo), Mailchimp ($13-350/mo)
+**Revenue:** Agency builds, Cloud hosting
+**Priority:** P0 — ship in Week 3-4
 
-| MCP Server | Tools | Domain | Replaces |
-|------------|-------|--------|----------|
-| `dataxlr8-gateway-mcp` | 5 | Routing, health, auth, rate limiting | API gateways |
-| `dataxlr8-auth-mcp` | 6 | OAuth, JWT, sessions, RBAC | Auth0, Clerk |
-| `dataxlr8-storage-mcp` | 5 | File upload, S3, CDN | AWS S3 SDK |
-| `dataxlr8-queue-mcp` | 4 | Job queue, scheduling, retries | Bull, Celery |
-| `dataxlr8-cache-mcp` | 3 | Redis caching, invalidation | Redis wrappers |
+| Tool | What It Does |
+|------|-------------|
+| `send_email` | Send email with template variables, tracking |
+| `create_template` | Create reusable email template |
+| `create_sequence` | Multi-step email sequence with delays |
+| `track_opens` | Track email opens and clicks |
+| `manage_unsubscribes` | Handle unsubscribe requests, compliance |
+| `bulk_send` | Send to list with personalization |
 
-### Tool Count Summary
+#### `dataxlr8-gateway-mcp` — Infrastructure
 
-| Category | MCPs | Total Tools |
-|----------|------|-------------|
-| Business Operations | 8 | 60 |
-| Intelligence & Data | 4 | 26 |
-| Content & Communication | 4 | 25 |
-| Sales & Marketing | 3 | 23 |
-| Infrastructure | 5 | 23 |
-| **Total** | **24** | **157** |
+**Purpose:** Single HTTPS endpoint routing to all MCPs, auth, metering
+**Priority:** P0 — needed for Cloud
 
-### Shared Core Library: `dataxlr8-mcp-core`
+| Tool | What It Does |
+|------|-------------|
+| `health_check` | Status of all deployed MCPs |
+| `list_tools` | Available tools across all MCPs |
+| `usage_stats` | Tool call counts, latency percentiles |
+| `rate_limit_status` | Current rate limit state per API key |
+| `config_reload` | Hot-reload tenant configuration |
 
-Every MCP depends on this shared crate:
+### Tier 2: Expansion MCPs (Months 3-6)
 
-```rust
-// What dataxlr8-mcp-core provides:
-pub mod db {
-    // PostgreSQL connection pool (sqlx)
-    pub async fn connect(config: &Config) -> Pool<Postgres>;
-}
+#### `dataxlr8-finance-mcp` — Replaces QuickBooks + Tally
 
-pub mod config {
-    // TOML-based configuration per tenant
-    pub fn load(path: &str) -> Config;
-}
+**Replaces:** QuickBooks ($30-200/mo), Xero ($15-78/mo), Tally (India-specific)
+**Revenue:** Agency (India-specific builds with GST)
+**Priority:** P1
 
-pub mod error {
-    // Standardized error types across all MCPs
-    pub enum McpError { NotFound, Unauthorized, RateLimit, Internal }
-}
+| Tool | What It Does |
+|------|-------------|
+| `create_invoice` | Generate invoice with tax calculation |
+| `record_payment` | Record payment against invoice |
+| `track_expense` | Log expense with category and receipt |
+| `gst_report` | Generate GST return data (India) |
+| `profit_loss` | P&L statement for period |
+| `balance_sheet` | Balance sheet snapshot |
+| `recurring_invoice` | Set up auto-generated invoices |
+| `tax_calculation` | Calculate GST/VAT/sales tax by jurisdiction |
 
-pub mod logging {
-    // Structured tracing
-    pub fn init(service_name: &str);
-}
+**India advantage:** GST compliance built-in. QuickBooks doesn't handle Indian tax well. Tally has no AI. We're the only AI-native finance tool with Indian tax compliance.
 
-pub mod auth {
-    // API key + JWT validation
-    pub async fn validate(token: &str) -> Result<Claims>;
-}
+#### `dataxlr8-sales-mcp` — Replaces SalesLoft + Outreach
 
-pub mod metrics {
-    // Prometheus metrics for monitoring
-    pub fn tool_call_duration(mcp: &str, tool: &str, duration: Duration);
-    pub fn tool_call_count(mcp: &str, tool: &str);
-}
+**Replaces:** Outreach ($100/user), SalesLoft ($75/user), Lemlist ($59/user)
+**Revenue:** Agency builds + Cloud
+**Priority:** P1
+
+| Tool | What It Does |
+|------|-------------|
+| `generate_opener` | Personalized cold email opener from enriched data |
+| `generate_sequence` | 5-7 email drip sequence for a persona |
+| `handle_objection` | Context-aware objection response |
+| `generate_proposal` | Full proposal from deal context |
+| `meeting_prep` | Research + talking points for upcoming meeting |
+| `call_script` | Phone call script with objection handling |
+| `follow_up` | Context-aware follow-up email |
+| `linkedin_message` | Personalized LinkedIn outreach |
+| `ab_test_subject` | Generate subject line variants |
+| `pipeline_forecast` | AI-driven pipeline forecast |
+
+#### `dataxlr8-scraper-mcp` — Data Collection Engine
+
+**Replaces:** Apify ($49-499/mo), ScrapingBee ($49-249/mo)
+**Revenue:** Supports enrichment-mcp + intelligence-mcp
+**Priority:** P1
+
+| Tool | What It Does |
+|------|-------------|
+| `scrape_page` | Extract structured data from any URL |
+| `scrape_linkedin` | LinkedIn profile/company data |
+| `detect_tech_stack` | Domain → technologies (HTTP headers, JS, DNS) |
+| `monitor_changes` | Track page changes over time |
+| `extract_pricing` | Extract pricing from competitor pages |
+| `scrape_job_boards` | Company → open positions from Indeed/LinkedIn |
+
+### Tier 3: Platform MCPs (Months 6-12)
+
+| MCP | Tools | Replaces | Priority |
+|-----|-------|----------|----------|
+| `intelligence-mcp` | 10 | Crayon ($30K+/yr), Similarweb ($149+/mo) | P2 |
+| `content-mcp` | 10 | Jasper ($49-125/user), Copy.ai | P2 |
+| `analytics-mcp` | 6 | Tableau, Metabase | P2 |
+| `documents-mcp` | 6 | DocuSign, Google Docs API | P3 |
+| `calendar-mcp` | 5 | Calendly, Google Calendar | P3 |
+| `auth-mcp` | 6 | Auth0, Clerk | P3 |
+| `hr-mcp` | 8 | BambooHR, Gusto | P3 |
+| `notifications-mcp` | 4 | OneSignal, Firebase | P3 |
+
+---
+
+## Composability: Why 3 MCPs > 3 Separate Tools
+
+### Example: AI SDR Workflow
+
+```
+Agent: "Find and email the VP of Sales at Acme Corp"
+
+Step 1: enrichment-mcp.search_people({title: "VP Sales", company: "Acme"})
+  → Found: Jane Smith, jane@acme.com, VP Sales, Acme Corp
+
+Step 2: enrichment-mcp.enrich_company({domain: "acme.com"})
+  → Acme: 500 employees, Series C, React + AWS stack, growing 40% YoY
+
+Step 3: crm-mcp.create_contact({name: "Jane Smith", email: "jane@acme.com", ...})
+  → Contact created in your CRM
+
+Step 4: sales-mcp.generate_opener({person: jane, company: acme})
+  → "Jane, I noticed Acme just closed Series C — congratulations.
+     With 40% YoY growth, your sales team must be scaling fast..."
+
+Step 5: email-mcp.send_email({to: "jane@acme.com", subject: ..., body: ...})
+  → Email sent, tracking pixel added
+
+Step 6: crm-mcp.log_activity({contact: jane, type: "email", notes: ...})
+  → Activity logged, follow-up task created for 3 days
+
+TOTAL TIME: <2 seconds
+TOTAL COST: $0.02 (enrichment lookups + compute)
 ```
 
-### Example MCP: dataxlr8-crm-mcp
+**Try doing this with Salesforce ($75/user) + Apollo ($49/user) + Outreach ($100/user) + Composio connector. That's $224/user/month and 10x more latency.**
 
-```rust
-use dataxlr8_mcp_core::{db, config, error::McpError};
-use rmcp::{tool, ServerHandler};
-
-#[derive(ServerHandler)]
-struct CrmMcp {
-    pool: Pool<Postgres>,
-    config: CrmConfig,
-}
-
-#[tool(description = "Create a new contact with name, email, company, and custom fields")]
-async fn create_contact(&self, name: String, email: String, company: Option<String>,
-                        fields: Option<HashMap<String, Value>>) -> Result<Contact, McpError>;
-
-#[tool(description = "Search contacts by any field with pagination")]
-async fn search_contacts(&self, query: String, limit: Option<i32>,
-                         offset: Option<i32>) -> Result<Vec<Contact>, McpError>;
-
-#[tool(description = "Create or update a deal in the pipeline")]
-async fn upsert_deal(&self, contact_id: Uuid, title: String, value: f64,
-                     stage: String) -> Result<Deal, McpError>;
-
-#[tool(description = "Move a deal to a different pipeline stage")]
-async fn move_deal(&self, deal_id: Uuid, stage: String,
-                   notes: Option<String>) -> Result<Deal, McpError>;
-
-#[tool(description = "Log an activity (call, email, meeting) against a contact or deal")]
-async fn log_activity(&self, entity_id: Uuid, activity_type: ActivityType,
-                      notes: String) -> Result<Activity, McpError>;
-
-// ... 5 more tools
-```
+With DataXLR8: $49/mo total. 0.2ms per tool call. All data in one place.
 
 ---
 
-## Product 2: DataXLR8 Cloud Platform
-
-### Cloud Features
-
-#### Deployment Engine
-
-| Feature | Description |
-|---------|-------------|
-| One-command deploy | `dxlr8 deploy crm-mcp --config client.toml` |
-| Multi-MCP deploy | `dxlr8 deploy crm-mcp email-mcp finance-mcp` |
-| Auto-gateway | Single endpoint for all deployed MCPs |
-| Config management | TOML configs per tenant, hot-reload |
-| Version pinning | `dxlr8 deploy crm-mcp@2.1.0` |
-| Rollback | `dxlr8 rollback crm-mcp` instant rollback |
-
-#### Scaling & Performance
-
-| Feature | Description |
-|---------|-------------|
-| Auto-scaling | Scale MCP instances based on tool call volume |
-| Edge deployment | Deploy MCPs to edge regions for <50ms globally |
-| Load balancing | Distribute tool calls across instances |
-| Connection pooling | Share DB connections across MCP instances |
-| Cold start optimization | Rust binaries start in <5ms |
-
-#### Monitoring & Observability
-
-| Feature | Description |
-|---------|-------------|
-| Dashboard | Real-time tool call metrics per MCP |
-| Latency tracking | p50/p95/p99 per tool |
-| Error alerting | Slack/email/webhook alerts on errors |
-| Structured logs | Searchable, filterable log streams |
-| Cost tracking | Tool calls, compute, storage per MCP |
-| Usage analytics | Which tools used most, by which agents |
-
-#### Security
-
-| Feature | Free | Pro | Team | Enterprise |
-|---------|------|-----|------|-----------|
-| API key auth | ✓ | ✓ | ✓ | ✓ |
-| JWT tokens | — | ✓ | ✓ | ✓ |
-| Rate limiting | Basic | Custom | Custom | Custom |
-| IP allowlisting | — | — | ✓ | ✓ |
-| SSO/SAML | — | — | — | ✓ |
-| RBAC | — | — | ✓ | ✓ |
-| Audit logs | — | — | — | ✓ |
-| Data residency | — | — | — | ✓ |
-| VPC peering | — | — | — | ✓ |
-| SOC 2 report | — | — | — | ✓ |
-
-#### Developer Experience
-
-| Feature | Description |
-|---------|-------------|
-| `dxlr8` CLI | Install, run, deploy, monitor — all from terminal |
-| Local dev mode | Run MCPs locally with `dxlr8 run` |
-| Hot reload | Config changes apply without restart |
-| Test mode | Mock external APIs for testing |
-| SDK (Rust) | Build custom MCPs with `dataxlr8-mcp-core` |
-| SDK (Python) | Python wrapper for building MCPs (via FFI or process) |
-| API playground | Try any tool call in the browser |
-| Webhooks | Trigger on events (deploy, error, threshold) |
-
-### MCP Registry Features
-
-| Feature | Description |
-|---------|-------------|
-| Search | Find MCPs by keyword, category, language |
-| Versions | Semantic versioning, changelog per release |
-| Verification | DataXLR8-verified badge for quality MCPs |
-| Ratings | Community ratings and reviews |
-| Downloads | Track install counts |
-| Publishing | `dxlr8 publish` from any MCP project |
-| Revenue share | 80/20 split (developer/platform) for paid MCPs |
-| Categories | Business, Data, Content, Infrastructure, etc. |
-| Dependencies | MCP dependency resolution |
-
----
-
-## `dxlr8` CLI Specification
+## `dxlr8` CLI
 
 ```
 USAGE:
     dxlr8 <COMMAND>
 
 COMMANDS:
-    init        Initialize a new MCP project
-    add         Add an MCP to your project
+    init        Initialize a new project
+    add         Add MCPs to your project
     run         Run MCPs locally (dev mode)
-    deploy      Deploy MCPs to DataXLR8 Cloud
+    deploy      Deploy to DataXLR8 Cloud
     status      Check deployment status
     logs        Stream logs from deployed MCPs
-    rollback    Rollback to previous version
     config      Manage MCP configurations
-    registry    Search, install, publish MCPs
-    monitor     Open monitoring dashboard
-    auth        Login, logout, API keys
-    upgrade     Upgrade CLI and MCPs
+    auth        Login, API keys
 
 EXAMPLES:
-    dxlr8 init my-agents
-    dxlr8 add crm-mcp enrichment-mcp email-mcp
-    dxlr8 run                              # Local dev
-    dxlr8 deploy --region us-east-1        # Deploy to cloud
-    dxlr8 registry search "email"          # Find MCPs
-    dxlr8 registry publish                 # Publish your MCP
-    dxlr8 logs crm-mcp --follow            # Stream logs
-    dxlr8 monitor                          # Open dashboard
+    dxlr8 init my-business
+    dxlr8 add enrichment-mcp crm-mcp email-mcp
+    dxlr8 run                          # Local development
+    dxlr8 deploy --cloud               # Deploy to Cloud
+    dxlr8 logs enrichment-mcp --follow # Stream logs
 ```
 
 ---
 
-## Development Phases
+## Shared Core: `dataxlr8-mcp-core`
 
-### Phase 1 (Month 1-2): Open-Source Core — 10 MCPs
+Every MCP depends on this shared crate:
 
-The foundation. Pure open-source, no cloud yet.
+```rust
+pub mod db;       // PostgreSQL pool (sqlx), compile-time checked queries
+pub mod config;   // TOML config per tenant, hot-reload
+pub mod error;    // Standardized errors: NotFound, Unauthorized, RateLimit
+pub mod logging;  // Structured tracing
+pub mod auth;     // API key + JWT validation
+pub mod metrics;  // Prometheus: tool_call_duration, tool_call_count
+pub mod cache;    // Redis caching for enrichment results
+```
 
-| MCP | Priority | Why First |
-|-----|----------|-----------|
-| `crm-mcp` | P0 | Most universally needed |
-| `enrichment-mcp` | P0 | Unique value, competitive wedge |
-| `email-mcp` | P0 | Every agent sends email |
-| `scraper-mcp` | P0 | Data collection backbone |
-| `gateway-mcp` | P0 | Required for multi-MCP setups |
-| `finance-mcp` | P1 | Broad appeal |
-| `content-mcp` | P1 | Marketing teams |
-| `intelligence-mcp` | P1 | Competitive intelligence |
-| `auth-mcp` | P1 | Security baseline |
-| `calendar-mcp` | P1 | Scheduling is universal |
+This shared library means every MCP:
+- Connects to the same PostgreSQL database
+- Uses the same auth system
+- Logs in the same format
+- Reports the same metrics
+- Works with the same configuration
 
-### Phase 2 (Month 3-4): Cloud Alpha — 15 MCPs + Hosting
-
-Start monetizing.
-
-| Feature | Priority |
-|---------|----------|
-| `dxlr8 deploy` command | P0 |
-| Gateway with auth + routing | P0 |
-| Usage metering | P0 |
-| Stripe billing | P0 |
-| Monitoring dashboard | P1 |
-| 5 more MCPs (sales, marketing, docs, social, payments) | P1 |
-
-### Phase 3 (Month 5-8): Registry + Community — 25+ MCPs
-
-Network effects begin.
-
-| Feature | Priority |
-|---------|----------|
-| MCP Registry (search, install, publish) | P0 |
-| Community contribution workflow | P0 |
-| Auto-scaling | P1 |
-| Edge deployment | P1 |
-| Team features | P1 |
-| 10+ community MCPs | P1 |
-
-### Phase 4 (Month 9-18): Enterprise — 30+ MCPs
-
-Revenue at scale.
-
-| Feature | Priority |
-|---------|----------|
-| SSO/SAML | P0 |
-| RBAC + audit logs | P0 |
-| SOC 2 Type II | P0 |
-| Data residency | P1 |
-| VPC peering | P1 |
-| Dedicated infrastructure | P1 |
-| SLA framework | P1 |
+**Composability comes from shared infrastructure.** Not from glue code.
 
 ---
 
-## Architecture: How Cloud Works
+## Tool Count Summary
 
-```
-Developer: dxlr8 deploy crm-mcp enrichment-mcp email-mcp
-                          │
-                          ▼
-              ┌───────────────────────┐
-              │   DataXLR8 Cloud API  │
-              │   (Rust, auth, billing│
-              └───────────┬───────────┘
-                          │
-            ┌─────────────┼─────────────┐
-            ▼             ▼             ▼
-    ┌──────────┐  ┌──────────┐  ┌──────────┐
-    │ crm-mcp  │  │enrich-mcp│  │email-mcp │
-    │ (Rust)   │  │ (Rust)   │  │ (Rust)   │
-    │ 6.5MB    │  │ 6.5MB    │  │ 6.5MB    │
-    └────┬─────┘  └────┬─────┘  └────┬─────┘
-         └──────────────┼──────────────┘
-                        │
-                ┌───────┴───────┐
-                │   GATEWAY     │  ← Auth, routing, metering
-                │   (Rust)      │  ← Single HTTPS endpoint
-                └───────┬───────┘
-                        │
-         https://org.dataxlr8.cloud/gateway
-                        │
-              Any AI agent connects here
-              (Claude, GPT, LangChain, etc.)
-```
-
-Each MCP runs as an isolated process. Gateway handles auth, routing, rate limiting, and billing. Everything in Rust. Everything fast.
+| Category | MCPs | Tools | Revenue Source |
+|----------|------|-------|---------------|
+| Enrichment & Data | 3 (enrichment, scraper, intelligence) | 28 | Cloud (per-lookup) + Agency |
+| CRM & Sales | 3 (crm, sales, email) | 26 | Agency + Cloud |
+| Finance & Ops | 3 (finance, analytics, documents) | 20 | Agency (India) |
+| Content & Comm | 3 (content, calendar, notifications) | 19 | Cloud |
+| Infrastructure | 2 (gateway, auth) | 11 | Cloud platform |
+| **Total** | **14** | **104** | |
