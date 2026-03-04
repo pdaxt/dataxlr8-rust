@@ -150,13 +150,13 @@ ENGINE 3: DATA MOAT (Month 3 → Compounds Forever)
 | Month | Agency | Cloud | Total MRR | How |
 |-------|--------|-------|-----------|-----|
 | **1** | $15K | $0 | $15K | 3 quick win clients at $5K each |
-| **2** | $25K | $1K | $26K | 1 core build ($25K) + Cloud alpha launches |
-| **3** | $35K | $3K | $38K | Steady agency + enrichment-mcp goes viral |
-| **6** | $50K | $15K | $65K | 2 core builds/mo + 200 Cloud users |
-| **9** | $60K | $40K | $100K | Agency + Cloud + first enterprise |
-| **12** | $50K | $100K | $150K | Cloud overtakes agency as primary |
-| **18** | $30K | $250K | $280K | Cloud dominant, agency selective |
-| **24** | $20K | $500K | $520K | Platform flywheel in full effect |
+| **2** | $25K | $500 | $25.5K | 1 core build ($25K) + Cloud alpha launches |
+| **3** | $35K | $2K | $37K | Steady agency + enrichment-mcp goes viral |
+| **6** | $50K | $12K | $62K | 2 core builds/mo + 150 Cloud users |
+| **9** | $60K | $35K | $95K | Agency + Cloud + first enterprise |
+| **12** | $50K | $70K | $120K | Cloud overtakes agency as primary |
+| **18** | $30K | $180K | $210K | Cloud dominant, agency selective |
+| **24** | $20K | $450K | $470K | Platform flywheel in full effect |
 
 Agency revenue is HIGH early (funds development) then DECREASES as Cloud scales. Cloud starts LOW then COMPOUNDS. Data moat makes the whole thing unassailable.
 
@@ -181,7 +181,7 @@ CHANNEL 2: Chrome Extension (FREE — Developer + Sales Team Hook)
   Expected: 10K installs in 6 months → 500 Cloud signups → 50 paid
 
 CHANNEL 3: "$5K AI Quick Win" Offer (LOW BARRIER — Agency Entry)
-  LinkedIn/WhatsApp outreach → "Replace your spreadsheets with AI in 1 week for $5K"
+  LinkedIn + cold email → "Replace your spreadsheets with AI in 1 week for $5K"
   → Quick win delivered → client sees value → upsell to $25K-75K build
   → Client becomes case study → attracts more clients
   Expected: 30% upsell rate to larger engagements

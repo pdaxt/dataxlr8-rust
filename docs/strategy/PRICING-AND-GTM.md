@@ -102,7 +102,7 @@ Install Chrome Extension (free)
 
 **How it converts:**
 ```
-50 outreach messages/week (LinkedIn + WhatsApp)
+50 outreach messages/week (LinkedIn + cold email)
   → 5 responses → 3 discovery calls → 1-2 clients
   → Client gets 1-2 AI agents in 1 week
   → 30% upsell to $25K-75K core build within 3 months

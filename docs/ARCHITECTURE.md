@@ -7,21 +7,25 @@
                     │   dataxlr8-gateway-mcp      │
                     │   (Rust - Streamable HTTP)   │
                     │                              │
-                    │  - Auto-discovers all MCPs   │
+                    │  - Auth + rate limiting      │
                     │  - Routes tool calls         │
+                    │  - Usage metering            │
                     │  - Health monitoring          │
-                    │  - Single connection point    │
                     └──────────┬───────────────────┘
                                │ spawns & manages
-            ┌──────────┬───────┼───────┬──────────┬─────────┐
-            │          │       │       │          │         │
-         ┌──▼──┐  ┌───▼──┐ ┌──▼──┐ ┌──▼──┐  ┌───▼──┐  ┌──▼──┐
-         │deals│  │train │ │quote│ │meet │  │notif │  │ ... │
-         │ mcp │  │ mcp  │ │ mcp │ │ mcp │  │ mcp  │  │     │
-         └─────┘  └──────┘ └─────┘ └─────┘  └──────┘  └─────┘
-            │          │       │       │          │
-         Postgres   Postgres  Postgres LiveKit   Resend
-         (shared)   (shared)  (shared)
+     ┌────────┬────────┬───────┼───────┬────────┬────────┐
+     │        │        │       │       │        │        │
+  ┌──▼───┐ ┌──▼──┐ ┌───▼──┐ ┌──▼──┐ ┌──▼───┐ ┌──▼──┐ ┌──▼──┐
+  │enrich│ │ crm │ │email │ │sales│ │finan │ │deals│ │ ... │
+  │ mcp  │ │ mcp │ │ mcp  │ │ mcp │ │ mcp  │ │ mcp │ │     │
+  └──┬───┘ └──┬──┘ └──┬───┘ └──┬──┘ └──┬───┘ └──┬──┘ └─────┘
+     └────────┴───────┴────────┴───────┴────────┘
+                       │
+              ┌───────▼────────┐
+              │  PostgreSQL     │
+              │  dataxlr8 DB   │
+              │  Schema/domain  │
+              └────────────────┘
 ```
 
 ## Key Design Decisions
@@ -30,13 +34,18 @@
 
 All MCPs connect to **one** PostgreSQL database. Each MCP owns its own schema namespace:
 
-| MCP | Schema | Tables |
-|-----|--------|--------|
-| features-mcp | `features.*` | flags, flag_overrides |
-| contacts-mcp | `contacts.*` | contacts, tags |
-| deals-mcp | `deals.*` | deals, activities |
-| portal-mcp | `portal.*` | projects, deliverables, comments |
-| ... | ... | ... |
+| MCP | Schema | Tables | Priority |
+|-----|--------|--------|----------|
+| enrichment-mcp | `enrichment.*` | persons, companies, emails, lookups | P0 |
+| crm-mcp | `crm.*` | contacts, deals, activities, tasks | P0 |
+| email-mcp | `email.*` | templates, sequences, tracking | P0 (DONE) |
+| sales-mcp | `sales.*` | openers, sequences, proposals | P1 |
+| finance-mcp | `finance.*` | invoices, payments, expenses | P1 |
+| features-mcp | `features.*` | flags, flag_overrides | DONE |
+| contacts-mcp | `contacts.*` | contacts, tags | DONE |
+| commissions-mcp | `commissions.*` | entries, payouts | DONE |
+| deals-mcp | `deals.*` | deals, activities | P1 |
+| portal-mcp | `portal.*` | projects, deliverables, comments | P2 |
 
 **Why:** One database to manage, backup, and monitor. Schema namespaces provide logical isolation without operational complexity.
 
@@ -138,24 +147,34 @@ auto_restart = true
 
 One entry. All 150+ tools. Auto-connected.
 
-## Web App Rewiring
+## Web App: Rust Axum (Replacing Next.js)
 
-The Next.js web app stays as-is but its data access layer changes:
+The Next.js monorepo is being replaced by `dataxlr8-web` — a Rust Axum web app that shares the same `dataxlr8-mcp-core` crate.
 
-**Before (direct DB access):**
+**Stack:**
 ```
-[API Route] → import { listQuotations } from "@/lib/quotation-client"
-              → opens SQLite file directly
-              → returns data
-```
-
-**After (via gateway):**
-```
-[API Route] → import { callTool } from "@/lib/mcp-gateway-client"
-              → callTool("quotation.list_quotations", { status: "active" })
-              → HTTP POST to gateway (localhost:3100)
-              → gateway routes to quotation-mcp via stdio
-              → returns data
+Backend:   Axum 0.8 (Rust) — port 3001
+Templates: Askama (compile-time checked HTML)
+CSS:       TailwindCSS (via CDN)
+JS:        HTMX (server-rendered interactivity)
+Auth:      Google OAuth (employees) + API key (clients)
+DB:        PostgreSQL via dataxlr8-mcp-core
 ```
 
-Zero changes to API routes. Just the data layer gets swapped.
+**Routes:**
+```
+PUBLIC:     /          → Marketing homepage ("Replace your SaaS stack. $49/mo.")
+            /pricing   → Free / Pro $49 / Team $199 / Enterprise
+            /docs      → Quick start, MCP catalog
+            /blog      → Technical content
+EMPLOYEE:   /team/*    → Dashboard, deals, commissions, contacts, training
+CLIENT:     /client/*  → Project dashboard, invoices, support
+```
+
+**Data flow:**
+```
+[Browser] → Axum route handler → dataxlr8-mcp-core (same DB pool as MCPs)
+                               → Askama template → HTML response
+```
+
+The web app and MCPs share the same PostgreSQL database and `dataxlr8-mcp-core` library. No gateway needed for web app data access — it queries the DB directly using the shared crate.

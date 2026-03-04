@@ -39,7 +39,7 @@ RIGHT:  Find Clients + Build MCPs + Launch Cloud → Money from Week 1
 ### Week 1: First Revenue + Start Building
 
 **Agency (Revenue):**
-- [ ] Send 50 LinkedIn/WhatsApp messages: "$5K AI Quick Win — replace spreadsheets in 1 week"
+- [ ] Send 50 LinkedIn + cold email messages: "$5K AI Quick Win — replace spreadsheets in 1 week"
 - [ ] Target: SMBs and agencies globally (industry agnostic), Sydney local network
 - [ ] Book 5 discovery calls → close 2 Quick Win clients ($10K)
 - [ ] Start delivering: build 1-2 AI agents per client using existing MCPs + custom code
@@ -121,7 +121,7 @@ RIGHT:  Find Clients + Build MCPs + Launch Cloud → Money from Week 1
 - [ ] Referral program: existing clients refer → $500 credit
 
 **Open-Source ($0 but builds pipeline):**
-- [ ] Ship `dataxlr8-finance-mcp` (invoicing, expenses, GST — 8 tools)
+- [ ] Ship `dataxlr8-finance-mcp` (invoicing, expenses, multi-jurisdiction tax — 8 tools)
 - [ ] Ship `dataxlr8-sales-mcp` (sequences, proposals, scripts — 10 tools)
 - [ ] Performance benchmark blog: "50x Faster: Rust MCP vs Python MCP"
 - [ ] Submit enrichment-mcp to Smithery + Glama directories
@@ -147,7 +147,7 @@ RIGHT:  Find Clients + Build MCPs + Launch Cloud → Money from Week 1
 **Agency ($35K):**
 - [ ] 2 Core Builds in progress ($50K pipeline)
 - [ ] 2 new Quick Win clients ($10K)
-- [ ] Second local meetup (different city)
+- [ ] Second virtual meetup: "AI Agents That Replace Your SaaS Stack"
 - [ ] First enterprise inquiry (from case study)
 
 **Cloud Beta ($3K):**

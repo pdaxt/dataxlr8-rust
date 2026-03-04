@@ -52,7 +52,7 @@ Build the Rust MCP servers. Each window focuses on one MCP. Pane 0 builds, Pane 
 | Pane | Agent ID | Task | Repo |
 |------|----------|------|------|
 | 3.0 | `claude6:3.0` | Build sales-mcp (10 tools) | `dataxlr8-sales-mcp` |
-| 3.1 | `claude6:3.1` | Build finance-mcp (8 tools, GST) | `dataxlr8-finance-mcp` |
+| 3.1 | `claude6:3.1` | Build finance-mcp (8 tools, multi-tax) | `dataxlr8-finance-mcp` |
 | 3.2 | `claude6:3.2` | Build scraper-mcp (6 tools) | `dataxlr8-scraper-mcp` |
 
 ---

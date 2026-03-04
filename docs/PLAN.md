@@ -55,17 +55,17 @@ The current `pdaxt/dataxlr8` monorepo is a TypeScript/Next.js application with 8
 | 9 | `dataxlr8-deals-mcp` | `lib/google-sheets.ts` | 6 | Pending |
 | 10 | `dataxlr8-employees-mcp` | `lib/google-sheets.ts` | 8 | Pending |
 | 11 | `dataxlr8-training-mcp` | `lib/google-sheets.ts` | 6 | Pending |
-| 12 | `dataxlr8-commissions-mcp` | `lib/manager-client.ts` | 5 | Pending |
+| 12 | [`dataxlr8-commissions-mcp`](https://github.com/pdaxt/dataxlr8-commissions-mcp) | `lib/manager-client.ts` | 8 | **DONE** |
 | 13 | `dataxlr8-quotation-mcp` | `lib/quotation-client.ts` | 6 | Pending |
 | 14 | `dataxlr8-supplier-mcp` | `lib/supplier-client.ts` | 6 | Pending |
-| 15 | `dataxlr8-contacts-mcp` | `lib/contact-client.ts` | 5 | Pending |
+| 15 | [`dataxlr8-contacts-mcp`](https://github.com/pdaxt/dataxlr8-contacts-mcp) | `lib/contact-client.ts` | 9 | **DONE** |
 | 16 | `dataxlr8-portal-mcp` | `lib/portal-client.ts` | 12 | Pending |
 | 17 | `dataxlr8-rooming-mcp` | `lib/rooming-client.ts` | 5 | Pending |
 | 18 | `dataxlr8-booking-mcp` | `lib/google-calendar.ts` | 4 | Pending |
 | 19 | `dataxlr8-ai-analysis-mcp` | `lib/anthropic.ts` | 4 | Pending |
 | 20 | [`dataxlr8-features-mcp`](https://github.com/pdaxt/dataxlr8-features-mcp) | `lib/features-client.ts` | 8 | **DONE** |
 | 21 | `dataxlr8-pdf-mcp` | `lib/pdf-client.ts` | 4 | Pending |
-| 22 | `dataxlr8-email-mcp` | `lib/email.ts` | 6 | Pending |
+| 22 | [`dataxlr8-email-mcp`](https://github.com/pdaxt/dataxlr8-email-mcp) | `lib/email.ts` | 6 | **DONE** |
 
 ### Gateway
 | # | Repo | Status | Purpose |
@@ -110,7 +110,7 @@ All run simultaneously on Screen 1 + Screen 2:
 | Workstream | MCP/Project | Tools | Agent Screen |
 |-----------|-------------|-------|-------------|
 | **A** | `sales-mcp` — Outreach replacement | 10 | Screen 1, W3 |
-| **B** | `finance-mcp` — QuickBooks replacement (GST) | 8 | Screen 1, W3 |
+| **B** | `finance-mcp` — QuickBooks replacement (multi-jurisdiction tax) | 8 | Screen 1, W3 |
 | **C** | `scraper-mcp` — Data collection engine | 6 | Screen 1, W3 |
 | **D** | Employee + Client Portal | — | Screen 2, W1+W2 |
 

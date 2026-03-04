@@ -228,4 +228,3 @@ This means DataXLR8 MCPs work with ANY agent, ANY framework, ANY AI model. Not l
 - [Composio $29M Series A](https://composio.dev/blog/series-a)
 - [MCP joins AAIF](http://blog.modelcontextprotocol.io/posts/2025-12-09-mcp-joins-agentic-ai-foundation/)
 - [Small Business AI Adoption Surges 41%](https://howays.com/ai-business-applications/small-business-ai-adoption-surges-41-as-usage-jumps-from-39-to-55-in-2025-a-key-insight-for-smb-technology/)
-- [Small Business AI Adoption Surges 41%](https://howays.com/ai-business-applications/small-business-ai-adoption-surges-41-as-usage-jumps-from-39-to-55-in-2025-a-key-insight-for-smb-technology/)

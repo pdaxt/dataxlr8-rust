@@ -80,7 +80,7 @@ Single database `dataxlr8`, one schema per domain:
 CREATE SCHEMA IF NOT EXISTS enrichment;  -- person, company, email verification
 CREATE SCHEMA IF NOT EXISTS crm;         -- contacts, deals, pipeline, activities
 CREATE SCHEMA IF NOT EXISTS sales;       -- sequences, proposals, scripts
-CREATE SCHEMA IF NOT EXISTS finance;     -- invoices, payments, expenses, GST
+CREATE SCHEMA IF NOT EXISTS finance;     -- invoices, payments, expenses, tax
 
 -- Internal operations (migrate from Google Sheets)
 CREATE SCHEMA IF NOT EXISTS employees;   -- team members, sessions, roles
@@ -254,7 +254,7 @@ Tools (10): generate_opener, generate_sequence, handle_objection,
 #### Agent B: `dataxlr8-finance-mcp`
 ```
 Tools (8): create_invoice, record_payment, track_expense,
-  gst_report, profit_loss, balance_sheet, recurring_invoice, tax_calculation
+  tax_report, profit_loss, balance_sheet, recurring_invoice, tax_calculation
 ```
 **Tax advantage:** Multi-jurisdiction tax (GST/VAT/sales tax) built-in.
 
