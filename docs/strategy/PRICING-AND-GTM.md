@@ -209,6 +209,22 @@ ONGOING: Managed operations ($2K-10K/mo) → Long-term relationship
 4. **API Playground** — 50 free API calls for developers
 5. **Shareable reports** — "Share your AI Opportunity Report" on social
 
+### PLG Benchmarks (Research-Backed)
+
+| Metric | Industry Benchmark | DataXLR8 Target |
+|--------|-------------------|----------------|
+| Free-to-paid conversion | 9% median (3.4% freemium standard) | 8% |
+| PQL-to-paid ($1K-5K ACV) | 30% | 25% |
+| Users engaging 3+/week convert | 5-7x higher rate | Drive daily usage |
+| Optimal trial/onboarding | Under 5 minutes → 25%+ conversion | <2 min to first agent run |
+| Chrome extension CAC | 40-60% lower than broad campaigns | Primary acquisition channel |
+
+**Proven by competitors:**
+- Lusha: 2.6M Chrome Extension users, 70 free credits/month
+- Apollo: 500K+ companies through PLG + extension
+- 91% of B2B SaaS companies with PLG plan to invest more in it
+- PLG companies see up to 2x faster revenue growth vs sales-led
+
 ### Open-Core Model (Future — Month 6+)
 
 | Component | Open Source | Paid |
