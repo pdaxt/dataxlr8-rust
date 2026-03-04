@@ -1,278 +1,227 @@
-# Pricing Models, GTM Strategy & Business Model
+# Pricing, Revenue Model & Go-To-Market
 
-_Research date: 2026-03-04_
+_Updated: 2026-03-04_
 
-## The Pricing Landscape Shift (2025-2026)
+## Revenue Streams
 
-### Per-Seat is Dying
-- **61%** of SaaS companies now have a usage-based component (up from 34% in 2021)
-- **Credit-based models surged 126% YoY** (79 companies in PricingSaaS 500)
-- **Hybrid models drive highest growth:** 21% median growth rate
-- **Best-in-class NRR:** 120-130% with hybrid pricing
-- **43%** of companies combine subscriptions with usage-based components
+### Stream 1: DataXLR8 Cloud (Primary — Recurring)
 
-### Why AI Broke Per-Seat
-When an AI agent does the work of 5 people, charging per seat punishes the customer for efficiency and punishes the vendor for delivering it. AI workloads create nonlinear consumption (tokens, credits, compute) that seats can't capture.
+Managed hosting for MCP servers. Deploy with one command, scale automatically.
 
-### SaaS Price Surge of 2025
-- **Average SaaS price increase:** 11.4% (4x general inflation)
-- **Notion:** $4 → $20/mo (400% increase, AI bundled)
-- **Basecamp:** 202% increase
-- **Zoom Workplace Pro:** +$10/year, enterprise renewals up 30%
-- **Slack:** $10/user/mo AI add-on, now bundled
-- **60% of vendors** mask price increases by bundling AI features
-- **SaaS spend per employee:** $7,900/year (up 27% in 2 years)
+| Tier | Price | MCPs | Tool Calls/mo | Features |
+|------|-------|------|--------------|----------|
+| **Free** | $0 | 3 | 10,000 | Shared infra, API key auth, basic monitoring |
+| **Pro** | $49/mo | 20 | 500,000 | Custom domains, JWT auth, advanced monitoring |
+| **Team** | $199/mo | Unlimited | 5,000,000 | Team management, RBAC, priority support |
+| **Enterprise** | Custom ($2K+/mo) | Unlimited | Unlimited | SSO, audit, SLA, dedicated infra, VPC, compliance |
 
----
+**Usage overage:**
+- $0.10 per 1,000 tool calls beyond plan limit
+- $5/mo per additional MCP (Free/Pro tiers)
+- $0.50/GB data transfer beyond included
 
-## Competitor Pricing
+### Stream 2: MCP Registry (Network Effects — Recurring)
 
-### CRM
-| Tier | Salesforce | HubSpot | Pipedrive | Zoho CRM |
-|------|-----------|---------|-----------|----------|
-| Entry | $25/user | $15/user | $14.90/user | $14/user |
-| Mid | $75-$150 | $234/user | ~$50/user | $23/user |
-| Enterprise | $159-$318 | Custom | $99/user | $52/user |
+Third-party developers publish MCPs. We take a cut.
 
-### Project Management
-| Tool | Entry | Mid | Premium |
-|------|-------|-----|---------|
-| Asana | $10.99 | $24.99 | Custom |
-| Monday.com | $12 | $19 | Custom |
-| ClickUp | $7 | $12 | Custom |
+| Type | Developer Keeps | DataXLR8 Fee |
+|------|----------------|-------------|
+| Free MCPs | N/A | $0 (drives adoption) |
+| Paid MCPs | 80% | 20% platform fee |
+| Verified Premium MCPs | 85% | 15% fee (incentivize quality) |
+| Enterprise MCPs | 75% | 25% fee (includes support/compliance) |
 
-### All-in-One
-| Platform | Pricing |
-|----------|---------|
-| Odoo Standard | $24.90/user/mo (all apps) |
-| Odoo Custom | $37.40/user/mo |
-| Zoho One | $45/employee/mo (45+ apps) |
+### Stream 3: Agency / Custom Builds (Funds Development)
 
-### Sales Intelligence / Lead Enrichment
-| Tool | Pricing | Model |
-|------|---------|-------|
-| Apollo.io | $49-119/user/mo (annual) | Per-seat + credits. 1 credit/email, 8/phone. $150M ARR |
-| ZoomInfo | $15K-45K+/yr (mandatory annual) | Per-seat, quote-based. 10-20% auto-increase. $1.25B rev |
-| Lusha | $22-52/user/mo (annual) | Per-seat + credits. 1 credit/email, 5/phone. $64M rev |
-| Clay | $134-720/mo (annual) | Credit-based. Waterfall across 150+ providers. $100M ARR |
-| Clearbit → Breeze | Min $75/mo (HubSpot sub + credits) | HubSpot-only. Standalone dead Apr 2026. |
-| RocketReach | $399-2,099/yr | Lookup-based. $0.30-0.45/lookup overage. ~$60M rev |
-| Seamless.AI | $147-299/user/mo (annual) | Per-seat + daily credits. Worst cancellation reputation |
-| Cognism | $15K-25K+/yr (quote-based) | Enterprise. Phone-verified. Best EU data. $83M rev |
+Build custom AI systems for clients using our own MCPs. Revenue funds platform development.
 
-### AI Agent / Automation Platforms
-| Tool | Pricing | Revenue/Funding | Model |
-|------|---------|----------------|-------|
-| Relevance AI | $19-599/mo | $24M Series B | Credit-based, low-code, 40K agents/month |
-| Lindy AI | Free-$49.99/mo | $49.9M funding, $5.1M rev | Natural language agents, Claude 4.5 + Computer Use |
-| Bardeen | Free-$99/mo | $25M funding | Browser automation, 1 action = 1 credit |
-| Beam AI | Enterprise (sales-gated) | Undisclosed | Agents that continuously learn |
+| Engagement | Price | What Client Gets | Platform Benefit |
+|-----------|-------|------------------|-----------------|
+| Quick Win | $5K-15K | 1-2 custom agents | Battle-tests MCPs |
+| Core Build | $25K-50K | Full AI system | Tests composability |
+| Enterprise | $75K-200K | Multi-department system | Validates enterprise needs |
+| Ongoing | $2K-10K/mo | Managed operations | Recurring revenue |
 
-**Key insight:** Credit-based pricing surged 126% YoY (79 companies in PricingSaaS 500). Clay proves it works at scale ($100M ARR). DataXLR8's credit model is aligned with the winning trend.
+**Rule:** Every client build uses our open-source MCPs. Custom features get abstracted into configurable MCPs and open-sourced.
 
 ---
 
-## AI Pricing Models Emerging
+## Pricing Rationale
 
-### 1. Credit-Based (Most Popular Now)
-Buy credits, spend on AI features. 79 companies in PricingSaaS 500 use this.
-- Examples: Figma, HubSpot, Salesforce
+### Why These Numbers
 
-### 2. Per-Resolution (Intercom)
-$0.99 per AI-resolved customer issue. Companies save 1,300+ hours in 6 months with 50%+ resolution rates.
+| Decision | Rationale |
+|----------|-----------|
+| Free tier exists | MongoDB, Supabase, Vercel all have free tiers. Required for PLG. |
+| $49/mo Pro | Lower than Vercel Pro ($20/dev/mo but adds up). Accessible for indie developers and small startups. |
+| $199/mo Team | Competitive with Railway Team ($5/user + usage). Teams of 5+ make this worth it. |
+| Enterprise custom | SSO/audit/SLA justifies $2K+/mo. MongoDB Atlas enterprise is $50K+/yr. |
+| 20% marketplace cut | Apple takes 30%, Shopify takes variable. 20% is developer-friendly. |
 
-### 3. Per-Outcome (Sierra)
-Paid only when AI completes a customer task. Aligns vendor incentive with customer value.
+### Comparison to Infrastructure Competitors
 
-### 4. Performance-Based (Sett.ai)
-Payment scales with customer's results (e.g., ad spend increases as AI campaigns succeed).
+| Platform | Free | Pro | Team | Enterprise |
+|----------|------|-----|------|-----------|
+| **DataXLR8 Cloud** | 3 MCPs, 10K calls | $49/mo | $199/mo | Custom |
+| Vercel | 100GB bandwidth | $20/dev/mo | $150/mo+ | Custom |
+| Railway | $5 free credit | $5/user + usage | Custom | Custom |
+| Supabase | 500MB DB | $25/mo | $599/mo | Custom |
+| MongoDB Atlas | 512MB | $57/mo | Pay-as-you-go | $1K+/mo |
 
-### 5. Bundled AI Premium
-Add AI to existing plan, raise price $2.50-$5/user. 60% of vendors do this.
+### Comparison to What Developers Pay Now (Self-Hosting)
 
-### Key Stats
-- 87% of buyers expect AI premiums to grow
-- Outcome-based pricing: ~30% adoption by 2025
-- Gartner: 40% of enterprise SaaS spend shifts to usage/agent/outcome by 2030
-- Buyers only pay premium for "genuine structural AI," not chatbot add-ons
-
----
-
-## AI Margins
-
-| Category | Gross Margin |
-|----------|-------------|
-| Traditional SaaS | 78-85% |
-| AI-First SaaS (mature) | 55-70% |
-| Early-stage AI SaaS | ~25% |
-| Target at scale | 60-70% |
-
-- Variable COGS: Traditional SaaS <5%, AI SaaS 20-40% of revenue
-- 84% of companies see 6%+ gross margin erosion from AI infrastructure
-- With careful model selection (smaller models, caching), margins above 80% are achievable
+| Self-Hosting MCPs | Cost | DataXLR8 Cloud | Savings |
+|-------------------|------|---------------|---------|
+| VPS (1-3 MCPs) | $5-20/mo + DevOps time | Free tier ($0) | Free + no DevOps |
+| Small deployment (5-10 MCPs) | $50-100/mo + monitoring + security | Pro ($49/mo) | ~50% less + managed |
+| Production (10+ MCPs) | $200-500/mo + team to manage | Team ($199/mo) | ~60% less + managed |
+| Enterprise (50+ MCPs) | $2K-10K/mo + compliance + security team | Enterprise ($2K+/mo) | SSO, audit, SLA included |
 
 ---
 
-## DataXLR8 Pricing Model
+## Unit Economics
 
-### Two Revenue Streams
+| Metric | Target | Benchmark |
+|--------|--------|-----------|
+| CAC (PLG/self-serve) | <$30 | Supabase: ~$20, Vercel: ~$40 |
+| CAC (enterprise) | <$5,000 | MongoDB Atlas: ~$10K |
+| ARPU (self-serve) | $80/mo | — |
+| ACV (enterprise) | $50,000+ | MongoDB: $50K+, Elastic: $100K+ |
+| Gross margin (Cloud) | 70%+ | AWS: 30%, Vercel: 60%+, Supabase: 65%+ |
+| Monthly churn (self-serve) | <5% | Infrastructure avg: 3-5% |
+| NRR (enterprise) | 120%+ | MongoDB: 125%, Elastic: 115% |
+| LTV:CAC (self-serve) | >10:1 | — |
+| LTV:CAC (enterprise) | >5:1 | — |
 
-**Stream 1: Self-Serve Agent Marketplace (Credit-Based)**
+### Why Margins Are High
 
-| Tier | Price | Credits/mo | Target |
-|------|-------|-----------|--------|
-| **Free** | $0 | 50 | Try before you buy |
-| **Starter** | $29/mo | 300 | Individual users |
-| **Pro** | $79/mo | 1,500 | Growing teams |
-| **Scale** | $199/mo | 5,000 | Scaling operations |
-
-| Credit Pack | Price | Per Credit | Bonus |
-|------------|-------|-----------|-------|
-| 100 credits | $9 | $0.09 | — |
-| 500 credits | $39 | $0.078 | 50 bonus |
-| 2,000 credits | $129 | $0.065 | 400 bonus |
-| 10,000 credits | $499 | $0.05 | 2,500 bonus |
-
-**Stream 2: Done-For-You Custom AI Builds**
-
-| Engagement | Price Range | What Client Gets |
-|-----------|------------|------------------|
-| Discovery + Assessment | Free | AI Opportunity Scanner report + call |
-| Quick Win Build | $5K-15K | 1-2 custom AI agents deployed |
-| Full AI System | $25K-75K | Complete AI-first workflow automation |
-| Enterprise Transformation | $100K+ | Full business operating system migration |
-| Ongoing Operations | $2K-10K/mo | Managed AI system + support + iteration |
-
-### Why This Dual Model Works
-1. **Self-serve** provides predictable MRR + massive top-of-funnel
-2. **Done-for-you** provides high-value contracts + deep client relationships
-3. **Self-serve → done-for-you** is natural upsell (user hits limits, wants custom)
-4. **Done-for-you → self-serve** generates case studies + referrals
-5. Credit-based pricing aligns with industry trend (126% YoY growth)
-
-### Pricing vs Competitors
-
-| DataXLR8 | vs Apollo ($49-149/user) | vs ZoomInfo ($14.9K+/yr) | vs Clay ($149-349/user) |
-|----------|------------------------|------------------------|----------------------|
-| $29-199/mo (credits) | Cheaper, more flexible | 90% cheaper | Simpler UX, lower entry |
-| No per-seat | Per-seat locks you in | Per-seat + annual | Per-seat + rows |
-| 40+ agent types | Enrichment + sequences only | Data only | Enrichment + workflows |
-| BYOK | Their AI only | No AI agents | Their AI only |
-| Custom builds available | Self-serve only | Enterprise consulting | Self-serve only |
-
-### Add-on Revenue
-
-| Add-on | Price | Target |
-|--------|-------|--------|
-| HubSpot integration | $19/mo | CRM sync |
-| Salesforce integration | $29/mo | Enterprise CRM |
-| API access | $49/mo | Developers |
-| White-label | $499/mo | Agencies |
+- **Rust efficiency:** 10MB per MCP vs 110MB for Python/TS. We run 10x more MCPs per server.
+- **No LLM costs:** BYOK — users bring their own AI keys. We host tools, not inference.
+- **Shared infrastructure:** Multi-tenant gateway, shared DB pools, shared monitoring.
+- **Binary caching:** Same 6.5MB binary serves all customers with different configs.
 
 ---
 
-## GTM Strategy
+## Go-To-Market Strategy
 
-### Acquisition Funnel
+### Phase 1: Win Developers (Month 1-6)
 
-```
-FREE: AI Opportunity Scanner (no signup) → Scans any business for AI opportunities
-  ↓ 10% convert
-FREE: Sign up (50 credits) → Try agents, see value in 60 seconds
-  ↓ 8% convert
-PAID: Starter ($29) or credit pack ($9) → Hit credit limit, upgrade
-  ↓ 30% expand
-PAID: Pro ($79) or Scale ($199) → Power users, teams
-  ↓ 5% upsell
-CUSTOM: Done-for-you build ($5K-75K) → Want comprehensive AI system
-  ↓ 50% retain
-ONGOING: Managed operations ($2K-10K/mo) → Long-term relationship
-```
+Developers choose infrastructure. They influence startup and enterprise decisions.
 
-### Channel Strategy
+**Primary Channels:**
 
 | Channel | Investment | Expected CAC | Timeline |
 |---------|-----------|-------------|----------|
-| **PLG (free tools + Chrome Extension)** | Low (dev time) | <$20 | Month 1 |
-| **Content/SEO** | Medium (2 posts/week) | <$50 | Month 2-6 |
-| **Product Hunt launch** | Low (one-time) | <$5 | Month 2 |
-| **Referral program** | Low ($10 give/$10 get) | <$15 | Month 2 |
-| **LinkedIn outreach** | Medium (done-for-you sales) | <$100 | Month 3 |
-| **Partnerships (HubSpot/Salesforce marketplace)** | Medium | <$30 | Month 4 |
-| **Paid ads (Google/LinkedIn)** | High | $50-100 | Month 6+ |
+| **Open-source (GitHub)** | Dev time | $0 | Month 1 |
+| **crates.io / Rust community** | Content | $0 | Month 1 |
+| **Blog posts (benchmarks, tutorials)** | Writing time | <$10 | Month 1-3 |
+| **Hacker News / Reddit** | Content | $0 | Month 2 |
+| **Product Hunt** | One-time | <$5 | Month 3 |
+| **Dev.to / Medium** | Content | <$10 | Month 2-6 |
+| **Conference talks (RustConf, AI conf)** | Travel | <$50 | Month 4-6 |
+| **YouTube (tutorials, benchmarks)** | Production | <$20 | Month 3-6 |
 
-### PLG Growth Levers
+**Key Content:**
+1. "Why We Rewrote MCP in Rust: 50x Faster Tool Calls" — benchmark post
+2. "The Open-Source Clearbit Replacement (Built in Rust)" — Clearbit vacuum narrative
+3. "Build an AI Agent in 5 Minutes with DataXLR8 MCPs" — tutorial
+4. "MCP Infrastructure: The Missing Layer" — thought leadership
+5. Weekly "MCP Monday" newsletter — ecosystem updates
 
-1. **AI Opportunity Scanner** — completely free, viral (scan your competitor!)
-2. **Chrome Extension** — LinkedIn enrichment on hover, 10 free/day
-3. **Email Verifier Widget** — embeddable, "powered by DataXLR8"
-4. **API Playground** — 50 free API calls for developers
-5. **Shareable reports** — "Share your AI Opportunity Report" on social
+**PLG Funnel:**
+```
+Open-source MCP (crates.io/GitHub) → Developer uses locally
+  ↓ needs hosting
+Cloud Free (3 MCPs, 10K calls) → Sees value
+  ↓ hits limits
+Cloud Pro ($49/mo) → Production workload
+  ↓ team grows
+Cloud Team ($199/mo) → Team features
+  ↓ company grows
+Enterprise (custom) → SSO, compliance, SLA
+```
 
-### PLG Benchmarks (Research-Backed)
+### Phase 2: Win Startups (Month 6-12)
 
-| Metric | Industry Benchmark | DataXLR8 Target |
-|--------|-------------------|----------------|
-| Free-to-paid conversion | 9% median (3.4% freemium standard) | 8% |
-| PQL-to-paid ($1K-5K ACV) | 30% | 25% |
-| Users engaging 3+/week convert | 5-7x higher rate | Drive daily usage |
-| Optimal trial/onboarding | Under 5 minutes → 25%+ conversion | <2 min to first agent run |
-| Chrome extension CAC | 40-60% lower than broad campaigns | Primary acquisition channel |
+Startups building AI-native products need MCP infrastructure. They don't want to manage it.
 
-**Proven by competitors:**
-- Lusha: 2.6M Chrome Extension users, 70 free credits/month
-- Apollo: 500K+ companies through PLG + extension
-- 91% of B2B SaaS companies with PLG plan to invest more in it
-- PLG companies see up to 2x faster revenue growth vs sales-led
+**Actions:**
+1. Launch MCP Registry — let developers publish and discover MCPs
+2. Partner with LangChain, CrewAI, AutoGen — "Runs great on DataXLR8"
+3. YC batch outreach — "Free Pro tier for YC companies"
+4. Startup program: $500 in Cloud credits for any funded startup
+5. Integration guides for every major agent framework
 
-### Open-Core Model (Future — Month 6+)
+### Phase 3: Win Enterprise (Month 12-24)
 
-| Component | Open Source | Paid |
-|-----------|-----------|------|
-| Core Rust MCP tools (CRUD) | MIT | — |
-| PostgreSQL schemas | MIT | — |
-| Basic gateway | MIT | — |
-| AI agent features | — | Marketplace |
-| Managed hosting | — | Cloud |
-| Premium integrations (CRM, GDS) | — | Add-ons |
-| White-labeling | — | Enterprise |
-| SSO/audit/multi-tenant | — | Enterprise |
+Enterprise contracts ($50K+ ACV) provide the revenue to scale.
+
+**Actions:**
+1. SOC 2 Type II certification
+2. SSO/SAML + RBAC + audit logs
+3. Enterprise sales team (2-3 people)
+4. Partner with Accenture/Deloitte for implementation
+5. Case studies: "How [Company] runs 50 AI agents on DataXLR8"
+6. Data residency options (US, EU, APAC)
 
 ---
 
-## Unit Economics Target
+## Growth Benchmarks (From Comparable Companies)
 
-| Metric | Target | Industry Benchmark |
-|--------|--------|-------------------|
-| CAC (self-serve) | <$30 | $702 avg B2B SaaS |
-| CAC (done-for-you) | <$500 | $2,000+ for enterprise |
-| ARPU (self-serve) | $65/mo | — |
-| ARPU (done-for-you) | $5,000/mo | — |
-| Blended LTV | $1,500+ | — |
-| LTV:CAC ratio | >10:1 | 3:1 minimum |
-| Gross margin (self-serve) | 70%+ | 78-85% traditional SaaS |
-| Gross margin (done-for-you) | 60%+ | — |
-| Monthly churn | <5% | — |
-| NRR | 110%+ | 120-130% best-in-class |
-| Time to value | <5 minutes | — |
+| Company | Time to $1M ARR | Time to $10M ARR | Strategy |
+|---------|----------------|------------------|----------|
+| Supabase | ~12 months | ~24 months | Open-source Firebase → managed hosting |
+| Vercel | ~18 months | ~30 months | Next.js (free) → hosting (paid) |
+| Railway | ~18 months | ~36 months | Developer-first PaaS |
+| PlanetScale | ~12 months | ~24 months | Open-source Vitess → managed DB |
+| Neon | ~12 months | ~24 months | Open-source Postgres → serverless |
 
-### Margin Management (AI Cost Challenge)
-- **BYOK model** eliminates LLM cost for most users (they pay their own API bills)
-- **Credit-based** pricing means heavy users pay proportionally
-- **Rust performance** = lower infrastructure cost per agent run
-- **Caching** frequent enrichment results reduces API costs
-- **Target:** 70%+ gross margin by using BYOK + Rust efficiency
+**Common pattern:** Open-source project gains traction → managed hosting launches → $1M ARR in 12-18 months → $10M ARR in 24-36 months.
+
+DataXLR8 follows this playbook with MCP-specific infrastructure.
+
+---
+
+## Revenue Projections
+
+| Metric | Month 6 | Month 12 | Month 24 | Month 36 |
+|--------|---------|----------|----------|----------|
+| **Cloud MRR** | $5K | $20K | $150K | $500K |
+| **Agency revenue** | $15K/mo | $25K/mo | $10K/mo (winding down) | $0 |
+| **Registry revenue** | $0 | $1K/mo | $20K/mo | $100K/mo |
+| **Enterprise ACV** | $0 | $50K/yr (1 contract) | $500K/yr (10 contracts) | $2.5M/yr (50 contracts) |
+| **Total ARR** | $240K | $600K | $4M | $15M+ |
+
+---
+
+## Pricing Evolution
+
+### Now (Launch)
+- Generous free tier to drive adoption
+- Simple per-MCP + tool call pricing
+- No enterprise tier (not ready yet)
+
+### 6 Months
+- Introduce Team tier
+- Usage-based overage pricing
+- MCP Registry with paid MCPs
+
+### 12 Months
+- Enterprise tier (SSO, audit, SLA)
+- Volume discounts for large deployments
+- Custom pricing for 100+ MCP deployments
+
+### 24 Months
+- Committed-use discounts (annual contracts)
+- Reserved capacity pricing
+- Marketplace with sophisticated revenue share
 
 ---
 
 ## Sources
 - [SaaStr: The Great SaaS Price Surge of 2025](https://www.saastr.com/the-great-price-surge-of-2025/)
-- [Growth Unhinged: What Works in SaaS Pricing Now](https://www.growthunhinged.com/p/2025-state-of-saas-pricing-changes)
 - [Metronome: State of Usage-Based Pricing 2025](https://metronome.com/state-of-usage-based-pricing-2025)
-- [Monetizely: 2026 Guide to SaaS, AI, Agentic Pricing](https://www.getmonetizely.com/blogs/the-2026-guide-to-saas-ai-and-agentic-pricing-models)
 - [BVP: AI Pricing Playbook](https://www.bvp.com/atlas/the-ai-pricing-and-monetization-playbook)
 - [Chargebee: Pricing AI Agents Playbook 2026](https://www.chargebee.com/blog/pricing-ai-agents-playbook/)
-- [Sierra: Outcome-Based Pricing](https://sierra.ai/blog/outcome-based-pricing-for-ai-agents)
-- [Deloitte: SaaS Meets AI Agents](https://www.deloitte.com/us/en/insights/industry/technology/technology-media-and-telecom-predictions/2026/saas-ai-agents.html)
-- [EY: SaaS Transformation with GenAI Outcome-Based Pricing](https://www.ey.com/en_us/insights/tech-sector/saas-transformation-with-genai-outcome-based-pricing)
+- MongoDB, Supabase, Vercel, Railway — public pricing pages
 - [GenesysGrowth: CAC Benchmarks 2026](https://genesysgrowth.com/blog/customer-acquisition-cost-benchmarks-for-marketing-leaders)

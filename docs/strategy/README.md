@@ -1,8 +1,8 @@
 # DataXLR8 Strategy Documents
 
-**DataXLR8: The AI-native operating system that replaces your entire SaaS stack.**
+**DataXLR8: The infrastructure platform where AI agents get their tools.**
 
-One platform. Every business function. AI agents do the work. Built in-house on Rust MCP infrastructure. No spreadsheets. No PowerPoint. No 15-tool stack. Just DataXLR8.
+Open-source Rust MCP servers. Managed cloud hosting. MCP Registry. Enterprise-grade. The AWS of the agentic era.
 
 _Last updated: 2026-03-04_
 
@@ -10,51 +10,44 @@ _Last updated: 2026-03-04_
 
 | Document | Description |
 |----------|-------------|
-| **[VISION.md](VISION.md)** | **START HERE** — The full platform vision, all 7 modules, competitive positioning, end state |
-| [MARKET-LANDSCAPE.md](MARKET-LANDSCAPE.md) | Competitive analysis: Apollo, ZoomInfo, Clay, Salesforce, Odoo, Zoho + AI agent platforms |
-| [AI-AGENT-LANDSCAPE.md](AI-AGENT-LANDSCAPE.md) | AI agent market $7.8B→$52.6B by 2030, adoption trends |
-| [MCP-ECOSYSTEM.md](MCP-ECOSYSTEM.md) | Rust MCP infrastructure as the technical moat — AAIF, composability |
-| [PRICING-AND-GTM.md](PRICING-AND-GTM.md) | All-inclusive pricing, PLG benchmarks, go-to-market playbook |
-| [FEATURE-BLUEPRINT.md](FEATURE-BLUEPRINT.md) | Detailed agent catalog with Rust MCP tool mappings |
-| [EXECUTION-PLAN.md](EXECUTION-PLAN.md) | Phased execution: CRM wedge → full platform |
+| **[VISION.md](VISION.md)** | **START HERE** — The full infrastructure platform vision, revenue model, 5-year plan |
+| [MARKET-LANDSCAPE.md](MARKET-LANDSCAPE.md) | Competitive landscape: who could build this, why they won't |
+| [AI-AGENT-LANDSCAPE.md](AI-AGENT-LANDSCAPE.md) | AI agent market $7.8B→$52.6B by 2030, why infrastructure wins |
+| [MCP-ECOSYSTEM.md](MCP-ECOSYSTEM.md) | MCP adoption (97M+ downloads), AAIF, Rust advantage |
+| [PRICING-AND-GTM.md](PRICING-AND-GTM.md) | Cloud pricing, registry economics, GTM playbook |
+| [FEATURE-BLUEPRINT.md](FEATURE-BLUEPRINT.md) | Open-source MCP catalog + Cloud platform features |
+| [EXECUTION-PLAN.md](EXECUTION-PLAN.md) | 90-day plan: open-source MCPs → Cloud beta → developer adoption |
 
-## The Platform (7 Modules)
+## The Stack
 
-| Module | Replaces | AI Does |
-|--------|----------|---------|
-| **CRM & Sales** | Salesforce, Apollo, ZoomInfo, Pipedrive | Enrichment, sequences, proposals, forecasting |
-| **Marketing & Content** | HubSpot, Mailchimp, Jasper, Buffer | Campaigns, social, SEO, ads, analytics |
-| **Operations & Projects** | Asana, Monday, Notion, Zapier | Tasks, workflows, documents, approvals |
-| **Finance & Billing** | QuickBooks, Xero, FreshBooks, Tally | Invoicing, expenses, accounting, tax |
-| **HR & People** | BambooHR, Gusto, Google Sheets | Hiring, onboarding, performance, payroll |
-| **Communication** | Slack, Gmail, WhatsApp, Calendly | Email, chat, meetings, scheduling |
-| **Intelligence** | Tableau, Crayon, Similarweb | Dashboards, competitors, market research |
+```
+Layer 5: Agent Marketplace        → Third-party agents built on our MCPs
+Layer 4: Enterprise Platform      → SSO, audit, SLA, compliance
+Layer 3: MCP Registry             → The npm of AI agent tools
+Layer 2: DataXLR8 Cloud           → Managed MCP hosting (monetization)
+Layer 1: Open-Source Rust MCPs    → Free, fast, tiny (adoption engine)
+```
 
-## The Tech
+## Why This Wins
 
-- **Infrastructure:** 20+ Rust MCP servers, <0.2ms per tool call, 6.5MB binaries
-- **AI Layer:** BYOK — Claude, GPT, Grok, Llama, Gemini, Ollama
-- **Gateway:** Single HTTP endpoint, model-agnostic, composable
-- **Everything built in-house.** No third-party API wrappers.
+| Factor | DataXLR8 | Everyone Else |
+|--------|----------|---------------|
+| Performance | **0.2ms** tool calls (Rust) | ~10ms (Python/TS) |
+| Binary size | **6.5MB** per MCP | ~100MB (node_modules) |
+| Memory | **10MB** per instance | ~110MB |
+| Protocol | MCP standard (open) | Proprietary APIs |
+| Deployment | One-command cloud deploy | DIY DevOps |
+| Who uses it | **Every AI agent, every framework** | One app, one vertical |
 
-## Pricing
+## Revenue Model
 
-| Tier | Price | What You Get |
-|------|-------|-------------|
-| Starter | $49/user/mo | All modules. All AI. 500 actions/mo |
-| Growth | $99/user/mo | All modules. All AI. 2,500 actions/mo |
-| Scale | $199/user/mo | All modules. All AI. Unlimited. API access |
-| Enterprise | Custom | SSO, audit, SLA, white-label |
+| Stream | How | Target |
+|--------|-----|--------|
+| **Cloud hosting** | Deploy MCPs on DataXLR8 infra | $49-199/mo + usage |
+| **Enterprise** | SSO, audit, SLA, dedicated infra | $50K+ ACV |
+| **Registry** | 20% cut on paid MCP marketplace | Third-party developers |
+| **Agency** | Build custom AI systems using our MCPs (funds development) | $5K-75K per client |
 
-**Every tier gets every module.** No per-feature upsells.
+## The Endgame
 
-## Competitors
-
-| Competitor | What They Are | Our Edge |
-|------------|-------------|----------|
-| Salesforce ($25-318/user) | CRM with AI bolted on | AI-native, 10x cheaper, everything included |
-| Odoo ($25-37/user) | 80+ apps, zero AI | Same breadth, but AI agents do the work |
-| Zoho One ($45/employee) | 45+ apps, basic AI | AI-first architecture, not legacy + AI |
-| HubSpot ($15-234/user) | Marketing + CRM, expensive at scale | One price, no upgrade tiers |
-| Apollo ($49-119/user) | Lead data only | Full platform, not just enrichment |
-| Clay ($134-720/mo) | Waterfall enrichment, spreadsheet UX | Simpler, broader, AI does the work |
+Every AI agent needs tools. MCP is the standard. DataXLR8 builds the best tools (open-source, Rust, fast) and hosts them (Cloud, enterprise-grade). We don't compete with Salesforce or HubSpot — we're the infrastructure layer they run on.
