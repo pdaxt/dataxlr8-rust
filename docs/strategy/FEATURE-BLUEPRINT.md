@@ -16,24 +16,19 @@ Composio connects agents to 500+ existing APIs. DataXLR8 builds the actual busin
 
 #### `dataxlr8-mcp-core` — Shared Library
 
-**Repo:** pdaxt/dataxlr8-mcp-core
-**Status:** Compiles. Needs `mcp.rs` + `types.rs` added.
+**Repo:** pdaxt/dataxlr8-mcp-core | **Commit:** e4060c6
+**Status:** Compiles. All modules shipped.
 
-Currently provides:
 ```rust
 pub mod config;   // Config::from_env() — DATABASE_URL, LOG_LEVEL
 pub mod db;       // Database::connect() — PgPool wrapper
 pub mod error;    // McpError, McpResult, ErrorCode enum
 pub mod logging;  // logging::init() — tracing subscriber
-```
-
-Planned additions:
-```rust
 pub mod mcp;      // Shared tool helpers: make_schema(), json_result(), error_result(), get_str(), get_bool(), get_str_array()
 pub mod types;    // Shared data types: PersonData, CompanyData, EmailVerification, EmailCandidate
 ```
 
-The `mcp` module eliminates ~350 lines of duplicated helper code across all MCPs. Every MCP currently copies the same 7 helper functions.
+The `mcp` module eliminates ~350 lines of duplicated helper code. All MCPs now import shared helpers from mcp-core.
 
 #### `dataxlr8-features-mcp` — Feature Flags & A/B Testing
 
@@ -94,9 +89,9 @@ providers/
 
 #### `dataxlr8-crm-mcp` — Replaces Salesforce
 
-**Repo:** pdaxt/dataxlr8-crm-mcp | **Status:** Compiles
+**Repo:** pdaxt/dataxlr8-crm-mcp | **Commit:** 6ce23ee | **Status:** Compiles | **Tools:** 12
 **Replaces:** Salesforce ($25-318/user), HubSpot CRM ($15-234/user), Pipedrive ($14-99/user)
-**Schema:** `crm.*` (contacts, deals, activities, tasks)
+**Schema:** `crm.*` (contacts, deals, activities, tasks, interactions, tags)
 
 | Tool | What It Does |
 |------|-------------|
@@ -110,8 +105,37 @@ providers/
 | `create_task` | Follow-up task linked to contact/deal |
 | `import_contacts` | Bulk import from JSON |
 | `export_contacts` | Export with filters |
+| `add_interaction` | Log interaction with contact (merged from contacts-mcp) |
+| `tag_contact` | Add/remove tags on contact (merged from contacts-mcp) |
 
-**Note:** `dataxlr8-contacts-mcp` (9 tools) is being absorbed into crm-mcp. CRM is the superset with deals, activities, and tasks on top of contact management.
+**Note:** `dataxlr8-contacts-mcp` has been fully absorbed into crm-mcp. contacts-mcp is DEPRECATED.
+
+#### `dataxlr8-devtools-mcp` — Dev Intelligence
+
+**Repo:** pdaxt/dataxlr8-devtools-mcp | **Commit:** 3720c59 | **Status:** Compiles | **Tools:** 20
+
+| Tool | What It Does |
+|------|-------------|
+| `start_session` | Start a development session with project context |
+| `end_session` | End session with summary |
+| `get_prompt` | Get agent prompt for a project |
+| `update_prompt` | Update agent prompt |
+| `get_build_status` | Get BUILD-PLAN.md status |
+| `code_stats` | Lines of code, file count, structure |
+| `diff_summary` | Summarize git diffs |
+| `pattern_check` | Check code patterns against standards |
+| `log_iteration` | Log development iteration with decisions |
+| `progress_check` | Check project progress |
+| `update_progress` | Update BUILD-PLAN.md progress |
+| `repo_info` | Git repo metadata |
+| `commit_and_push` | Stage, commit, push with branch safety |
+| `create_issue` | Create GitHub issue |
+| `comment_issue` | Comment on GitHub issue/PR |
+| `create_pr` | Create GitHub pull request |
+| `share` | Share content as private gist |
+| `list_repos` | List dataxlr8 repos |
+| `repo_health` | Check repo health (build, tests, warnings) |
+| `qa_gate` | Run quality gate checks |
 
 #### `dataxlr8-email-mcp` — Email Automation
 
@@ -142,11 +166,11 @@ providers/
 | `list_managers` | All managers |
 | `get_manager` | Manager details |
 
-#### `dataxlr8-contacts-mcp` — DEPRECATED (merging into crm-mcp)
+#### `dataxlr8-contacts-mcp` — DEPRECATED (merged into crm-mcp)
 
-**Repo:** pdaxt/dataxlr8-contacts-mcp | **Status:** Compiles, being absorbed
+**Repo:** pdaxt/dataxlr8-contacts-mcp | **Status:** DEPRECATED
 
-9 tools for contact CRUD, search, interactions, tags. Overlaps with crm-mcp's contact management. Unique features (interactions, tags) will be merged into crm-mcp.
+9 tools for contact CRUD, search, interactions, tags. All unique features (interactions, tags) have been merged into crm-mcp. This repo is archived.
 
 ---
 
@@ -270,7 +294,7 @@ COMMANDS:
 
 | Category | MCPs | Tools | Status |
 |----------|------|-------|--------|
-| **Shipped** | 6 (core, features, enrichment, crm, email, commissions) | 45 | Compiling |
+| **Shipped** | 7 (core, features, enrichment, crm, email, commissions, devtools) | 67 | Compiling |
 | Enrichment & Data | 3 (enrichment, scraper, intelligence) | 28 | 12 shipped, 16 planned |
 | CRM & Sales | 3 (crm, sales, email) | 26 | 16 shipped, 10 planned |
 | Finance & Ops | 3 (finance, analytics, documents) | 20 | Planned |

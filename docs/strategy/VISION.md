@@ -34,9 +34,10 @@ github.com/pdaxt/
 ├── dataxlr8-mcp-core          # Shared Rust library (DB, config, errors, logging, tool helpers, types)
 ├── dataxlr8-features-mcp      # Feature flags, A/B testing (9 tools)
 ├── dataxlr8-enrichment-mcp    # Lead enrichment — THE WEDGE (12 tools)
-├── dataxlr8-crm-mcp           # CRM pipeline (10 tools) — absorbs contacts-mcp
+├── dataxlr8-crm-mcp           # CRM pipeline (12 tools) — absorbed contacts-mcp
 ├── dataxlr8-email-mcp         # Email sending + templates (6 tools)
 ├── dataxlr8-commissions-mcp   # Sales commissions + leaderboard (8 tools)
+├── dataxlr8-devtools-mcp      # Dev intelligence — sessions, code analysis, git ops, QA gates (20 tools)
 ├── dataxlr8-web               # Next.js employee portal
 └── dataxlr8-rust              # Strategy docs, architecture decisions
 ```
@@ -224,26 +225,27 @@ MONTH 6+ (COMPOUNDING):
 
 | Component | Repo | Tools | Status |
 |-----------|------|-------|--------|
-| `dataxlr8-mcp-core` | pdaxt/dataxlr8-mcp-core | shared lib | compiles |
-| `dataxlr8-features-mcp` | pdaxt/dataxlr8-features-mcp | 9 tools (flags, overrides, bulk check) | compiles |
-| `dataxlr8-enrichment-mcp` | pdaxt/dataxlr8-enrichment-mcp | 12 tools (enrich, verify, discover) | compiles, refactoring to provider architecture |
-| `dataxlr8-crm-mcp` | pdaxt/dataxlr8-crm-mcp | 10 tools (contacts, deals, pipeline) | compiles |
-| `dataxlr8-email-mcp` | pdaxt/dataxlr8-email-mcp | 6 tools (send, templates, stats) | compiles |
-| `dataxlr8-commissions-mcp` | pdaxt/dataxlr8-commissions-mcp | 8 tools (managers, commissions, leaderboard) | compiles |
+| `dataxlr8-mcp-core` | pdaxt/dataxlr8-mcp-core | shared lib (config, db, error, logging, mcp helpers, types) | compiles (e4060c6) |
+| `dataxlr8-features-mcp` | pdaxt/dataxlr8-features-mcp | 9 tools (flags, overrides, bulk check) | compiles (b46d94f) |
+| `dataxlr8-enrichment-mcp` | pdaxt/dataxlr8-enrichment-mcp | 12 tools (enrich, verify, discover) | compiles (2b55e6f) |
+| `dataxlr8-crm-mcp` | pdaxt/dataxlr8-crm-mcp | 12 tools (contacts, deals, pipeline, interactions, tags) | compiles (6ce23ee) |
+| `dataxlr8-email-mcp` | pdaxt/dataxlr8-email-mcp | 6 tools (send, templates, stats) | compiles (1640e5e) |
+| `dataxlr8-commissions-mcp` | pdaxt/dataxlr8-commissions-mcp | 8 tools (managers, commissions, leaderboard) | compiles (1d9dc69) |
+| `dataxlr8-devtools-mcp` | pdaxt/dataxlr8-devtools-mcp | 20 tools (sessions, code analysis, git ops, QA gates) | compiles (3720c59) |
 | `dataxlr8-web` | pdaxt/dataxlr8-web | Portal (deals, training, contacts, admin) | compiles, running |
-| **Total** | **7 repos** | **45 tools** | |
+| **Total** | **8 repos** | **67 tools** | |
 
-### Absorbing contacts-mcp into crm-mcp
+### Completed Merges
 
-`dataxlr8-contacts-mcp` has 9 tools (CRUD, search, interactions, tags) that overlap with crm-mcp's contact management. CRM is the superset. contacts-mcp will be deprecated and its unique features merged into crm-mcp.
+`dataxlr8-contacts-mcp` (9 tools) has been absorbed into crm-mcp. CRM now has 12 tools including `add_interaction` and `tag_contact` from contacts-mcp. contacts-mcp is DEPRECATED.
 
 ### Must Build Next
 
 | Priority | What | Why |
 |----------|------|-----|
-| P0 | mcp-core: Add `mcp.rs` + `types.rs` | Eliminate 350 lines duplicated across all MCPs |
+| ~~P0~~ | ~~mcp-core: Add `mcp.rs` + `types.rs`~~ | ~~DONE (commit e4060c6)~~ |
 | P0 | enrichment-mcp: Provider refactor | Waterfall architecture, pluggable data sources |
-| P0 | contacts-mcp → crm-mcp merge | Remove overlap, single source of truth |
+| ~~P0~~ | ~~contacts-mcp → crm-mcp merge~~ | ~~DONE (commit 6ce23ee)~~ |
 | P1 | Gateway/routing for Cloud | Auth, metering, multi-tenant |
 | P1 | `dxlr8` CLI tool | Developer experience |
 
