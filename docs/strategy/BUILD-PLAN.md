@@ -4,17 +4,13 @@ _Updated: 2026-03-05_
 
 ## Objective
 
-Build and ship the two P0 MCPs that unlock revenue from recruitment agencies:
-1. **enrichment-mcp** (12 tools) — THE WEDGE. Replaces Apollo/ZoomInfo/Clearbit.
-2. **crm-mcp** (10 tools) — Replaces Salesforce/HubSpot/Pipedrive.
-
-Then use them + existing email-mcp to start outreach to Sydney recruitment agencies.
+Ship the P0 MCPs and refactor for production quality. Then start outreach to Sydney recruitment agencies.
 
 ---
 
 ## Architecture
 
-Every MCP follows the lego block pattern from `dataxlr8-features-mcp`:
+**Individual repos.** Every MCP is its own GitHub repo, connected through `dataxlr8-mcp-core` as a path dependency.
 
 ```
 dataxlr8-{name}-mcp/
@@ -27,108 +23,115 @@ dataxlr8-{name}-mcp/
 ```
 
 - Schema-per-MCP namespace in PostgreSQL
-- `dataxlr8-mcp-core` for DB pool, config, error types
+- `dataxlr8-mcp-core` for DB pool, config, error types, shared helpers, shared types
 - `rmcp` v0.17 for MCP protocol
 - Binary < 7MB, startup < 0.2ms, memory < 10MB
 
 ---
 
-## What Exists (Compiling)
+## What Exists (All Compiling, All on GitHub)
 
-| MCP | Tools | Status |
-|-----|-------|--------|
-| `dataxlr8-mcp-core` | shared lib | compiles |
-| `dataxlr8-features-mcp` | 9 tools (flags, overrides, bulk check) | compiles |
-| `dataxlr8-contacts-mcp` | 9 tools (CRUD, search, interactions, tags) | compiles |
-| `dataxlr8-email-mcp` | 6 tools (send, templates, stats) | compiles |
-| `dataxlr8-commissions-mcp` | 8 tools (managers, commissions, leaderboard) | compiles |
-| `dataxlr8-web` | Portal (deals, training, contacts, admin) | compiles, running |
-
----
-
-## What To Build
-
-### 1. `dataxlr8-enrichment-mcp` — THE WEDGE
-
-**Replaces:** Apollo ($49-149/user), ZoomInfo ($15K+/yr), Clearbit (dead), Lusha ($49-79/user)
-
-**Schema:** `enrichment.*`
-
-```sql
-CREATE SCHEMA IF NOT EXISTS enrichment;
-CREATE TABLE IF NOT EXISTS enrichment.lookups (
-    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    lookup_type TEXT NOT NULL,
-    query JSONB NOT NULL,
-    result JSONB,
-    source TEXT,
-    cached_at TIMESTAMPTZ DEFAULT now(),
-    expires_at TIMESTAMPTZ DEFAULT now() + interval '7 days'
-);
-```
-
-**Tools:**
-
-| # | Tool | What It Does | Data Source |
-|---|------|-------------|------------|
-| 1 | `enrich_person` | Name + company → email, title, LinkedIn | DNS MX + pattern gen + SMTP |
-| 2 | `enrich_company` | Domain → size, tech stack, socials | HTTP headers, DNS, meta tags |
-| 3 | `verify_email` | Email → deliverable/catch-all/disposable | SMTP handshake, MX lookup |
-| 4 | `domain_emails` | Domain → discoverable emails | Pattern detection + SMTP |
-| 5 | `search_people` | Query → matching cached people | FTS on lookups |
-| 6 | `reverse_domain` | IP/domain → company info | WHOIS, reverse DNS |
-| 7 | `bulk_enrich` | List → enriched records | Batch enrich |
-| 8 | `tech_stack` | Domain → technologies | HTTP, JS, DNS |
-| 9 | `hiring_signals` | Domain → job postings, growth | Careers page analysis |
-| 10 | `social_profiles` | Person/company → social URLs | Cross-platform patterns |
-| 11 | `enrichment_stats` | Usage statistics | Query counts |
-| 12 | `cache_lookup` | Check cached data | Direct cache query |
-
-**No external API keys needed.** Uses DNS, SMTP, HTTP, WHOIS, embedded disposable domain list.
-
-**Dependencies:** `reqwest`, `hickory-resolver` (DNS/MX), SMTP via raw TCP
-
-### 2. `dataxlr8-crm-mcp` — Salesforce Replacement
-
-**Replaces:** Salesforce ($25-318/user), HubSpot ($15-234/user), Pipedrive ($14-99/user)
-
-**Schema:** `crm.*` (contacts, deals, activities, tasks)
-
-**Tools:**
-
-| # | Tool | What It Does |
-|---|------|-------------|
-| 1 | `create_contact` | Create contact with custom fields |
-| 2 | `search_contacts` | Full-text search with filters |
-| 3 | `upsert_deal` | Create/update deal in pipeline |
-| 4 | `move_deal` | Move deal between stages |
-| 5 | `log_activity` | Log calls, emails, meetings |
-| 6 | `get_pipeline` | Pipeline overview with stage counts |
-| 7 | `assign_contact` | Assign contact to team member |
-| 8 | `create_task` | Follow-up task linked to contact/deal |
-| 9 | `import_contacts` | Bulk import from JSON |
-| 10 | `export_contacts` | Export with filters |
+| MCP | Repo | Tools | Status |
+|-----|------|-------|--------|
+| `dataxlr8-mcp-core` | pdaxt/dataxlr8-mcp-core | shared lib | compiles |
+| `dataxlr8-features-mcp` | pdaxt/dataxlr8-features-mcp | 9 tools | compiles |
+| `dataxlr8-enrichment-mcp` | pdaxt/dataxlr8-enrichment-mcp | 12 tools | compiles (commit 8b4e818) |
+| `dataxlr8-crm-mcp` | pdaxt/dataxlr8-crm-mcp | 10 tools | compiles (commit 6f6dd62) |
+| `dataxlr8-email-mcp` | pdaxt/dataxlr8-email-mcp | 6 tools | compiles |
+| `dataxlr8-commissions-mcp` | pdaxt/dataxlr8-commissions-mcp | 8 tools | compiles |
+| `dataxlr8-contacts-mcp` | pdaxt/dataxlr8-contacts-mcp | 9 tools | compiles (being absorbed into crm-mcp) |
+| `dataxlr8-web` | pdaxt/dataxlr8-web | Portal | compiles, running |
 
 ---
 
-## Build Status
+## Current Sprint: Refactor + Quality
+
+### Phase 1: mcp-core Refactor
+
+Add shared modules to eliminate duplication across all MCPs:
+
+- [ ] Add `src/mcp.rs` — shared tool helpers (make_schema, json_result, error_result, get_str, get_bool, get_str_array)
+- [ ] Add `src/types.rs` — shared data types (PersonData, CompanyData, EmailVerification, EmailCandidate)
+- [ ] Update `src/lib.rs` to export new modules
+- [ ] `cargo build` — must pass
+- [ ] Push to GitHub
+
+### Phase 2: enrichment-mcp Provider Refactor
+
+Restructure from monolithic tools/mod.rs (1306 lines) into provider-based waterfall:
+
+- [ ] Create `src/providers/mod.rs` — Provider trait + ProviderTier enum
+- [ ] Extract DNS logic → `src/providers/dns.rs`
+- [ ] Extract SMTP logic → `src/providers/smtp.rs`
+- [ ] Extract HTTP scraping → `src/providers/http.rs`
+- [ ] Add `src/providers/whois.rs` — domain registration data
+- [ ] Add `src/providers/github.rs` — GitHub API (GITHUB_TOKEN env var)
+- [ ] Add `src/providers/social.rs` — social URL patterns
+- [ ] Add `src/providers/hunter.rs` — Hunter.io API (HUNTER_API_KEY env var)
+- [ ] Add `src/providers/emailrep.rs` — email reputation
+- [ ] Stub `src/providers/fullcontact.rs` + `src/providers/pdl.rs`
+- [ ] Create `src/waterfall.rs` — orchestration (Free → Freemium → Paid)
+- [ ] Create `src/merge.rs` — multi-provider data merging with confidence
+- [ ] Create `src/cache.rs` — PostgreSQL cache extract
+- [ ] Slim down `src/tools/mod.rs` — thin wrappers calling waterfall
+- [ ] `cargo build` — must pass
+- [ ] Push to GitHub
+
+### Phase 3: contacts-mcp → crm-mcp Merge
+
+- [ ] Identify unique features in contacts-mcp (interactions, tags)
+- [ ] Add interactions + tags tables to crm-mcp schema
+- [ ] Add interaction + tag tools to crm-mcp
+- [ ] Verify crm-mcp covers all contacts-mcp functionality
+- [ ] `cargo build` — must pass
+- [ ] Push to GitHub
+- [ ] Archive contacts-mcp repo
+
+### Phase 4: Update All MCPs to Use Shared Helpers
+
+- [ ] features-mcp: import helpers from mcp-core instead of local copies
+- [ ] enrichment-mcp: import helpers from mcp-core
+- [ ] crm-mcp: import helpers from mcp-core
+- [ ] email-mcp: import helpers from mcp-core
+- [ ] commissions-mcp: import helpers from mcp-core
+- [ ] All: `cargo build` passes
+- [ ] All: push to GitHub
+
+### Phase 5: QA
+
+- [ ] enrichment-mcp: `verify_email test@gmail.com` → deliverable
+- [ ] enrichment-mcp: `verify_email fake@nonexistent.xyz` → undeliverable
+- [ ] enrichment-mcp: `enrich_company google.com` → returns data
+- [ ] crm-mcp: create contact → search → create deal → get pipeline roundtrip
+- [ ] email-mcp: send test email
+- [ ] All MCPs: start binary with DATABASE_URL, verify MCP handshake
+
+---
+
+## Previous Build Status (Completed)
 
 - [x] enrichment-mcp: Cargo.toml + src structure
 - [x] enrichment-mcp: Schema setup (db.rs)
-- [x] enrichment-mcp: 12 tools implemented (1282 lines)
-- [x] enrichment-mcp: `cargo build` passes (37MB binary)
+- [x] enrichment-mcp: 12 tools implemented (1306 lines)
+- [x] enrichment-mcp: `cargo build` passes
 - [x] enrichment-mcp: Pushed to GitHub (pdaxt/dataxlr8-enrichment-mcp, commit 8b4e818)
-- [ ] enrichment-mcp: QA tested
 - [x] crm-mcp: Cargo.toml + src structure
 - [x] crm-mcp: Schema setup (db.rs)
 - [x] crm-mcp: 10 tools implemented (1024 lines)
-- [x] crm-mcp: `cargo build` passes (24MB binary)
+- [x] crm-mcp: `cargo build` passes
 - [x] crm-mcp: Pushed to GitHub (pdaxt/dataxlr8-crm-mcp, commit 6f6dd62)
-- [ ] crm-mcp: QA tested
-- [ ] Outreach: Templates created in email-mcp
-- [ ] Outreach: 50 Sydney recruitment agencies enriched
-- [ ] Outreach: Contacts loaded into crm-mcp
-- [ ] Outreach: First batch sent
+- [x] BUILD-PLAN.md created and pushed to GitHub
+
+---
+
+## After Refactor: Outreach
+
+- [ ] Register all MCPs in Claude Code config
+- [ ] Use enrichment-mcp to find emails for 50 Sydney recruitment agencies
+- [ ] Use crm-mcp to load contacts with `create_contact`
+- [ ] Use email-mcp to create cold outreach templates
+- [ ] Track pipeline with `upsert_deal` in crm-mcp
+- [ ] Request AWS SES production access (currently sandbox: 200/day)
 
 ---
 
@@ -137,17 +140,15 @@ CREATE TABLE IF NOT EXISTS enrichment.lookups (
 | Agent | Location | Task |
 |-------|----------|------|
 | Coordinator | screen1.pane3 | Orchestrate, monitor, update GitHub |
-| Dev A | screen10.pane1 | Build enrichment-mcp |
-| Dev B | screen10.pane2 | Build crm-mcp |
-| QA | screen10.pane3 | Test both MCPs after build |
-
-Dev A and Dev B run in parallel. QA spawns after both compile.
+| Dev A | screen10.pane1 | enrichment-mcp provider refactor |
+| Dev B | screen10.pane2 | Available for next task |
+| QA | screen10.pane3 | Test all MCPs after refactor |
 
 ---
 
 ## Revenue Target
 
 $50K/month from recruitment agencies:
-- 10 agencies × $5K/month = $50K
+- 10 agencies x $5K/month = $50K
 - Sell enrichment + CRM + email automation as a bundle
 - First 3 clients via Sydney network + cold outreach

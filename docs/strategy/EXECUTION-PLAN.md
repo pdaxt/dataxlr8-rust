@@ -1,6 +1,6 @@
 # DataXLR8 Execution Plan — All Engines From Day 1
 
-_Updated: 2026-03-04_
+_Updated: 2026-03-05_
 
 ## The Rule: Nothing Is Sequential. Everything Runs In Parallel.
 
@@ -13,30 +13,61 @@ RIGHT:  Find Clients + Build MCPs + Launch Cloud → Money from Week 1
 
 ## Current State
 
-### What Exists
-- [x] `dataxlr8-mcp-core` — Shared Rust library (DB pool, config, errors, logging)
-- [x] `dataxlr8-features-mcp` — 8 tools, 6.5MB binary, proof of concept
-- [x] Next.js web app with BusinessAnalyzer chatbot (AI Opportunity Scanner)
-- [x] Slack webhook for high-intent lead detection
-- [x] Internal operations web app (team, deals, commissions, suppliers)
-- [x] Strategy docs and market research
-- [x] Google Sheets operational database
-- [x] Resend email integration
+### What Exists (All Compiling, All on GitHub)
+
+| Repo | What | Tools | Status |
+|------|------|-------|--------|
+| `dataxlr8-mcp-core` | Shared Rust library | DB, config, errors, logging | compiles |
+| `dataxlr8-features-mcp` | Feature flags, A/B testing | 9 tools | compiles |
+| `dataxlr8-enrichment-mcp` | Lead enrichment (THE WEDGE) | 12 tools | compiles, provider refactor in progress |
+| `dataxlr8-crm-mcp` | CRM pipeline, deals, contacts | 10 tools | compiles |
+| `dataxlr8-email-mcp` | Email sending + templates | 6 tools | compiles |
+| `dataxlr8-commissions-mcp` | Sales commissions, leaderboard | 8 tools | compiles |
+| `dataxlr8-contacts-mcp` | Contact management | 9 tools | compiles (being absorbed into crm-mcp) |
+| `dataxlr8-web` | Employee portal | deals, training, commissions, admin | compiles, running |
+| `dataxlr8-rust` | Strategy docs | architecture, plans | — |
+| **Total** | **8 repos + docs** | **54 tools** | |
+
+Additional assets:
+- Next.js web app with BusinessAnalyzer chatbot (AI Opportunity Scanner)
+- Google Sheets operational database
+- Resend email integration
+- Google OAuth + Invite System
+- Strategy docs and market research
+
+### Architecture: Individual Repos
+
+Every MCP is its own GitHub repo under `pdaxt/`. Connected only through `dataxlr8-mcp-core` as a path dependency. Each deploys independently.
+
+```
+dataxlr8-{name}-mcp/
+├── Cargo.toml          # rmcp 0.17, dataxlr8-mcp-core (path), sqlx, tokio, serde
+├── src/
+│   ├── main.rs         # config → logging → db → schema → server → stdio
+│   ├── db.rs           # CREATE SCHEMA IF NOT EXISTS {name}; + tables
+│   └── tools/
+│       └── mod.rs      # types → schema helpers → build_tools() → handlers → ServerHandler
+```
+
+### What's In Progress
+
+- [ ] enrichment-mcp: Provider-based waterfall architecture refactor
+- [ ] mcp-core: Add `mcp.rs` (shared tool helpers) + `types.rs` (shared data types)
+- [ ] contacts-mcp: Merge unique features into crm-mcp, deprecate
 
 ### What's Missing
-- [ ] enrichment-mcp (THE WEDGE — Clearbit replacement)
-- [ ] crm-mcp, email-mcp, finance-mcp, sales-mcp (core business MCPs)
+
 - [ ] `dxlr8` CLI tool
-- [ ] DataXLR8 Cloud hosting infrastructure
+- [ ] DataXLR8 Cloud hosting infrastructure (gateway, auth, metering)
 - [ ] Chrome Extension
 - [ ] First 3 paying agency clients
-- [ ] Open-source MCPs on GitHub/crates.io
+- [ ] Open-source MCPs on crates.io
 
 ---
 
 ## Month 1: Revenue + Foundation (Target: $15K MRR)
 
-### Week 1: First Revenue + Start Building
+### Week 1: First Revenue + Finish Core
 
 **Agency (Revenue):**
 - [ ] Send 50 LinkedIn + cold email messages: "$5K AI Quick Win — replace spreadsheets in 1 week"
@@ -44,13 +75,14 @@ RIGHT:  Find Clients + Build MCPs + Launch Cloud → Money from Week 1
 - [ ] Book 5 discovery calls → close 2 Quick Win clients ($10K)
 - [ ] Start delivering: build 1-2 AI agents per client using existing MCPs + custom code
 
-**Open-Source (Adoption):**
-- [ ] Start building `dataxlr8-enrichment-mcp` in Rust
-  - Waterfall enrichment: free data sources (LinkedIn scraping, DNS, WHOIS, Google, GitHub)
-  - Email verification via SMTP checks
-  - Company tech stack detection
-  - 12 tools, target: 6.5MB binary
-- [ ] Set up GitHub org with consistent branding
+**Engineering (Foundation):**
+- [x] Build `dataxlr8-enrichment-mcp` — 12 tools, compiles, on GitHub
+- [x] Build `dataxlr8-crm-mcp` — 10 tools, compiles, on GitHub
+- [ ] Complete enrichment-mcp provider refactor (waterfall: Free → Freemium → Paid)
+- [ ] Refactor mcp-core: add mcp.rs + types.rs (eliminate duplication)
+- [ ] Merge contacts-mcp into crm-mcp
+- [ ] QA test enrichment-mcp (verify_email on real addresses)
+- [ ] QA test crm-mcp (full roundtrip: create → search → deal → pipeline)
 
 **Content (Pipeline):**
 - [ ] Draft blog post: "Why We're Building MCP Servers in Rust"
@@ -65,26 +97,19 @@ RIGHT:  Find Clients + Build MCPs + Launch Cloud → Money from Week 1
 - [ ] Book 3 more discovery calls
 
 **Open-Source:**
-- [ ] Ship `dataxlr8-enrichment-mcp` v0.1.0 to GitHub
-- [ ] Publish to crates.io
+- [ ] Publish enrichment-mcp v0.1.0 to crates.io
 - [ ] README with quick-start: install, run, first enrichment in 60 seconds
 - [ ] Publish blog: "The Open-Source Clearbit Replacement (6.5MB, Rust, 0.2ms)"
 - [ ] Submit to Hacker News
-
-**AI Scanner:**
-- [ ] Upgrade BusinessAnalyzer chatbot to generate shareable AI opportunity reports
-- [ ] Add "Share your report" social sharing buttons
 
 ### Week 3: Expand
 
 **Agency:**
 - [ ] Close 1 more Quick Win client ($5K) = $15K total Month 1
 - [ ] Start upsell conversation with Week 1 clients → $25K core build
-- [ ] Create case study template for agency work
 
-**Open-Source:**
-- [ ] Start `dataxlr8-crm-mcp` (contacts, deals, pipeline, activities — 10 tools)
-- [ ] Start `dataxlr8-email-mcp` (send, templates, sequences — 6 tools)
+**Engineering:**
+- [ ] Ship finance-mcp or sales-mcp (next priority MCP)
 - [ ] Publish performance benchmarks: Rust MCP vs Python MCP
 
 ### Week 4: Scale
@@ -95,7 +120,7 @@ RIGHT:  Find Clients + Build MCPs + Launch Cloud → Money from Week 1
 - [ ] Systemize: create agency delivery playbook using DataXLR8 MCPs
 
 **Open-Source:**
-- [ ] Ship crm-mcp v0.1.0 + email-mcp v0.1.0 to GitHub/crates.io
+- [ ] Publish crm-mcp + email-mcp to crates.io
 - [ ] Chrome Extension alpha: LinkedIn enrichment on hover, 10 free/day
 - [ ] Start `dxlr8` CLI: `dxlr8 add`, `dxlr8 run` (local dev mode)
 
@@ -105,7 +130,7 @@ RIGHT:  Find Clients + Build MCPs + Launch Cloud → Money from Week 1
 
 **Month 1 Deliverables:**
 - 3 agency clients = $15K revenue
-- 3 open-source MCPs on GitHub (enrichment, crm, email)
+- 7 open-source MCPs on GitHub (features, enrichment, crm, email, commissions + new)
 - Chrome Extension alpha
 - Blog post on Hacker News
 - Pipeline: 2-3 discovery calls for Month 2
@@ -117,7 +142,6 @@ RIGHT:  Find Clients + Build MCPs + Launch Cloud → Money from Week 1
 **Agency ($25K):**
 - [ ] Deliver first Core Build ($25K)
 - [ ] 3 new Quick Win clients ($15K)
-- [ ] First virtual meetup: "Replace Your SaaS Stack with AI"
 - [ ] Referral program: existing clients refer → $500 credit
 
 **Open-Source ($0 but builds pipeline):**
@@ -131,14 +155,7 @@ RIGHT:  Find Clients + Build MCPs + Launch Cloud → Money from Week 1
 - [ ] `dxlr8 deploy` command working
 - [ ] Gateway with API key auth + usage metering
 - [ ] Free tier: 3 MCPs, 10K calls/mo
-- [ ] Basic monitoring dashboard
 - [ ] First 10 paying users at $49/mo
-
-**Chrome Extension:**
-- [ ] Public beta: 10 free lookups/day
-- [ ] LinkedIn enrichment on hover
-- [ ] "Powered by DataXLR8" branding
-- [ ] Chrome Web Store listing
 
 ---
 
@@ -147,8 +164,6 @@ RIGHT:  Find Clients + Build MCPs + Launch Cloud → Money from Week 1
 **Agency ($35K):**
 - [ ] 2 Core Builds in progress ($50K pipeline)
 - [ ] 2 new Quick Win clients ($10K)
-- [ ] Second virtual meetup: "AI Agents That Replace Your SaaS Stack"
-- [ ] First enterprise inquiry (from case study)
 
 **Cloud Beta ($3K):**
 - [ ] Public beta launch
@@ -158,16 +173,9 @@ RIGHT:  Find Clients + Build MCPs + Launch Cloud → Money from Week 1
 - [ ] 30 paying users
 
 **Open-Source:**
-- [ ] Ship `dataxlr8-intelligence-mcp` + `dataxlr8-scraper-mcp`
-- [ ] Total: 7 MCPs on GitHub, 50+ tools
-- [ ] Framework integration guide: "Using DataXLR8 MCPs with LangChain"
+- [ ] Ship intelligence-mcp + scraper-mcp
+- [ ] Total: 10+ MCPs on GitHub, 70+ tools
 - [ ] Reach out to LangChain, CrewAI for partnership
-
-**Content:**
-- [ ] 3 case studies published
-- [ ] "How [Agency] Replaced 7 SaaS Tools with AI Agents" blog
-- [ ] YouTube tutorial: "Build an AI SDR in 10 Minutes"
-- [ ] First hackathon (virtual)
 
 ---
 
@@ -181,14 +189,9 @@ RIGHT:  Find Clients + Build MCPs + Launch Cloud → Money from Week 1
 - [ ] Auto-scaling
 - [ ] RBAC for teams
 
-**Open-Source:** 10+ MCPs total
+**Open-Source:** 12+ MCPs total
 - [ ] analytics-mcp, documents-mcp, calendar-mcp, auth-mcp
 - [ ] Community contributions starting
-- [ ] 50K+ total downloads
-
-**Enterprise:** First enterprise inquiry → pilot
-- [ ] SSO/SAML for enterprise pilot
-- [ ] Audit log basics
 
 ---
 
@@ -199,86 +202,33 @@ RIGHT:  Find Clients + Build MCPs + Launch Cloud → Money from Week 1
 **Cloud:** 800 paid users, $70K MRR
 - [ ] Enterprise tier live
 - [ ] SOC 2 Type II process started
-- [ ] Data residency options
 
 **Open-Source:** 15+ MCPs, 200K+ downloads
 - [ ] First third-party MCPs built by community
-- [ ] "DataXLR8 MCPs" becoming standard reference
 
 **Data Moat:** 10M+ enrichment lookups → aggregate data improving
-- [ ] Better enrichment results than Apollo for common queries
-- [ ] Data advantage visible in conversion rates
-
----
-
-## The Enrichment Wedge (The Critical First MCP)
-
-### Why enrichment-mcp Goes First
-
-1. **Clearbit just died** (April 2025) — immediate market vacuum
-2. **Every developer needs it** — enrichment is the #1 use case for AI agents
-3. **Usage-based revenue** — every lookup = money on Cloud
-4. **Data compounds** — every lookup improves aggregate data = permanent moat
-5. **Natural expansion** — "I use enrichment-mcp, what else do you have?"
-6. **Agency lead gen** — "You spend $15K/yr on Apollo. enrichment-mcp is free. Want us to build you a full system?"
-
-### enrichment-mcp v1.0 Spec
-
-```rust
-// 12 tools, all Rust, <6.5MB binary
-
-#[tool] async fn enrich_person(name, company) → EnrichedPerson
-  // Waterfall: LinkedIn → GitHub → Google → WHOIS → public records
-
-#[tool] async fn enrich_company(domain) → CompanyProfile
-  // Tech stack, size, funding, key people, social profiles
-
-#[tool] async fn verify_email(email) → EmailVerification
-  // SMTP check, MX record, disposable detection, catch-all detection
-
-#[tool] async fn domain_emails(domain) → Vec<Email>
-  // Pattern detection + verification across common formats
-
-#[tool] async fn search_people(query) → Vec<PersonResult>
-  // Title, company, location filters
-
-#[tool] async fn reverse_ip(ip) → CompanyMatch
-  // IP → company identification for website visitor tracking
-
-#[tool] async fn bulk_enrich(records) → Vec<EnrichedResult>
-  // Batch enrichment for imports
-
-// + 5 more tools for tech stack detection, funding tracking, etc.
-```
-
-### Pricing: 60x Cheaper Than Apollo
-
-| Volume | DataXLR8 Cloud | Apollo | ZoomInfo | Savings |
-|--------|---------------|--------|----------|---------|
-| 1,000 lookups | $5 | $300+ | $500+ | 60-100x |
-| 10,000 lookups | $50 | $3,000+ | $5,000+ | 60-100x |
-| Self-hosted | $0 | N/A | N/A | ∞ |
 
 ---
 
 ## MCP Build Priority Order
 
-| Priority | MCP | Tools | Revenue Type | Replaces |
-|----------|-----|-------|-------------|----------|
-| **P0** | enrichment-mcp | 12 | Cloud (per-lookup) + Agency | Apollo, ZoomInfo, Clearbit |
-| **P0** | crm-mcp | 10 | Agency + Cloud | Salesforce, HubSpot |
-| **P0** | email-mcp | 6 | Agency + Cloud | SendGrid, Outreach |
-| **P0** | gateway-mcp | 5 | Infrastructure | API gateways |
-| **P1** | finance-mcp | 8 | Agency (multi-tax) | QuickBooks, Xero |
-| **P1** | sales-mcp | 10 | Agency + Cloud | Outreach, SalesLoft |
-| **P1** | scraper-mcp | 6 | Cloud + Agency | Apify, ScrapingBee |
-| **P2** | intelligence-mcp | 10 | Cloud | Crayon, Similarweb |
-| **P2** | content-mcp | 10 | Cloud | Jasper, Copy.ai |
-| **P2** | analytics-mcp | 6 | Cloud + Enterprise | Tableau, Metabase |
-| **P3** | documents-mcp | 6 | Enterprise | DocuSign, Google Docs |
-| **P3** | calendar-mcp | 5 | Agency | Google Calendar |
-| **P3** | auth-mcp | 6 | Cloud infrastructure | Auth0, Clerk |
-| **P3** | hr-mcp | 8 | Agency | BambooHR, Gusto |
+| Priority | MCP | Tools | Status | Replaces |
+|----------|-----|-------|--------|----------|
+| **P0** | enrichment-mcp | 12 | compiles, provider refactor | Apollo, ZoomInfo, Clearbit |
+| **P0** | crm-mcp | 10 | compiles | Salesforce, HubSpot |
+| **P0** | email-mcp | 6 | compiles | SendGrid, Outreach |
+| **P0** | mcp-core refactor | — | in progress | (internal) |
+| **P1** | finance-mcp | 8 | planned | QuickBooks, Xero |
+| **P1** | sales-mcp | 10 | planned | Outreach, SalesLoft |
+| **P1** | scraper-mcp | 6 | planned | Apify, ScrapingBee |
+| **P1** | gateway-mcp | 5 | planned | (infrastructure) |
+| **P2** | intelligence-mcp | 10 | planned | Crayon, Similarweb |
+| **P2** | content-mcp | 10 | planned | Jasper, Copy.ai |
+| **P2** | analytics-mcp | 6 | planned | Tableau, Metabase |
+| **P3** | documents-mcp | 6 | planned | DocuSign |
+| **P3** | calendar-mcp | 5 | planned | Calendly |
+| **P3** | auth-mcp | 6 | planned | Auth0, Clerk |
+| **P3** | hr-mcp | 8 | planned | BambooHR, Gusto |
 
 ---
 
@@ -290,12 +240,35 @@ Every MCP follows these standards:
 |--------|--------|
 | Tool call latency | <0.2ms (excluding external API calls) |
 | Memory per MCP | <10MB |
-| Binary size | <6.5MB |
+| Binary size | <7MB |
 | Cold start | <5ms |
-| Shared library | dataxlr8-mcp-core (DB, config, logging, auth, metrics) |
+| Shared library | dataxlr8-mcp-core (DB, config, logging, tool helpers, types) |
 | MCP SDK | rmcp v0.17+ |
-| Database | PostgreSQL via sqlx (compile-time checked) |
+| Database | PostgreSQL via sqlx |
 | License | MIT |
+| Repo | Individual repo per MCP |
+
+---
+
+## Development Orchestration
+
+### Multi-Agent Development
+
+Agents work across tmux panes, coordinated by AgentOS:
+
+| Role | Location | What |
+|------|----------|------|
+| Coordinator | screen1.pane3 | Orchestrate, monitor, update GitHub |
+| Dev agents | screen10.panes | Build MCPs in parallel |
+| QA agents | screen10/screen1 | Test MCPs after build |
+
+### Git Protocol
+
+Every agent follows:
+1. `cargo build` — must pass before commit
+2. Small commits, always buildable, push after every feature
+3. No agent modifies another agent's repo
+4. Descriptive commit messages (no AI attribution)
 
 ---
 
@@ -308,47 +281,8 @@ Every MCP follows these standards:
 | **Cloud paid users** | 0 | 30 | 150 | 800 |
 | **Cloud MRR** | $0 | $2K | $12K | $70K |
 | **Total MRR** | $15K | $37K | $62K | $120K |
-| **MCPs published** | 3 | 7 | 10 | 15 |
+| **MCPs published** | 7 | 10 | 13 | 15 |
 | **GitHub stars** | 200 | 2K | 10K | 50K |
-| **crate downloads** | 1K | 20K | 100K | 500K |
-| **Chrome Extension users** | 0 | 500 | 3K | 10K |
-| **Enrichment lookups (total)** | 10K | 200K | 2M | 10M |
-| **Blog monthly visitors** | 1K | 10K | 50K | 200K |
-
----
-
-## Development Orchestration
-
-**Full technical details:** [../DEVELOPMENT-STRATEGY.md](../DEVELOPMENT-STRATEGY.md) | [../TMUX-LAYOUT.md](../TMUX-LAYOUT.md)
-
-### How We Build This Fast
-
-48 Claude agents work in parallel across 4 tmux screens:
-
-| Screen | Focus | Agents | What Gets Built |
-|--------|-------|--------|----------------|
-| 1 (`claude6`) | MCP Development | 12 | enrichment, crm, gateway, sales, finance, scraper MCPs |
-| 2 (`claude6-screen2`) | Web + Portals | 12 | Public site, employee portal, client portal, training |
-| 3 (`claude6-screen3`) | Testing + CI/CD | 12 | Integration tests, E2E, GitHub Actions, benchmarks |
-| 4 (`claude6-screen4`) | Infrastructure | 12 | PostgreSQL, data migration, Chrome Extension, Cloud |
-
-### Wave Mapping to Weekly Plan
-
-| Week | Wave | Screen 1 (MCPs) | Screen 2 (Web) | Screen 3 (Test) | Screen 4 (Infra) |
-|------|------|-----------------|----------------|-----------------|-------------------|
-| 1-2 | Wave 1 | enrichment + crm + gateway | Public website | CI templates | PostgreSQL setup |
-| 3-4 | Wave 2 | sales + finance + scraper | Employee + Client portal | Integration + E2E | Data migration |
-| 5-8 | Wave 3 | Internal MCPs (8) | Training + Docs + Blog | Full test coverage | Chrome Ext + Cloud |
-| 9-12 | Wave 4 | Meeting domain (8) | Enterprise features | Performance tests | Production deployment |
-
-### Git-First Protocol
-
-Every agent follows:
-1. `cargo test` — must pass before commit
-2. `cargo clippy -- -D warnings` — no warnings
-3. `cargo build --release` — binary <7MB
-4. Small commits, always buildable, push after every feature
-5. No agent modifies another agent's repo
 
 ---
 
@@ -357,9 +291,7 @@ Every agent follows:
 | Risk | Probability | Impact | Mitigation |
 |------|-------------|--------|------------|
 | No agency clients in Month 1 | Medium | High | Lower price to $3K, offer money-back guarantee, increase outreach volume |
-| Enrichment data quality too low | High | High | Multi-source waterfall, confidence scores, focus on verifiable data first (email, phone) |
+| Enrichment data quality too low | High | High | Provider waterfall with confidence scoring. Free sources first, escalate to freemium only when needed. |
 | Composio builds business MCPs | Low | High | They're focused on integration gateway. Our Rust performance + agency knowledge is 2 years ahead. |
-| AWS/Cloudflare builds MCP hosting | Medium | Medium | We're not competing on hosting — we're competing on the MCPs themselves. They'd host our MCPs. |
-| Agency clients slower than expected | Medium | Medium | Lower price to $3K, money-back guarantee, increase outreach volume, leverage Sydney local network |
-| Open-source gets no traction | Medium | High | Clearbit replacement narrative, HN launch, LangChain partnership, performance benchmarks |
-| Burn rate too high | Low | High | Agency revenue covers costs from Month 1. No external funding needed for bootstrap phase. |
+| Agency clients slower than expected | Medium | Medium | Lower price, money-back guarantee, leverage Sydney local network |
+| Open-source gets no traction | Medium | High | Clearbit replacement narrative, HN launch, performance benchmarks |

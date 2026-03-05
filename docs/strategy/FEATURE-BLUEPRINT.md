@@ -1,96 +1,160 @@
 # DataXLR8 Feature Blueprint — AI-Native Business MCPs
 
-_Updated: 2026-03-04_
+_Updated: 2026-03-05_
 
 ## What We Build: Business Tools, Not Connectors
 
 Composio connects agents to 500+ existing APIs. DataXLR8 builds the actual business tools agents use — the CRM, enrichment engine, finance system. Not wrappers. The implementations.
 
+**Architecture:** Individual repos. Each MCP is its own GitHub repo, its own binary, its own release cycle. Connected only through `dataxlr8-mcp-core`.
+
 ---
 
-## The MCP Catalog (What Each Replaces)
+## The MCP Catalog
 
-### Tier 1: Revenue MCPs (Build First — Months 1-3)
+### Currently Shipped (Compiling on GitHub)
+
+#### `dataxlr8-mcp-core` — Shared Library
+
+**Repo:** pdaxt/dataxlr8-mcp-core
+**Status:** Compiles. Needs `mcp.rs` + `types.rs` added.
+
+Currently provides:
+```rust
+pub mod config;   // Config::from_env() — DATABASE_URL, LOG_LEVEL
+pub mod db;       // Database::connect() — PgPool wrapper
+pub mod error;    // McpError, McpResult, ErrorCode enum
+pub mod logging;  // logging::init() — tracing subscriber
+```
+
+Planned additions:
+```rust
+pub mod mcp;      // Shared tool helpers: make_schema(), json_result(), error_result(), get_str(), get_bool(), get_str_array()
+pub mod types;    // Shared data types: PersonData, CompanyData, EmailVerification, EmailCandidate
+```
+
+The `mcp` module eliminates ~350 lines of duplicated helper code across all MCPs. Every MCP currently copies the same 7 helper functions.
+
+#### `dataxlr8-features-mcp` — Feature Flags & A/B Testing
+
+**Repo:** pdaxt/dataxlr8-features-mcp | **Status:** Compiles | **Tools:** 9
+
+| Tool | What It Does |
+|------|-------------|
+| `check_flag` | Check if feature flag is enabled for user/context |
+| `create_flag` | Create new feature flag |
+| `update_flag` | Update flag configuration |
+| `delete_flag` | Remove feature flag |
+| `list_flags` | List all flags with status |
+| `set_override` | Override flag for specific user/context |
+| `remove_override` | Remove override |
+| `check_flags_bulk` | Check multiple flags at once |
+| `seed_page_flags` | Seed flags for a page |
 
 #### `dataxlr8-enrichment-mcp` — THE WEDGE
 
+**Repo:** pdaxt/dataxlr8-enrichment-mcp | **Status:** Compiles, provider refactor in progress
 **Replaces:** Apollo ($49-149/user), ZoomInfo ($15K+/yr), Clearbit (dead), Lusha ($49-79/user)
 **Revenue:** $0.005/lookup on Cloud, agency builds, data moat
-**Priority:** P0 — ship in Week 2
 
 | Tool | What It Does | Data Sources |
 |------|-------------|-------------|
-| `enrich_person` | Name + company → email, phone, LinkedIn, title | LinkedIn, GitHub, Google, public records |
-| `enrich_company` | Domain → size, funding, tech stack, key people, socials | Website analysis, DNS, Crunchbase-like, job boards |
-| `verify_email` | Email → deliverable, catch-all, disposable check | SMTP verification, MX records, pattern detection |
-| `domain_emails` | Domain → all discoverable email addresses | Pattern detection + SMTP verification |
-| `search_people` | Query (title, company, location) → matching people | Aggregated data from all enrichment lookups |
-| `reverse_ip` | IP → company identification | IP-to-ASN mapping, WHOIS |
-| `bulk_enrich` | CSV/list → enriched records | All sources, batched |
-| `tech_stack` | Domain → technologies used | HTTP headers, JS libraries, DNS records |
-| `funding_tracker` | Company → funding history, investors | Public data aggregation |
-| `hiring_signals` | Company → open positions, growth rate | Job board scraping |
-| `social_profiles` | Person/company → all social accounts | Cross-platform search |
-| `news_mentions` | Company → recent news, press releases | News aggregation |
+| `enrich_person` | Name + company → email, title, LinkedIn | DNS MX + pattern gen + SMTP |
+| `enrich_company` | Domain → size, tech stack, socials | HTTP headers, DNS, meta tags |
+| `verify_email` | Email → deliverable, catch-all, disposable | SMTP handshake, MX records |
+| `domain_emails` | Domain → all discoverable emails | Pattern detection + SMTP verify |
+| `search_people` | Query → matching people | FTS on cached lookups |
+| `reverse_domain` | IP/domain → company info | WHOIS, reverse DNS |
+| `bulk_enrich` | List → enriched records | All sources, batched |
+| `tech_stack` | Domain → technologies used | HTTP headers, JS libs, DNS |
+| `hiring_signals` | Domain → job postings, growth | Careers page analysis |
+| `social_profiles` | Person/company → social URLs | Cross-platform patterns |
+| `enrichment_stats` | Usage statistics | Query counts |
+| `cache_lookup` | Check cached data | Direct cache query |
+
+**Provider Architecture (refactoring):**
+```
+providers/
+├── mod.rs           # Provider trait + ProviderTier enum (Free/Freemium/Paid)
+├── dns.rs           # Free: MX, A, AAAA, NS, TXT via hickory-resolver
+├── smtp.rs          # Free: SMTP handshake verification
+├── http.rs          # Free: Website scraping, meta tags, headers
+├── whois.rs         # Free: Domain registration data
+├── github.rs        # Free: GitHub API (5K req/hr, needs GITHUB_TOKEN)
+├── social.rs        # Free: Social media URL pattern generation
+├── hunter.rs        # Freemium: Hunter.io email finder (HUNTER_API_KEY)
+├── emailrep.rs      # Free: Email reputation scoring
+├── fullcontact.rs   # Freemium: Person/company enrichment (stub)
+└── pdl.rs           # Freemium: People Data Labs (stub)
+```
+
+**Waterfall:** Try providers cheapest-first (Free → Freemium → Paid). Only escalate if confidence < 0.7. Merge results from multiple providers with confidence scoring.
 
 **The data moat:** Every lookup feeds aggregate data. More users → better results → more users.
 
 #### `dataxlr8-crm-mcp` — Replaces Salesforce
 
+**Repo:** pdaxt/dataxlr8-crm-mcp | **Status:** Compiles
 **Replaces:** Salesforce ($25-318/user), HubSpot CRM ($15-234/user), Pipedrive ($14-99/user)
-**Revenue:** Agency builds (every client needs CRM), Cloud hosting
-**Priority:** P0 — ship in Week 3-4
+**Schema:** `crm.*` (contacts, deals, activities, tasks)
 
 | Tool | What It Does |
 |------|-------------|
-| `create_contact` | Create contact with custom fields per business |
-| `search_contacts` | Full-text search with filters, pagination |
+| `create_contact` | Create contact with custom fields |
+| `search_contacts` | Full-text search with filters |
 | `upsert_deal` | Create/update deal in pipeline |
-| `move_deal` | Move deal between stages with notes |
-| `log_activity` | Log calls, emails, meetings against contacts/deals |
-| `get_pipeline` | Pipeline overview with stage counts and values |
+| `move_deal` | Move deal between stages |
+| `log_activity` | Log calls, emails, meetings |
+| `get_pipeline` | Pipeline overview with stage counts |
 | `assign_contact` | Assign contact to team member |
-| `create_task` | Create follow-up task linked to contact/deal |
-| `import_contacts` | Bulk import from CSV/JSON |
-| `export_contacts` | Export with filters to CSV/JSON |
+| `create_task` | Follow-up task linked to contact/deal |
+| `import_contacts` | Bulk import from JSON |
+| `export_contacts` | Export with filters |
 
-**Agent-native advantage:** Agents don't need to navigate Salesforce's 500 UI settings. `upsert_deal` in 0.2ms vs Salesforce API in 200ms.
+**Note:** `dataxlr8-contacts-mcp` (9 tools) is being absorbed into crm-mcp. CRM is the superset with deals, activities, and tasks on top of contact management.
 
-#### `dataxlr8-email-mcp` — Replaces Outreach + SendGrid
+#### `dataxlr8-email-mcp` — Email Automation
 
-**Replaces:** Outreach ($100/user), SalesLoft ($75/user), SendGrid ($20-90/mo), Mailchimp ($13-350/mo)
-**Revenue:** Agency builds, Cloud hosting
-**Priority:** P0 — ship in Week 3-4
+**Repo:** pdaxt/dataxlr8-email-mcp | **Status:** Compiles
+**Replaces:** SendGrid ($20-90/mo), Mailchimp ($13-350/mo)
 
 | Tool | What It Does |
 |------|-------------|
 | `send_email` | Send email with template variables, tracking |
 | `create_template` | Create reusable email template |
-| `create_sequence` | Multi-step email sequence with delays |
-| `track_opens` | Track email opens and clicks |
-| `manage_unsubscribes` | Handle unsubscribe requests, compliance |
+| `list_templates` | List available templates |
+| `get_template` | Get template details |
+| `email_stats` | Delivery and open stats |
 | `bulk_send` | Send to list with personalization |
 
-#### `dataxlr8-gateway-mcp` — Infrastructure
+#### `dataxlr8-commissions-mcp` — Sales Commissions
 
-**Purpose:** Single HTTPS endpoint routing to all MCPs, auth, metering
-**Priority:** P0 — needed for Cloud
+**Repo:** pdaxt/dataxlr8-commissions-mcp | **Status:** Compiles
 
 | Tool | What It Does |
 |------|-------------|
-| `health_check` | Status of all deployed MCPs |
-| `list_tools` | Available tools across all MCPs |
-| `usage_stats` | Tool call counts, latency percentiles |
-| `rate_limit_status` | Current rate limit state per API key |
-| `config_reload` | Hot-reload tenant configuration |
+| `create_manager` | Register commission manager |
+| `record_commission` | Record commission on deal |
+| `get_commission_summary` | Manager's commission total |
+| `get_leaderboard` | Ranked leaderboard |
+| `pay_commission` | Mark commission as paid |
+| `manager_stats` | Manager performance stats |
+| `list_managers` | All managers |
+| `get_manager` | Manager details |
 
-### Tier 2: Expansion MCPs (Months 3-6)
+#### `dataxlr8-contacts-mcp` — DEPRECATED (merging into crm-mcp)
+
+**Repo:** pdaxt/dataxlr8-contacts-mcp | **Status:** Compiles, being absorbed
+
+9 tools for contact CRUD, search, interactions, tags. Overlaps with crm-mcp's contact management. Unique features (interactions, tags) will be merged into crm-mcp.
+
+---
+
+### Tier 2: Expansion MCPs (Months 3-6) — Planned
 
 #### `dataxlr8-finance-mcp` — Replaces QuickBooks + Xero
 
-**Replaces:** QuickBooks ($30-200/mo), Xero ($15-78/mo)
-**Revenue:** Agency builds + Cloud
-**Priority:** P1
+**Replaces:** QuickBooks ($30-200/mo), Xero ($15-78/mo) | **Priority:** P1
 
 | Tool | What It Does |
 |------|-------------|
@@ -103,21 +167,17 @@ Composio connects agents to 500+ existing APIs. DataXLR8 builds the actual busin
 | `recurring_invoice` | Set up auto-generated invoices |
 | `tax_calculation` | Calculate GST/VAT/sales tax by jurisdiction |
 
-**Tax advantage:** Multi-jurisdiction tax compliance (GST, VAT, sales tax) built-in. QuickBooks is clunky for agents. We're the only AI-native finance tool designed for agent workflows.
-
 #### `dataxlr8-sales-mcp` — Replaces SalesLoft + Outreach
 
-**Replaces:** Outreach ($100/user), SalesLoft ($75/user), Lemlist ($59/user)
-**Revenue:** Agency builds + Cloud
-**Priority:** P1
+**Replaces:** Outreach ($100/user), SalesLoft ($75/user) | **Priority:** P1
 
 | Tool | What It Does |
 |------|-------------|
-| `generate_opener` | Personalized cold email opener from enriched data |
-| `generate_sequence` | 5-7 email drip sequence for a persona |
+| `generate_opener` | Personalized cold email opener |
+| `generate_sequence` | 5-7 email drip sequence |
 | `handle_objection` | Context-aware objection response |
 | `generate_proposal` | Full proposal from deal context |
-| `meeting_prep` | Research + talking points for upcoming meeting |
+| `meeting_prep` | Research + talking points |
 | `call_script` | Phone call script with objection handling |
 | `follow_up` | Context-aware follow-up email |
 | `linkedin_message` | Personalized LinkedIn outreach |
@@ -126,20 +186,18 @@ Composio connects agents to 500+ existing APIs. DataXLR8 builds the actual busin
 
 #### `dataxlr8-scraper-mcp` — Data Collection Engine
 
-**Replaces:** Apify ($49-499/mo), ScrapingBee ($49-249/mo)
-**Revenue:** Supports enrichment-mcp + intelligence-mcp
-**Priority:** P1
+**Replaces:** Apify ($49-499/mo), ScrapingBee ($49-249/mo) | **Priority:** P1
 
 | Tool | What It Does |
 |------|-------------|
 | `scrape_page` | Extract structured data from any URL |
 | `scrape_linkedin` | LinkedIn profile/company data |
-| `detect_tech_stack` | Domain → technologies (HTTP headers, JS, DNS) |
+| `detect_tech_stack` | Domain → technologies |
 | `monitor_changes` | Track page changes over time |
 | `extract_pricing` | Extract pricing from competitor pages |
-| `scrape_job_boards` | Company → open positions from Indeed/LinkedIn |
+| `scrape_job_boards` | Company → open positions |
 
-### Tier 3: Platform MCPs (Months 6-12)
+### Tier 3: Platform MCPs (Months 6-12) — Planned
 
 | MCP | Tools | Replaces | Priority |
 |-----|-------|----------|----------|
@@ -171,8 +229,7 @@ Step 3: crm-mcp.create_contact({name: "Jane Smith", email: "jane@acme.com", ...}
   → Contact created in your CRM
 
 Step 4: sales-mcp.generate_opener({person: jane, company: acme})
-  → "Jane, I noticed Acme just closed Series C — congratulations.
-     With 40% YoY growth, your sales team must be scaling fast..."
+  → "Jane, I noticed Acme just closed Series C — congratulations..."
 
 Step 5: email-mcp.send_email({to: "jane@acme.com", subject: ..., body: ...})
   → Email sent, tracking pixel added
@@ -184,13 +241,13 @@ TOTAL TIME: <2 seconds
 TOTAL COST: $0.02 (enrichment lookups + compute)
 ```
 
-**Try doing this with Salesforce ($75/user) + Apollo ($49/user) + Outreach ($100/user) + Composio connector. That's $224/user/month and 10x more latency.**
+**With Salesforce ($75/user) + Apollo ($49/user) + Outreach ($100/user) = $224/user/month and 10x more latency.**
 
 With DataXLR8: $49/mo total. 0.2ms per tool call. All data in one place.
 
 ---
 
-## `dxlr8` CLI
+## `dxlr8` CLI — Planned
 
 ```
 USAGE:
@@ -205,49 +262,19 @@ COMMANDS:
     logs        Stream logs from deployed MCPs
     config      Manage MCP configurations
     auth        Login, API keys
-
-EXAMPLES:
-    dxlr8 init my-business
-    dxlr8 add enrichment-mcp crm-mcp email-mcp
-    dxlr8 run                          # Local development
-    dxlr8 deploy --cloud               # Deploy to Cloud
-    dxlr8 logs enrichment-mcp --follow # Stream logs
 ```
-
----
-
-## Shared Core: `dataxlr8-mcp-core`
-
-Every MCP depends on this shared crate:
-
-```rust
-pub mod db;       // PostgreSQL pool (sqlx), compile-time checked queries
-pub mod config;   // TOML config per tenant, hot-reload
-pub mod error;    // Standardized errors: NotFound, Unauthorized, RateLimit
-pub mod logging;  // Structured tracing
-pub mod auth;     // API key + JWT validation
-pub mod metrics;  // Prometheus: tool_call_duration, tool_call_count
-pub mod cache;    // Redis caching for enrichment results
-```
-
-This shared library means every MCP:
-- Connects to the same PostgreSQL database
-- Uses the same auth system
-- Logs in the same format
-- Reports the same metrics
-- Works with the same configuration
-
-**Composability comes from shared infrastructure.** Not from glue code.
 
 ---
 
 ## Tool Count Summary
 
-| Category | MCPs | Tools | Revenue Source |
-|----------|------|-------|---------------|
-| Enrichment & Data | 3 (enrichment, scraper, intelligence) | 28 | Cloud (per-lookup) + Agency |
-| CRM & Sales | 3 (crm, sales, email) | 26 | Agency + Cloud |
-| Finance & Ops | 3 (finance, analytics, documents) | 20 | Agency + Cloud |
-| Content & Comm | 3 (content, calendar, notifications) | 19 | Cloud |
-| Infrastructure | 2 (gateway, auth) | 11 | Cloud platform |
+| Category | MCPs | Tools | Status |
+|----------|------|-------|--------|
+| **Shipped** | 6 (core, features, enrichment, crm, email, commissions) | 45 | Compiling |
+| Enrichment & Data | 3 (enrichment, scraper, intelligence) | 28 | 12 shipped, 16 planned |
+| CRM & Sales | 3 (crm, sales, email) | 26 | 16 shipped, 10 planned |
+| Finance & Ops | 3 (finance, analytics, documents) | 20 | Planned |
+| Content & Comm | 3 (content, calendar, notifications) | 19 | Planned |
+| Infrastructure | 2 (gateway, auth) | 11 | Planned |
+| Internal | 2 (features, commissions) | 17 | Shipped |
 | **Total** | **14** | **104** | |
