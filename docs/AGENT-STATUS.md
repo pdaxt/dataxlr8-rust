@@ -1,10 +1,10 @@
 # Agent Status — Live Deployment
 
-_Updated: 2026-03-05 23:00_
+_Updated: 2026-03-06 00:30_
 
-## Current Phase: QA Complete — Ready for Integration Testing
+## Current Phase: MCPs Registered — Ready for Integration Testing
 
-All 22 MCPs built, compiling, QA hardened, and on GitHub with branch protection.
+All 23 MCPs built (release), QA hardened, on GitHub with branch protection, and registered in Claude Code.
 
 ## Completed Rounds
 
@@ -73,10 +73,18 @@ Every new MCP received QA hardening:
 | 24 | dataxlr8-webhooks-mcp | 8 | QA hardened, protected |
 | | **Total** | **~211 tools** | **all QA hardened** |
 
+### Round 4: Release Builds + MCP Registration
+- Built all 23 MCPs in `--release` mode (7-12MB each)
+- Shared target directory: `/Users/pran/Projects/.cargo-target/release/`
+- Registered all 23 MCPs in Claude Code project-level config (`~/.claude.json`)
+- MCPs load via `env DATABASE_URL=... RUST_LOG=info /path/to/binary` (stdio transport)
+- Old `dataxlr8-features` global MCP replaced with project-level entry
+
 ## Next Steps
 
-1. Register all MCPs in Claude Code config
-2. Integration test against PostgreSQL
-3. Enrichment-mcp provider refactor (GitHub, Hunter, EmailRep providers)
-4. Start outreach to Sydney recruitment agencies
-5. Request AWS SES production access
+1. ~~Register all MCPs in Claude Code config~~ DONE
+2. ~~Integration test against PostgreSQL~~ DONE (23/23 handshake, 212 tools verified, CRM roundtrip, enrichment functional)
+3. Fix crm-mcp NUMERIC→f64 type mismatch — DONE (pushed)
+4. Enrichment-mcp provider refactor (GitHub, Hunter, EmailRep providers)
+5. Start outreach to Sydney recruitment agencies
+6. Request AWS SES production access
