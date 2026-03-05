@@ -15,18 +15,19 @@ RIGHT:  Find Clients + Build MCPs + Launch Cloud → Money from Week 1
 
 ### What Exists (All Compiling, All on GitHub)
 
-| Repo | What | Tools | Status |
-|------|------|-------|--------|
-| `dataxlr8-mcp-core` | Shared Rust library | DB, config, errors, logging | compiles |
-| `dataxlr8-features-mcp` | Feature flags, A/B testing | 9 tools | compiles |
-| `dataxlr8-enrichment-mcp` | Lead enrichment (THE WEDGE) | 12 tools | compiles, provider refactor in progress |
-| `dataxlr8-crm-mcp` | CRM pipeline, deals, contacts | 10 tools | compiles |
-| `dataxlr8-email-mcp` | Email sending + templates | 6 tools | compiles |
-| `dataxlr8-commissions-mcp` | Sales commissions, leaderboard | 8 tools | compiles |
-| `dataxlr8-contacts-mcp` | Contact management | 9 tools | compiles (being absorbed into crm-mcp) |
-| `dataxlr8-web` | Employee portal | deals, training, commissions, admin | compiles, running |
-| `dataxlr8-rust` | Strategy docs | architecture, plans | — |
-| **Total** | **8 repos + docs** | **54 tools** | |
+| Repo | What | Tools | Commit | Status |
+|------|------|-------|--------|--------|
+| `dataxlr8-mcp-core` | Shared Rust library | DB, config, errors, logging, mcp helpers, types | e4060c6 | compiles |
+| `dataxlr8-features-mcp` | Feature flags, A/B testing | 9 tools | b46d94f | compiles |
+| `dataxlr8-enrichment-mcp` | Lead enrichment (THE WEDGE) | 12 tools | 2b55e6f | compiles |
+| `dataxlr8-crm-mcp` | CRM pipeline, deals, contacts, interactions, tags | 12 tools | 6ce23ee | compiles |
+| `dataxlr8-email-mcp` | Email sending + templates | 6 tools | 1640e5e | compiles |
+| `dataxlr8-commissions-mcp` | Sales commissions, leaderboard | 8 tools | 1d9dc69 | compiles |
+| `dataxlr8-devtools-mcp` | Dev intelligence, sessions, git ops, QA | 20 tools | 3720c59 | compiles |
+| `dataxlr8-contacts-mcp` | Contact management | 9 tools | 1181301 | DEPRECATED (merged into crm-mcp) |
+| `dataxlr8-web` | Employee portal | deals, training, commissions, admin | — | compiles, running |
+| `dataxlr8-rust` | Strategy docs | architecture, plans | — | — |
+| **Total** | **9 repos + docs** | **67 tools** (excl. deprecated) | | |
 
 Additional assets:
 - Next.js web app with BusinessAnalyzer chatbot (AI Opportunity Scanner)
@@ -49,11 +50,16 @@ dataxlr8-{name}-mcp/
 │       └── mod.rs      # types → schema helpers → build_tools() → handlers → ServerHandler
 ```
 
+### What's Been Completed
+
+- [x] mcp-core: Added `mcp.rs` (shared tool helpers) + `types.rs` (shared data types) — commit e4060c6
+- [x] contacts-mcp: Merged unique features (interactions, tags) into crm-mcp — commit 6ce23ee
+- [x] All MCPs updated to use shared helpers from mcp-core (via use-shared-helpers PRs)
+- [x] devtools-mcp: 20 tools built — sessions, code analysis, git ops, QA gates — commit 3720c59
+
 ### What's In Progress
 
 - [ ] enrichment-mcp: Provider-based waterfall architecture refactor
-- [ ] mcp-core: Add `mcp.rs` (shared tool helpers) + `types.rs` (shared data types)
-- [ ] contacts-mcp: Merge unique features into crm-mcp, deprecate
 
 ### What's Missing
 
@@ -79,8 +85,8 @@ dataxlr8-{name}-mcp/
 - [x] Build `dataxlr8-enrichment-mcp` — 12 tools, compiles, on GitHub
 - [x] Build `dataxlr8-crm-mcp` — 10 tools, compiles, on GitHub
 - [ ] Complete enrichment-mcp provider refactor (waterfall: Free → Freemium → Paid)
-- [ ] Refactor mcp-core: add mcp.rs + types.rs (eliminate duplication)
-- [ ] Merge contacts-mcp into crm-mcp
+- [x] Refactor mcp-core: add mcp.rs + types.rs (eliminate duplication) — DONE (e4060c6)
+- [x] Merge contacts-mcp into crm-mcp — DONE (6ce23ee)
 - [ ] QA test enrichment-mcp (verify_email on real addresses)
 - [ ] QA test crm-mcp (full roundtrip: create → search → deal → pipeline)
 
@@ -217,7 +223,8 @@ dataxlr8-{name}-mcp/
 | **P0** | enrichment-mcp | 12 | compiles, provider refactor | Apollo, ZoomInfo, Clearbit |
 | **P0** | crm-mcp | 10 | compiles | Salesforce, HubSpot |
 | **P0** | email-mcp | 6 | compiles | SendGrid, Outreach |
-| **P0** | mcp-core refactor | — | in progress | (internal) |
+| **P0** | mcp-core refactor | — | DONE (e4060c6) | (internal) |
+| **P0** | devtools-mcp | 20 | compiles (3720c59) | (internal) |
 | **P1** | finance-mcp | 8 | planned | QuickBooks, Xero |
 | **P1** | sales-mcp | 10 | planned | Outreach, SalesLoft |
 | **P1** | scraper-mcp | 6 | planned | Apify, ScrapingBee |
