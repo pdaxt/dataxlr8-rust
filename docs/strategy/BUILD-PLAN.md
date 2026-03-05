@@ -29,20 +29,37 @@ dataxlr8-{name}-mcp/
 
 ---
 
-## What Exists (All Compiling, All on GitHub)
+## What Exists (All Compiling, All on GitHub, All Branch Protected)
 
-| MCP | Repo | Tools | Commit | Status |
-|-----|------|-------|--------|--------|
-| `dataxlr8-mcp-core` | pdaxt/dataxlr8-mcp-core | shared lib (config, db, error, logging, mcp helpers, types) | e4060c6 | compiles |
-| `dataxlr8-features-mcp` | pdaxt/dataxlr8-features-mcp | 9 tools | b46d94f | compiles |
-| `dataxlr8-enrichment-mcp` | pdaxt/dataxlr8-enrichment-mcp | 12 tools | 2b55e6f | compiles (3 warnings) |
-| `dataxlr8-crm-mcp` | pdaxt/dataxlr8-crm-mcp | 12 tools (merged contacts) | 6ce23ee | compiles |
-| `dataxlr8-email-mcp` | pdaxt/dataxlr8-email-mcp | 6 tools | 1640e5e | compiles (2 warnings) |
-| `dataxlr8-commissions-mcp` | pdaxt/dataxlr8-commissions-mcp | 8 tools | 1d9dc69 | compiles (1 warning) |
-| `dataxlr8-devtools-mcp` | pdaxt/dataxlr8-devtools-mcp | 20 tools | 3720c59 | compiles |
-| `dataxlr8-contacts-mcp` | pdaxt/dataxlr8-contacts-mcp | 9 tools | 1181301 | DEPRECATED (merged into crm-mcp) |
-| `dataxlr8-web` | pdaxt/dataxlr8-web | Portal | — | compiles, running |
-| **Total** | **9 repos** | **67 tools** (excl. deprecated contacts-mcp) | | |
+| # | MCP | Repo | Tools | Status |
+|---|-----|------|-------|--------|
+| 1 | `dataxlr8-mcp-core` | pdaxt/dataxlr8-mcp-core | shared lib | compiles |
+| 2 | `dataxlr8-features-mcp` | pdaxt/dataxlr8-features-mcp | 9 tools | compiles |
+| 3 | `dataxlr8-enrichment-mcp` | pdaxt/dataxlr8-enrichment-mcp | 12 tools | compiles |
+| 4 | `dataxlr8-crm-mcp` | pdaxt/dataxlr8-crm-mcp | 12 tools | compiles |
+| 5 | `dataxlr8-email-mcp` | pdaxt/dataxlr8-email-mcp | 6 tools | compiles |
+| 6 | `dataxlr8-commissions-mcp` | pdaxt/dataxlr8-commissions-mcp | 8 tools | compiles |
+| 7 | `dataxlr8-devtools-mcp` | pdaxt/dataxlr8-devtools-mcp | 20 tools | compiles |
+| 8 | `dataxlr8-pipeline-mcp` | pdaxt/dataxlr8-pipeline-mcp | 8 tools | compiles |
+| 9 | `dataxlr8-scoring-mcp` | pdaxt/dataxlr8-scoring-mcp | 8 tools | compiles |
+| 10 | `dataxlr8-analytics-mcp` | pdaxt/dataxlr8-analytics-mcp | 8 tools | compiles |
+| 11 | `dataxlr8-audit-mcp` | pdaxt/dataxlr8-audit-mcp | 8 tools | compiles |
+| 12 | `dataxlr8-campaign-mcp` | pdaxt/dataxlr8-campaign-mcp | 8 tools | compiles |
+| 13 | `dataxlr8-dashboard-mcp` | pdaxt/dataxlr8-dashboard-mcp | 8 tools | compiles |
+| 14 | `dataxlr8-import-mcp` | pdaxt/dataxlr8-import-mcp | 8 tools | compiles |
+| 15 | `dataxlr8-integrations-mcp` | pdaxt/dataxlr8-integrations-mcp | 8 tools | compiles |
+| 16 | `dataxlr8-invoicing-mcp` | pdaxt/dataxlr8-invoicing-mcp | 8 tools | compiles |
+| 17 | `dataxlr8-notes-mcp` | pdaxt/dataxlr8-notes-mcp | 8 tools | compiles |
+| 18 | `dataxlr8-notifications-mcp` | pdaxt/dataxlr8-notifications-mcp | 8 tools | compiles |
+| 19 | `dataxlr8-reporting-mcp` | pdaxt/dataxlr8-reporting-mcp | 8 tools | compiles |
+| 20 | `dataxlr8-scheduler-mcp` | pdaxt/dataxlr8-scheduler-mcp | 8 tools | compiles |
+| 21 | `dataxlr8-search-mcp` | pdaxt/dataxlr8-search-mcp | 8 tools | compiles |
+| 22 | `dataxlr8-talent-mcp` | pdaxt/dataxlr8-talent-mcp | 10 tools | compiles |
+| 23 | `dataxlr8-templates-mcp` | pdaxt/dataxlr8-templates-mcp | 8 tools | compiles |
+| 24 | `dataxlr8-webhooks-mcp` | pdaxt/dataxlr8-webhooks-mcp | 8 tools | compiles |
+| | `dataxlr8-contacts-mcp` | pdaxt/dataxlr8-contacts-mcp | 9 tools | DEPRECATED |
+| | `dataxlr8-web` | pdaxt/dataxlr8-web | Portal | running |
+| | **Total** | **24 repos** | **~211 tools** | **all compile** |
 
 ---
 
