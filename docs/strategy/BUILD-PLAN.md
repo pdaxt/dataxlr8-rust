@@ -40,6 +40,7 @@ dataxlr8-{name}-mcp/
 | `dataxlr8-email-mcp` | pdaxt/dataxlr8-email-mcp | 6 tools | compiles |
 | `dataxlr8-commissions-mcp` | pdaxt/dataxlr8-commissions-mcp | 8 tools | compiles |
 | `dataxlr8-contacts-mcp` | pdaxt/dataxlr8-contacts-mcp | 9 tools | compiles (being absorbed into crm-mcp) |
+| `dataxlr8-devtools-mcp` | pdaxt/dataxlr8-devtools-mcp | 20 tools | compiles (commit 3720c59) |
 | `dataxlr8-web` | pdaxt/dataxlr8-web | Portal | compiles, running |
 
 ---
@@ -50,11 +51,11 @@ dataxlr8-{name}-mcp/
 
 Add shared modules to eliminate duplication across all MCPs:
 
-- [ ] Add `src/mcp.rs` — shared tool helpers (make_schema, json_result, error_result, get_str, get_bool, get_str_array)
-- [ ] Add `src/types.rs` — shared data types (PersonData, CompanyData, EmailVerification, EmailCandidate)
-- [ ] Update `src/lib.rs` to export new modules
-- [ ] `cargo build` — must pass
-- [ ] Push to GitHub
+- [x] Add `src/mcp.rs` — shared tool helpers (make_schema, json_result, error_result, get_str, get_bool, get_str_array)
+- [x] Add `src/types.rs` — shared data types (PersonData, CompanyData, EmailVerification, EmailCandidate)
+- [x] Update `src/lib.rs` to export new modules
+- [x] `cargo build` — must pass
+- [x] Push to GitHub (commit e4060c6)
 
 ### Phase 2: enrichment-mcp Provider Refactor
 
@@ -121,6 +122,9 @@ Restructure from monolithic tools/mod.rs (1306 lines) into provider-based waterf
 - [x] crm-mcp: `cargo build` passes
 - [x] crm-mcp: Pushed to GitHub (pdaxt/dataxlr8-crm-mcp, commit 6f6dd62)
 - [x] BUILD-PLAN.md created and pushed to GitHub
+- [x] mcp-core: mcp.rs + types.rs added (commit e4060c6)
+- [x] devtools-mcp: 20 tools built and pushed (commit 3720c59)
+- [x] Agent prompts created in docs/prompts/ (_pattern.md, enrichment-mcp.md, crm-mcp.md, devtools-mcp.md)
 
 ---
 
