@@ -113,17 +113,17 @@ CREATE TABLE IF NOT EXISTS enrichment.lookups (
 
 ## Build Status
 
-- [ ] enrichment-mcp: Cargo.toml + src structure
-- [ ] enrichment-mcp: Schema setup (db.rs)
-- [ ] enrichment-mcp: 12 tools implemented
-- [ ] enrichment-mcp: `cargo build` passes
-- [ ] enrichment-mcp: Pushed to GitHub
+- [x] enrichment-mcp: Cargo.toml + src structure
+- [x] enrichment-mcp: Schema setup (db.rs)
+- [x] enrichment-mcp: 12 tools implemented (1282 lines)
+- [x] enrichment-mcp: `cargo build` passes (37MB binary)
+- [x] enrichment-mcp: Pushed to GitHub (pdaxt/dataxlr8-enrichment-mcp, commit 8b4e818)
 - [ ] enrichment-mcp: QA tested
-- [ ] crm-mcp: Cargo.toml + src structure
-- [ ] crm-mcp: Schema setup (db.rs)
-- [ ] crm-mcp: 10 tools implemented
-- [ ] crm-mcp: `cargo build` passes
-- [ ] crm-mcp: Pushed to GitHub
+- [x] crm-mcp: Cargo.toml + src structure
+- [x] crm-mcp: Schema setup (db.rs)
+- [x] crm-mcp: 10 tools implemented (1024 lines)
+- [x] crm-mcp: `cargo build` passes (24MB binary)
+- [x] crm-mcp: Pushed to GitHub (pdaxt/dataxlr8-crm-mcp, commit 6f6dd62)
 - [ ] crm-mcp: QA tested
 - [ ] Outreach: Templates created in email-mcp
 - [ ] Outreach: 50 Sydney recruitment agencies enriched
