@@ -1,42 +1,46 @@
 # DataXLR8 — Project Status
 
-_Single source of truth. Updated: 2026-03-06_
+_Single source of truth. Verified: 2026-03-06 (TruthSeeker audit)_
 
 ## Current State
 
-25 MCP repos on GitHub (24 MCPs + 1 shared library). All compile, QA hardened, branch-protected, with READMEs. TruthSeeker MCP validates all claims against real data.
+26 repos on GitHub (25 MCPs + 1 shared library). All compile, all branch-protected, all have READMEs. 231 tools total across 25 MCPs. TruthSeeker MCP validates all claims against real data.
 
 **CRM:** Clean — 0 test data rows.
+**DB Schemas:** 28 schemas in PostgreSQL (one per MCP + deals, employees, training).
 
 ## GitHub Repos
 
-| # | Repo | Tools | Schema | Status |
-|---|------|-------|--------|--------|
-| 0 | dataxlr8-mcp-core | shared lib | N/A | compiles, protected |
-| 1 | dataxlr8-features-mcp | 9 | features.* | QA hardened, protected |
-| 2 | dataxlr8-enrichment-mcp | 12 | enrichment.* | QA hardened, protected |
-| 3 | dataxlr8-crm-mcp | 12 | crm.* | QA hardened, protected |
-| 4 | dataxlr8-email-mcp | 6 | email.* | QA hardened, protected |
-| 5 | dataxlr8-commissions-mcp | 8 | commissions.* | QA hardened, protected |
-| 6 | dataxlr8-devtools-mcp | 20 | devtools.* | QA hardened, protected |
-| 7 | dataxlr8-pipeline-mcp | 8 | pipeline.* | QA hardened, protected |
-| 8 | dataxlr8-scoring-mcp | 8 | scoring.* | QA hardened, protected |
-| 9 | dataxlr8-analytics-mcp | 8 | analytics.* | QA hardened, protected |
-| 10 | dataxlr8-audit-mcp | 8 | audit.* | QA hardened, protected |
-| 11 | dataxlr8-campaign-mcp | 8 | campaign.* | QA hardened, protected |
-| 12 | dataxlr8-dashboard-mcp | 8 | dashboard.* | QA hardened, protected |
-| 13 | dataxlr8-import-mcp | 8 | import.* | QA hardened, protected |
-| 14 | dataxlr8-integrations-mcp | 8 | integrations.* | QA hardened, protected |
-| 15 | dataxlr8-invoicing-mcp | 8 | invoicing.* | QA hardened, protected |
-| 16 | dataxlr8-notes-mcp | 8 | notes.* | QA hardened, protected |
-| 17 | dataxlr8-notifications-mcp | 8 | notifications.* | QA hardened, protected |
-| 18 | dataxlr8-reporting-mcp | 8 | reporting.* | QA hardened, protected |
-| 19 | dataxlr8-scheduler-mcp | 8 | scheduler.* | QA hardened, protected |
-| 20 | dataxlr8-search-mcp | 8 | search.* | QA hardened, protected |
-| 21 | dataxlr8-talent-mcp | 10 | talent.* | QA hardened, protected |
-| 22 | dataxlr8-templates-mcp | 8 | templates.* | QA hardened, protected |
-| 23 | dataxlr8-webhooks-mcp | 8 | webhooks.* | QA hardened, protected |
-| 24 | dataxlr8-truthseeker-mcp | 10 | truthseeker.* | compiles, protected |
+| # | Repo | Tools | Schema | Default Branch | Status |
+|---|------|-------|--------|---------------|--------|
+| 0 | dataxlr8-mcp-core | shared lib | N/A | master | compiles, protected |
+| 1 | dataxlr8-analytics-mcp | 8 | analytics.* | master | QA hardened, protected |
+| 2 | dataxlr8-audit-mcp | 8 | audit.* | master | QA hardened, protected |
+| 3 | dataxlr8-campaign-mcp | 8 | campaigns.* | master | QA hardened, protected |
+| 4 | dataxlr8-commissions-mcp | 8 | commissions.* | main | QA hardened, protected |
+| 5 | dataxlr8-contacts-mcp | 9 | contacts.* | main | compiles, protected |
+| 6 | dataxlr8-crm-mcp | 12 | crm.* | master | QA hardened, protected |
+| 7 | dataxlr8-dashboard-mcp | 8 | dashboard.* | master | QA hardened, protected |
+| 8 | dataxlr8-devtools-mcp | 20 | devtools.* | master | QA hardened, protected |
+| 9 | dataxlr8-email-mcp | 12 | email.* | main | QA hardened, protected |
+| 10 | dataxlr8-enrichment-mcp | 12 | enrichment.* | master | QA hardened, protected |
+| 11 | dataxlr8-features-mcp | 9 | features.* | master | QA hardened, protected |
+| 12 | dataxlr8-import-mcp | 8 | imports.* | master | QA hardened, protected |
+| 13 | dataxlr8-integrations-mcp | 8 | integrations.* | master | QA hardened, protected |
+| 14 | dataxlr8-invoicing-mcp | 8 | invoicing.* | master | QA hardened, protected |
+| 15 | dataxlr8-notes-mcp | 8 | notes.* | master | QA hardened, protected |
+| 16 | dataxlr8-notifications-mcp | 8 | notifications.* | master | QA hardened, protected |
+| 17 | dataxlr8-pipeline-mcp | 8 | pipeline.* | main | QA hardened, protected |
+| 18 | dataxlr8-reporting-mcp | 8 | reporting.* | master | QA hardened, protected |
+| 19 | dataxlr8-scheduler-mcp | 8 | scheduler.* | master | QA hardened, protected |
+| 20 | dataxlr8-scoring-mcp | 9 | scoring.* | master | QA hardened, protected |
+| 21 | dataxlr8-search-mcp | 8 | search.* | master | QA hardened, protected |
+| 22 | dataxlr8-talent-mcp | 10 | talent.* | master | QA hardened, protected |
+| 23 | dataxlr8-templates-mcp | 8 | templates.* | master | QA hardened, protected |
+| 24 | dataxlr8-truthseeker-mcp | 10 | truthseeker.* | master | compiles, protected |
+| 25 | dataxlr8-webhooks-mcp | 8 | webhooks.* | master | QA hardened, protected |
+
+**Total: 25 MCPs, 231 tools, 26 repos (incl. mcp-core shared lib)**
 
 ## Build History
 
@@ -50,9 +54,9 @@ _Single source of truth. Updated: 2026-03-06_
 - Input validation, error handling, pagination, string trimming, SQL injection prevention on all new MCPs
 
 ### Round 4: Release Builds + Registration
-- All 23 MCPs built in release mode (7-12MB each)
+- All MCPs built in release mode (7-12MB each)
 - Registered in Claude Code project-level config (stdio transport)
-- Integration tested: 23/23 handshake pass, 212 tools verified, CRM roundtrip pass
+- Integration tested: handshake pass, CRM roundtrip pass
 
 ### Round 5: TruthSeeker + Cleanup
 - Built dataxlr8-truthseeker-mcp (10 tools for ground truth validation)
@@ -60,12 +64,18 @@ _Single source of truth. Updated: 2026-03-06_
 - Added READMEs to all MCP repos
 - Consolidated documentation (removed overlapping STATUS.md, SPRINT-1.md)
 
+### Round 6: Verified Audit
+- Full audit of all 25 MCPs: binary exists, tools/list responds, GitHub push, branch protection
+- Built contacts-mcp (9 tools, was missing binary)
+- Fixed branch protection: 23 repos were unprotected, now all 25 are protected
+- Corrected tool counts: email-mcp=12 (was 6), scoring-mcp=9 (was 8), total=231 (was 212)
+- Verified 28 DB schemas exist in PostgreSQL
+
 ## What's Next
 
 1. Enrichment-mcp provider refactor (GitHub, Hunter, EmailRep providers)
 2. Start outreach to Sydney recruitment agencies
 3. Request AWS SES production access
-4. Run `audit_all_repos` via TruthSeeker for full verified inventory
 
 ## Architecture
 
@@ -74,7 +84,7 @@ Claude Code → stdio → dataxlr8-*-mcp binaries → PostgreSQL (dataxlr8 DB)
                                                   └── one schema per MCP
 ```
 
-Each MCP: standalone Rust binary, ~8MB, follows lego pattern (main.rs → db.rs → tools/mod.rs).
+Each MCP: standalone Rust binary, 7-12MB, follows lego pattern (main.rs → db.rs → tools/mod.rs).
 Shared code in dataxlr8-mcp-core (DB pool, config, MCP helpers).
 
 ## Docs Index
