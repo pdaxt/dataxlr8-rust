@@ -1,0 +1,362 @@
+{
+  "timestamp": "2026-03-07T00:57:52Z",
+  "total_pass": 1540,
+  "total_fail": 105,
+  "total_tests": 1645,
+  "pass_rate": "93.6%",
+  "validation_category_fails": 0,
+  "mcps": {
+    "analytics": {
+      "pass": 54,
+      "fail": 7,
+      "total": 61,
+      "rate": "88.5%",
+      "fails_by_category": {
+        "happy_path": [
+          "query_events:happy_path",
+          "funnel_analysis:happy_path",
+          "daily_metrics:happy_path",
+          "top_events:happy_path",
+          "user_journey:happy_path",
+          "retention_cohort:happy_path",
+          "export_events:happy_path"
+        ]
+      }
+    },
+    "audit": {
+      "pass": 63,
+      "fail": 5,
+      "total": 68,
+      "rate": "92.6%",
+      "fails_by_category": {
+        "happy_path": [
+          "query_audit:happy_path",
+          "agent_activity:happy_path",
+          "daily_summary:happy_path",
+          "diff_changes:happy_path",
+          "compliance_report:happy_path"
+        ]
+      }
+    },
+    "campaign": {
+      "pass": 60,
+      "fail": 7,
+      "total": 67,
+      "rate": "89.6%",
+      "fails_by_category": {
+        "happy_path": [
+          "create_campaign:happy_path",
+          "add_recipients:happy_path",
+          "launch_campaign:happy_path",
+          "pause_campaign:happy_path",
+          "campaign_metrics:happy_path",
+          "ab_test:happy_path",
+          "campaign_timeline:happy_path"
+        ]
+      }
+    },
+    "commissions": {
+      "pass": 42,
+      "fail": 2,
+      "total": 44,
+      "rate": "95.5%",
+      "fails_by_category": {
+        "happy_path": [
+          "record_commission:happy_path",
+          "update_commission_status:happy_path"
+        ]
+      }
+    },
+    "contacts": {
+      "pass": 59,
+      "fail": 2,
+      "total": 61,
+      "rate": "96.7%",
+      "fails_by_category": {
+        "happy_path": [
+          "add_interaction:happy_path",
+          "tag_contact:happy_path"
+        ]
+      }
+    },
+    "crm": {
+      "pass": 70,
+      "fail": 5,
+      "total": 75,
+      "rate": "93.3%",
+      "fails_by_category": {
+        "happy_path": [
+          "upsert_deal:happy_path",
+          "move_deal:happy_path",
+          "log_activity:happy_path",
+          "create_task:happy_path",
+          "tag_contact:happy_path"
+        ]
+      }
+    },
+    "dashboard": {
+      "pass": 45,
+      "fail": 1,
+      "total": 46,
+      "rate": "97.8%",
+      "fails_by_category": {
+        "happy_path": [
+          "load_dashboard:happy_path"
+        ]
+      }
+    },
+    "devtools": {
+      "pass": 103,
+      "fail": 2,
+      "total": 105,
+      "rate": "98.1%",
+      "fails_by_category": {
+        "happy_path": [
+          "get_build_status:happy_path",
+          "log_iteration:happy_path"
+        ]
+      }
+    },
+    "email": {
+      "pass": 67,
+      "fail": 3,
+      "total": 70,
+      "rate": "95.7%",
+      "fails_by_category": {
+        "happy_path": [
+          "send_template_email:happy_path",
+          "get_sequence_status:happy_path",
+          "pause_enrollment:happy_path"
+        ]
+      }
+    },
+    "enrichment": {
+      "pass": 70,
+      "fail": 6,
+      "total": 76,
+      "rate": "92.1%",
+      "fails_by_category": {
+        "happy_path": [
+          "enrich_person:happy_path",
+          "enrich_company:happy_path",
+          "domain_emails:happy_path",
+          "reverse_domain:happy_path",
+          "tech_stack:happy_path",
+          "hiring_signals:happy_path"
+        ]
+      }
+    },
+    "features": {
+      "pass": 56,
+      "fail": 5,
+      "total": 61,
+      "rate": "91.8%",
+      "fails_by_category": {
+        "happy_path": [
+          "get_flag:happy_path",
+          "update_flag:happy_path",
+          "delete_flag:happy_path",
+          "set_override:happy_path",
+          "remove_override:happy_path"
+        ]
+      }
+    },
+    "import": {
+      "pass": 75,
+      "fail": 7,
+      "total": 82,
+      "rate": "91.5%",
+      "fails_by_category": {
+        "happy_path": [
+          "import_csv:happy_path",
+          "import_json:happy_path",
+          "export_table:happy_path",
+          "import_status:happy_path",
+          "validate_data:happy_path",
+          "map_fields:happy_path",
+          "rollback_import:happy_path"
+        ]
+      }
+    },
+    "integrations": {
+      "pass": 56,
+      "fail": 5,
+      "total": 61,
+      "rate": "91.8%",
+      "fails_by_category": {
+        "happy_path": [
+          "configure_integration:happy_path",
+          "sync_contacts:happy_path",
+          "push_candidate:happy_path",
+          "map_fields:happy_path",
+          "disable_integration:happy_path"
+        ]
+      }
+    },
+    "invoicing": {
+      "pass": 52,
+      "fail": 5,
+      "total": 57,
+      "rate": "91.2%",
+      "fails_by_category": {
+        "happy_path": [
+          "create_invoice:happy_path",
+          "get_invoice:happy_path",
+          "send_invoice:happy_path",
+          "record_payment:happy_path",
+          "void_invoice:happy_path"
+        ]
+      }
+    },
+    "notes": {
+      "pass": 59,
+      "fail": 0,
+      "total": 59,
+      "rate": "100.0%",
+      "fails_by_category": {}
+    },
+    "notifications": {
+      "pass": 66,
+      "fail": 1,
+      "total": 67,
+      "rate": "98.5%",
+      "fails_by_category": {
+        "happy_path": [
+          "mark_read:happy_path"
+        ]
+      }
+    },
+    "pipeline": {
+      "pass": 44,
+      "fail": 7,
+      "total": 51,
+      "rate": "86.3%",
+      "fails_by_category": {
+        "happy_path": [
+          "create_pipeline:happy_path",
+          "add_prospect:happy_path",
+          "score_prospect:happy_path",
+          "advance_prospect:happy_path",
+          "pipeline_metrics:happy_path",
+          "stale_deals:happy_path",
+          "export_pipeline:happy_path"
+        ]
+      }
+    },
+    "reporting": {
+      "pass": 62,
+      "fail": 7,
+      "total": 69,
+      "rate": "89.9%",
+      "fails_by_category": {
+        "happy_path": [
+          "create_report:happy_path",
+          "run_report:happy_path",
+          "get_report_result:happy_path",
+          "schedule_report:happy_path",
+          "report_history:happy_path",
+          "delete_report:happy_path",
+          "cross_table_query:happy_path"
+        ]
+      }
+    },
+    "scheduler": {
+      "pass": 50,
+      "fail": 4,
+      "total": 54,
+      "rate": "92.6%",
+      "fails_by_category": {
+        "happy_path": [
+          "schedule_task:happy_path",
+          "cancel_task:happy_path",
+          "reschedule:happy_path",
+          "create_recurring:happy_path"
+        ]
+      }
+    },
+    "scoring": {
+      "pass": 51,
+      "fail": 8,
+      "total": 59,
+      "rate": "86.4%",
+      "fails_by_category": {
+        "happy_path": [
+          "create_model:happy_path",
+          "score_lead:happy_path",
+          "bulk_score:happy_path",
+          "get_score:happy_path",
+          "score_history:happy_path",
+          "set_threshold:happy_path",
+          "threshold_alerts:happy_path",
+          "scoring_stats:happy_path"
+        ]
+      }
+    },
+    "search": {
+      "pass": 75,
+      "fail": 2,
+      "total": 77,
+      "rate": "97.4%",
+      "fails_by_category": {
+        "happy_path": [
+          "search_contacts:happy_path",
+          "search_emails:happy_path"
+        ]
+      }
+    },
+    "talent": {
+      "pass": 84,
+      "fail": 5,
+      "total": 89,
+      "rate": "94.4%",
+      "fails_by_category": {
+        "happy_path": [
+          "search_candidates:happy_path",
+          "match_candidates:happy_path",
+          "submit_candidate:happy_path",
+          "update_status:happy_path",
+          "add_note:happy_path"
+        ]
+      }
+    },
+    "templates": {
+      "pass": 64,
+      "fail": 3,
+      "total": 67,
+      "rate": "95.5%",
+      "fails_by_category": {
+        "happy_path": [
+          "render_template:happy_path",
+          "clone_template:happy_path",
+          "template_usage:happy_path"
+        ]
+      }
+    },
+    "truthseeker": {
+      "pass": 56,
+      "fail": 4,
+      "total": 60,
+      "rate": "93.3%",
+      "fails_by_category": {
+        "happy_path": [
+          "audit_all_repos:happy_path",
+          "validate_data:happy_path",
+          "register_fact:happy_path",
+          "validation_history:happy_path"
+        ]
+      }
+    },
+    "webhooks": {
+      "pass": 57,
+      "fail": 2,
+      "total": 59,
+      "rate": "96.6%",
+      "fails_by_category": {
+        "happy_path": [
+          "delivery_log:happy_path",
+          "retry_failed:happy_path"
+        ]
+      }
+    }
+  }
+}
